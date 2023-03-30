@@ -40,61 +40,61 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <footer class="text-center" style={{backgroundColor: 'rgb(240,239,230'}}>
+            <footer className="text-center" style={{backgroundColor: 'rgb(240,239,230'}}>
 
-                <div class="container pt-4">
+                <div className="container pt-4">
 
-                    <section class="mb-4">
+                    <section className="mb-4">
 
                         <a
-                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            className="btn btn-link btn-floating btn-lg text-dark m-1"
                             href="#!"
                             role="button"
                             data-mdb-ripple-color="dark"
-                        ><i class="fab fa-facebook-f"></i
+                        ><i className="fab fa-facebook-f"></i
                         ></a>
 
 
                         <a
-                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            className="btn btn-link btn-floating btn-lg text-dark m-1"
                             href="#!"
                             role="button"
                             data-mdb-ripple-color="dark"
-                        ><i class="fab fa-twitter"></i
+                        ><i className="fab fa-twitter"></i
                         ></a>
 
 
                         <a
-                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            className="btn btn-link btn-floating btn-lg text-dark m-1"
                             href="#!"
                             role="button"
                             data-mdb-ripple-color="dark"
-                        ><i class="fab fa-google"></i
+                        ><i className="fab fa-google"></i
                         ></a>
 
 
                         <a
-                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            className="btn btn-link btn-floating btn-lg text-dark m-1"
                             href="#!"
                             role="button"
                             data-mdb-ripple-color="dark"
-                        ><i class="fab fa-instagram"></i
+                        ><i className="fab fa-instagram"></i
                         ></a>
 
                         <a
-                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            className="btn btn-link btn-floating btn-lg text-dark m-1"
                             href="#!"
                             role="button"
                             data-mdb-ripple-color="dark"
-                        ><i class="fab fa-linkedin"></i
+                        ><i className="fab fa-linkedin"></i
                         ></a>
 
                         <a
-                            class="btn btn-link btn-floating btn-lg text-dark m-1"
+                            className="btn btn-link btn-floating btn-lg text-dark m-1"
                             href="#!"
                             role="button"
                             data-mdb-ripple-color="dark"
-                        ><i class="fab fa-github"></i
+                        ><i className="fab fa-github"></i
                         ></a>
                     </section>
 
@@ -102,9 +102,9 @@ export default function Footer() {
 
 
 
-                <div class="text-center text-dark p-3 border-top" style={{backgroundColor: 'rgb(240,239,230'}}>
+                <div className="text-center text-dark p-3 border-top" style={{backgroundColor: 'rgb(240,239,230'}}>
                     © 2023 Copyright:
-                    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                    <a className="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
                 </div>
 
             </footer>
