@@ -9,7 +9,7 @@ export default function CardsInfo() {
     <Container>
       <Row>
         {Array.from({ length: 3 }).map((_, idx) => (
-          <Col key="testing">
+          <Col key={idx}>
             <Card style={{ boxShadow: 'none', border: 'none', textAlign: 'center' }}>
               <Row>
                 <Truck
