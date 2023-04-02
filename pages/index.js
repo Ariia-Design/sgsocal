@@ -7,6 +7,7 @@ import Hero from '@/components/Hero'
 import AboutUs from '@/components/AboutUs'
 import ProductCards from '@/components/ProductCards'
 import Footer from '@/components/Footer'
+import CardsInfo from '@/components/CardsInfo'
 import Stack from 'react-bootstrap/Stack';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,6 +20,7 @@ export default function Home() {
           <Hero />
           <ProductCards />
           <AboutUs />
+          <CardsInfo />
           <Footer />
       </Stack>
     </>
