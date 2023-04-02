@@ -10,3 +10,7 @@
 a, li {
     text-decoration: none !important;
 }
+
+.carousel-caption {
+    top: 40%;
+}

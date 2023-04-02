@@ -1,27 +1,51 @@
-import React from 'react';
-import Image from 'next/image';
 import Carousel from 'react-bootstrap/Carousel';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <header style={{ paddingLeft: 0 }}>
-      <div
-        className='p-5 text-center bg-image'
-        style={{ backgroundImage: "url()", height: 750 }}
-      >
-
-        <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
-          <div className='d-flex justify-content-center align-items-center h-100'>
-            <div className='text-white'>
-              <h1 className='mb-3'>Heading</h1>
-              <h4 className='mb-3'>Subheading</h4>
-              <a className='btn btn-outline-light btn-lg' href='#!' role='button'>
-                VIEW MORE
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+    <Carousel>
+      <Carousel.Item>
+        <Image
+          className="d-block w-100"
+          src={require('/public/images/hero_1.jpeg')}
+          alt="First slide"
+          width={100}
+          height={800}
+        />
+        <Carousel.Caption>
+          <h1>First slide label</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <a className='btn btn-outline-light btn-lg' href='#!' role='button'>VIEW MORE</a>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <Image
+          className="d-block w-100"
+          src={require('/public/images/hero_2.jpeg')}
+          alt="Second slide"
+          width={100}
+          height={800}
+        />
+        <Carousel.Caption>
+          <h1>Second slide label</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <a className='btn btn-outline-light btn-lg' href='#!' role='button'>VIEW MORE</a>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <Image
+          className="d-block w-100"
+          src={require('/public/images/hero_3.webp')}
+          alt="Third slide"
+          width={100}
+          height={800}
+        />
+        <Carousel.Caption>
+          <h1>Third slide label</h1>
+          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <a className='btn btn-outline-light btn-lg' href='#!' role='button'>VIEW MORE</a>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
   );
 }

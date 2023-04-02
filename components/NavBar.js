@@ -12,9 +12,6 @@ export default function NavBar() {
             <Col xs={6}>
                 <Nav className="d-none d-lg-flex justify-content-between">
                     <Nav.Item>
-                        <Nav.Link href="#home">Home</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
                         <Nav.Link href="#about-us">About Us</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
