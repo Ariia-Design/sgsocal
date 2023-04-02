@@ -1,6 +1,8 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Col from 'react-bootstrap/Col';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/Dropdown';
 import { List } from 'react-bootstrap-icons';
 
 export default function NavBar() {
@@ -26,7 +28,17 @@ export default function NavBar() {
                 </Nav>
             </Col>
             <Col className="d-flex justify-content-end">
-                <List size="45px" className="d-block d-lg-none"></List>
+                <Dropdown className="d-block d-lg-none" align="end">
+                    <Dropdown.Toggle variant="light" id="dropdown-basic">
+                        <List size="45px"></List>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item href="#about-us">About Us</Dropdown.Item>
+                        <Dropdown.Item href="#weekly-deals">Weekly Deals</Dropdown.Item>
+                        <Dropdown.Item href="#products">Products</Dropdown.Item>
+                        <Dropdown.Item href="#contact-us">Contact Us</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </Col>
         </Navbar>
     );

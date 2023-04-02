@@ -14,3 +14,7 @@ a, li {
 .carousel-caption {
     top: 40%;
 }
+
+.dropdown-toggle::after {
+    display: none !important;
+}
