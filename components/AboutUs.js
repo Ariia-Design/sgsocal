@@ -19,7 +19,7 @@ export default function About() {
             src={require('/public/images/hero_1.jpeg')}
             alt="First slide"
             width={100}
-            height={300}
+            height={400}
             />
           </Col>
       </Row>
