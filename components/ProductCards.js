@@ -110,9 +110,6 @@ export default function ProductCardGroup() {
           </Card.Footer>
         </Card>
       </CardGroup>
-      <div className="d-flex justify-content-center">
-        <a className="btn btn-outline-dark btn-md" href="#">VIEW MORE</a>
-      </div>
     </Stack>
   )
 }
