@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <Carousel>
+    <Carousel controls={false}>
       <Carousel.Item>
         <Image
           className="d-block w-100"
