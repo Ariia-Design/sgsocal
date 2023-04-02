@@ -14,8 +14,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
+      <NavBar />
       <Stack gap={5}>
-          <NavBar />
           <Hero />
           <ProductCards />
           <AboutUs />
