@@ -2,7 +2,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/Dropdown';
 import { List } from 'react-bootstrap-icons';
 
 export default function NavBar() {
