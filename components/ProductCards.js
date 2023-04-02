@@ -13,7 +13,7 @@ export default function ProductCardGroup() {
         <h1 className="text-center">Our New Products</h1>
         <CardGroup>
           <Card style={{ boxShadow: 'none' }}>
-            <Card.Img variant="top" src={require('/public/images/hero_1.jpeg')} />
+            <Card.Img variant="top" src={require('/public/images/reveur_pods_1.png')} />
             <Card.Footer className="text-center">
               <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
             </Card.Footer>
