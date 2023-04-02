@@ -7,17 +7,20 @@ import Hero from '@/components/Hero'
 import AboutUs from '@/components/AboutUs'
 import ProductCards from '@/components/ProductCards'
 import Footer from '@/components/Footer'
+import Stack from 'react-bootstrap/Stack';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <>
-    <NavBar />
-    <Hero />
-    <ProductCards />
-    <AboutUs />
-    <Footer />
+      <Stack gap={5}>
+          <NavBar />
+          <Hero />
+          <ProductCards />
+          <AboutUs />
+          <Footer />
+      </Stack>
     </>
   )
 }
