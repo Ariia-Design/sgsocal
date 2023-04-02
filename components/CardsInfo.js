@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import {Truck} from 'react-bootstrap-icons';
 
 export default function CardsInfo() {
   return (
@@ -9,8 +10,12 @@ export default function CardsInfo() {
       <Row>
         {Array.from({ length: 3 }).map((_, idx) => (
           <Col key="testing">
-            <Card style={{ boxShadow: 'none' }}>
-              <Card.Img variant="top" src="holder.js/100px160" />
+            <Card style={{ boxShadow: 'none', border: 'none', textAlign: 'center' }}>
+              <Row>
+                <Truck
+                  size="75px"
+                />
+              </Row>
               <Card.Body>
                 <Card.Title>Card title</Card.Title>
                 <Card.Text>
