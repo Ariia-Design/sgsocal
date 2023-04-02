@@ -8,6 +8,7 @@ import AboutUs from '@/components/AboutUs'
 import ProductCards from '@/components/ProductCards'
 import Footer from '@/components/Footer'
 import CardsInfo from '@/components/CardsInfo'
+import CategoryCards from '@/components/CategoryCards'
 // import Stack from 'react-bootstrap/Stack';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,6 +18,7 @@ export default function Home() {
     <>
       <NavBar />
       <Hero />
+      <CategoryCards />
       <AboutUs />
       <CardsInfo />
       <ProductCards />

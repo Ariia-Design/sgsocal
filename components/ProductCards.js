@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'next/image';
 import Stack from 'react-bootstrap/Stack';
-import reveurPods from 'public/images/reveur_pods_1.png';
 
 export default function ProductCardGroup() {
   return(
