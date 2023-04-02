@@ -18,10 +18,10 @@ export default function NavBar() {
                             <Nav.Link href="#about-us">About Us</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="#weekly-deals">Weekly Deals</Nav.Link>
+                            <Nav.Link href="#products">Products</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="#products">Products</Nav.Link>
+                            <Nav.Link href="#weekly-deals">Weekly Deals</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link href="#contact-us">Contact Us</Nav.Link>
