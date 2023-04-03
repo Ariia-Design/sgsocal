@@ -11,21 +11,21 @@ export default function NavBar() {
         <Navbar variant="light" bg="light">
             <Container>
                 <Col className="d-flex justify-content-start">
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                    <Navbar.Brand href="/">SGSOCAL</Navbar.Brand>
                 </Col>
                 <Col xs={6}>
                     <Nav className="d-none d-lg-flex justify-content-between">
                         <Nav.Item>
-                            <Nav.Link to="#about-us">About Us</Nav.Link>
+                            <Nav.Link href="/about-us">About Us</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/Products">Products</Nav.Link>
+                            <Nav.Link href="/products">Products</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="#weekly-deals">Weekly Deals</Nav.Link>
+                            <Nav.Link href="/weekly-deals">Weekly Deals</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+                            <Nav.Link href="/contact-us">Contact Us</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Col>
@@ -35,10 +35,10 @@ export default function NavBar() {
                             <List size="45px"></List>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#about-us">About Us</Dropdown.Item>
-                            <Dropdown.Item href="#weekly-deals">Weekly Deals</Dropdown.Item>
-                            <Dropdown.Item href="#products">Products</Dropdown.Item>
-                            <Dropdown.Item href="#contact-us">Contact Us</Dropdown.Item>
+                            <Dropdown.Item href="/about-us">About Us</Dropdown.Item>
+                            <Dropdown.Item href="/products">Products</Dropdown.Item>
+                            <Dropdown.Item href="/weekly-deals">Weekly Deals</Dropdown.Item>
+                            <Dropdown.Item href="/contact-us">Contact Us</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
