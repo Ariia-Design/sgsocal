@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Col from 'react-bootstrap/Col';
@@ -15,10 +16,10 @@ export default function NavBar() {
                 <Col xs={6}>
                     <Nav className="d-none d-lg-flex justify-content-between">
                         <Nav.Item>
-                            <Nav.Link href="#about-us">About Us</Nav.Link>
+                            <Nav.Link to="#about-us">About Us</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="#products">Products</Nav.Link>
+                            <Nav.Link href="/Products">Products</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link href="#weekly-deals">Weekly Deals</Nav.Link>
