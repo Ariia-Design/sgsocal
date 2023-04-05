@@ -4,7 +4,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-export default function NavCmp() {
+export default function NavCmp({navItems}) {
+    console.log(navItems)
     function useWindowSize() {
         // Initialize state with undefined width/height so server and client renders match
         // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
