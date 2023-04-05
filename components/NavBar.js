@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Col from 'react-bootstrap/Col';
@@ -8,10 +9,12 @@ import { List } from 'react-bootstrap-icons';
 
 export default function NavBar() {
     return (
-        <Navbar variant="light" bg="light">
+        <Navbar>
             <Container>
                 <Col className="d-flex justify-content-start">
-                    <Navbar.Brand href="/">SGSOCAL</Navbar.Brand>
+                    <Navbar.Brand href="/">
+                        <Image src={require('/public/images/logo_2.jpeg')} alt="logo" width={100}/>
+                    </Navbar.Brand>
                 </Col>
                 <Col xs={6}>
                     <Nav className="d-none d-lg-flex justify-content-between">
