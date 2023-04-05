@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
 export default function Footer() {
@@ -35,10 +36,7 @@ export default function Footer() {
                 <MDBContainer className='text-center text-md-start mt-5'>
                     <MDBRow className='mt-3'>
                         <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
-                            <h6 className='text-uppercase fw-bold mb-4'>
-                                <MDBIcon icon="gem" className="me-3" />
-                                Company name
-                            </h6>
+                            <Image src={require('/public/images/logo_1.jpeg')} alt="logo" width={150} />
                             <p>
                                 Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
                                 consectetur adipisicing elit.
