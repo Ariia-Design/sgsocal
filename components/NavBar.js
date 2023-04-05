@@ -7,7 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import { List } from 'react-bootstrap-icons';
 
-export default function NavBar() {
+export default function NavBar({ props }) {
     return (
         <Navbar>
             <Container>
@@ -18,18 +18,12 @@ export default function NavBar() {
                 </Col>
                 <Col xs={6}>
                     <Nav className="d-none d-lg-flex justify-content-between">
-                        <Nav.Item>
-                            <Nav.Link href="/about-us">About Us</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/products">Products</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/weekly-deals">Weekly Deals</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/contact-us">Contact Us</Nav.Link>
-                        </Nav.Item>
+                        {
+                            props.data.map(item => (
+                                <Nav.Item>
+                                    <Nav.Link href={item.attributes.url}>{item.attributes.Title}</Nav.Link>
+                                </Nav.Item>
+                            ))}
                     </Nav>
                 </Col>
                 <Col className="d-flex justify-content-end">
@@ -38,10 +32,9 @@ export default function NavBar() {
                             <List size="45px"></List>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item href="/about-us">About Us</Dropdown.Item>
-                            <Dropdown.Item href="/products">Products</Dropdown.Item>
-                            <Dropdown.Item href="/weekly-deals">Weekly Deals</Dropdown.Item>
-                            <Dropdown.Item href="/contact-us">Contact Us</Dropdown.Item>
+                            {props.data.map(item => (
+                                <Dropdown.Item href={item.attributes.url}>{item.attributes.Title}</Dropdown.Item>
+                            ))}
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
