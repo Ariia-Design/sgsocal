@@ -16,10 +16,11 @@ import CategoryCards from '@/components/CategoryCards';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+function Home({ navItems }) {
+  console.log('navItems index.js:', navItems);
   return (
     <>
-      <NavBar />
+      <NavBar props={navItems} />
       <Row className="mb-11">
         <Hero />
       </Row>
@@ -41,3 +42,12 @@ export default function Home() {
     </>
   )
 }
+export async function getServerSideProps(context) {
+  const response = await fetch('http://127.0.0.1:1337/api/nav-items')
+  const data = await response.json()
+  return {
+    props: {navItems: data}
+  };
+}
+
+export default Home;
