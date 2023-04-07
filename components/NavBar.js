@@ -18,12 +18,16 @@ export default function NavBar({ props }) {
                 </Col>
                 <Col xs={6}>
                     <Nav className="d-none d-lg-flex justify-content-between">
-                        {
+                        {/* {
                             props.data.map(item => (
                                 <Nav.Item>
                                     <Nav.Link href={item.attributes.url}>{item.attributes.Title}</Nav.Link>
                                 </Nav.Item>
-                            ))}
+                            ))
+                        } */}
+                        {/* <Nav.Item>
+                            <Nav.Link href={item.attributes.url}>{item.attributes.Title}</Nav.Link>
+                        </Nav.Item> */}
                     </Nav>
                 </Col>
                 <Col className="d-flex justify-content-end">
@@ -32,9 +36,11 @@ export default function NavBar({ props }) {
                             <List size="45px"></List>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {props.data.map(item => (
+                            {/* {props.data.map(item => (
                                 <Dropdown.Item href={item.attributes.url}>{item.attributes.Title}</Dropdown.Item>
-                            ))}
+                            ))} */}
+                            {/* <Dropdown.Item href={item.attributes.url}>{item.attributes.Title}</Dropdown.Item> */}
+
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
