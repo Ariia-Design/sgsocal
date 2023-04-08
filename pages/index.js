@@ -16,16 +16,16 @@ import CategoryCards from '@/components/CategoryCards';
 
 const inter = Inter({ subsets: ['latin'] })
 
-function Home({ navItems }) {
-  console.log('navItems index.js:', navItems);
+function Home({ navData, newProductsData, heroData, categoryData }) {
+  // console.log('navItems index.js:', navItems);
   return (
     <>
-      <NavBar props={navItems} />
+      <NavBar props={navData} />
       <Row className="mb-11">
-        <Hero />
+        <Hero props={heroData}/>
       </Row>
       <Row className="mb-11">
-        <CategoryCards />
+        <CategoryCards props={categoryData}/>
       </Row>
       <Container>
         <Row className="mb-11">
@@ -35,7 +35,7 @@ function Home({ navItems }) {
           <CardsInfo />
         </Row>
         <Row className="mb-11">
-          <ProductCards />
+          <ProductCards props={newProductsData}/>
         </Row>
       </Container>
       <Footer/>
@@ -43,11 +43,20 @@ function Home({ navItems }) {
   )
 }
 export async function getServerSideProps(context) {
-  const response = await fetch('http://127.0.0.1:1337/api/nav-items')
-  const data = await response.json()
-  return {
-    props: {navItems: data}
-  };
+  const [navResponse, newProductsResponse, heroResponse, categoriesResponse] = await Promise.all([
+    fetch('http://127.0.0.1:1337/api/nav-items'),
+    fetch('http://127.0.0.1:1337/api/home-page-new-products?populate=*'),
+    fetch('http://127.0.0.1:1337/api/home-page-heroes?populate=*'),
+    fetch('http://127.0.0.1:1337/api/home-page-categories?populate=*')
+
+  ])
+  const [navData, newProductsData, heroData, categoryData] = await Promise.all([
+    navResponse.json(),
+    newProductsResponse.json(),
+    heroResponse.json(),
+    categoriesResponse.json()
+  ])
+  return { props: {navData, newProductsData, heroData, categoryData } };
 }
 
 export default Home;
