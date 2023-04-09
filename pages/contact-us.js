@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 // import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 // import { useMemo } from "react";
-export default function ContactUs() {
+function ContactUs({navData}) {
   // const { isLoaded } = useLoadScript({
   //   googleMapsApiKey: 'AIzaSyAFF_uSplYR9mnmhHF0nzW49c0OsaVhsz8',
   // });
@@ -14,7 +14,7 @@ export default function ContactUs() {
 
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar props={navData}/>
       <Row className="d-flex justify-content-center align-items-center">
         <Col>
           <Image
@@ -48,7 +48,19 @@ export default function ContactUs() {
           />
         )}
       </div> */}
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }
+
+export async function getServerSideProps(context) {
+  const [navResponse] = await Promise.all([
+    fetch('http://127.0.0.1:1337/api/nav-items')
+  ])
+  const [navData] = await Promise.all([
+    navResponse.json()
+  ])
+  return { props: { navData } };
+}
+
+export default ContactUs
