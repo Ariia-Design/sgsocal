@@ -25,9 +25,6 @@ export default function NavBar({ props }) {
                                 </Nav.Item>
                             ))
                         }
-                        {/* <Nav.Item>
-                            <Nav.Link href={item.attributes.url}>{item.attributes.Title}</Nav.Link>
-                        </Nav.Item> */}
                     </Nav>
                 </Col>
                 <Col className="d-flex justify-content-end">
@@ -39,8 +36,6 @@ export default function NavBar({ props }) {
                             {props.data.map(item => (
                                 <Dropdown.Item key={item.id} href={item.attributes.url}>{item.attributes.Title}</Dropdown.Item>
                             ))}
-                            {/* <Dropdown.Item href={item.attributes.url}>{item.attributes.Title}</Dropdown.Item> */}
-
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>

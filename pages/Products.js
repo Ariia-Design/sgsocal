@@ -16,10 +16,10 @@ import Stack from 'react-bootstrap/Stack';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
 
-export default function Products() {
+function Products({ navData }) {
   return (
     <>
-      <NavBar />
+      <NavBar props={navData}/>
       <Container>
         <Row>
           <Breadcrumb>
@@ -352,3 +352,15 @@ export default function Products() {
     </>
   )
 }
+
+export async function getServerSideProps(context) {
+  const [navResponse] = await Promise.all([
+    fetch('http://127.0.0.1:1337/api/nav-items')
+  ])
+  const [navData] = await Promise.all([
+    navResponse.json()
+  ])
+  return { props: { navData } };
+}
+
+export default Products

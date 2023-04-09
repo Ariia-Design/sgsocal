@@ -17,7 +17,6 @@ import CategoryCards from '@/components/CategoryCards';
 const inter = Inter({ subsets: ['latin'] })
 
 function Home({ navData, newProductsData, heroData, categoryData }) {
-  // console.log('navItems index.js:', navItems);
   return (
     <>
       <NavBar props={navData} />
