@@ -6,7 +6,7 @@ export default function Hero({props}) {
   return (
     <Carousel controls={false}>
       {props.data.map(item => (
-        <Carousel.Item>
+        <Carousel.Item key={item.id}>
           <Image
             className="d-block w-100"
             src={require('/public/images/hero_1.jpeg')}

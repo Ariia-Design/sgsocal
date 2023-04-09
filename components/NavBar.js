@@ -20,7 +20,7 @@ export default function NavBar({ props }) {
                     <Nav className="d-none d-lg-flex justify-content-between">
                         {
                             props.data.map(item => (
-                                <Nav.Item>
+                                <Nav.Item key={item.id}>
                                     <Nav.Link href={item.attributes.url}>{item.attributes.Title}</Nav.Link>
                                 </Nav.Item>
                             ))
@@ -37,7 +37,7 @@ export default function NavBar({ props }) {
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             {props.data.map(item => (
-                                <Dropdown.Item href={item.attributes.url}>{item.attributes.Title}</Dropdown.Item>
+                                <Dropdown.Item key={item.id} href={item.attributes.url}>{item.attributes.Title}</Dropdown.Item>
                             ))}
                             {/* <Dropdown.Item href={item.attributes.url}>{item.attributes.Title}</Dropdown.Item> */}
 

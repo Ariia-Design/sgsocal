@@ -15,7 +15,7 @@ export default function ProductCardGroup({props}) {
       <h1 className="text-center">Our New Products</h1>
       <CardGroup>
         {props.data.map(item => (
-        <Card style={{ boxShadow: 'none' }}>
+        <Card style={{ boxShadow: 'none' }} key={item.id}>
           <MDBRipple
             className='bg-image hover-overlay shadow-1-strong rounded'
             rippleTag='div'
