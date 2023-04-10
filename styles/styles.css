@@ -7,6 +7,10 @@
     padding-top: 5rem;
 }
 
+.card-flex-basis {
+    flex-basis: 25%;
+}
+
 a, li {
     text-decoration: none !important;
 }
@@ -17,4 +21,16 @@ a, li {
 
 .dropdown-toggle::after {
     display: none !important;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .card-flex-basis {
+        flex-basis: 50%;
+    }
+}
+
+@media only screen and (max-device-width: 465px) {
+    .card-flex-basis {
+        flex-basis: 100%;
+    }
 }
