@@ -13,8 +13,6 @@ export default function Hero({props}) {
         <Carousel.Item key={item.id}>
           <Image
             className="d-block w-100"
-            // src={require('/public/images/hero_1.jpeg')}
-            // src={`/${"http://localhost:1337/uploads" + item.attributes.slideImage.data[0].attributes.name}`}
             src={api_url + item.attributes.slideImage.data[0].attributes.url}
             alt="hero"
             width={100}
@@ -31,7 +29,3 @@ export default function Hero({props}) {
     </Carousel>
   );
 }
-
-// const src = `${API}/user/photo/${blog.postedBy.username}`;
-
-// <Image loader={() => src} src={src} width={500} height={500} />

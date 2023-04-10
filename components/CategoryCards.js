@@ -1,98 +1,53 @@
-import Carousel from 'react-bootstrap/Carousel';
+import 'react-multi-carousel/lib/styles.css';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import Row from 'react-bootstrap/Row';
+import Carousel from 'react-multi-carousel';
 import Image from 'next/image';
+const api_url = "http://localhost:1337"
 
-function CategoryCards({props}) {
+export default function CategoryCards({props}) {
+  console.log('category props:', props.data)
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 1 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 1 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  };
 
-  /**
-   * This page has dynamic data - proof in the console log
-   * No content has been created yet but fields have been set up
-   */
-  console.log('category props:', props )
+  const loaderProp = ({ src }) => {
+    return src;
+  }
+
   return (
-    <Stack gap={4}>
-      <h1 className="text-center">Product Categories</h1>
-      <Carousel variant="dark" indicators={false}>
-        <Carousel.Item>
-          <Row>
-            <Col>
-              <Card>
-                <Image
-                  className="d-block w-100"
-                  src={require('/public/images/reveur_pods_1.png')}
-                  alt="reveur_pods_1"
-                  width={100}
-                  height={315}
-                />
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <Image
-                  className="d-block w-100"
-                  src={require('/public/images/reveur_pods_1.png')}
-                  alt="reveur_pods_1"
-                  width={100}
-                  height={315}
-                />
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <Image
-                  className="d-block w-100"
-                  src={require('/public/images/reveur_pods_1.png')}
-                  alt="reveur_pods_1"
-                  width={100}
-                  height={315}
-                />
-              </Card>
-            </Col>
-          </Row>
-        </Carousel.Item>
-        <Carousel.Item>
-          <Row>
-            <Col>
-              <Card>
-                <Image
-                  className="d-block w-100"
-                  src={require('/public/images/reveur_pods_1.png')}
-                  alt="reveur_pods_1"
-                  width={100}
-                  height={315}
-                />
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <Image
-                  className="d-block w-100"
-                  src={require('/public/images/reveur_pods_1.png')}
-                  alt="reveur_pods_1"
-                  width={100}
-                  height={315}
-                />
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <Image
-                  className="d-block w-100"
-                  src={require('/public/images/reveur_pods_1.png')}
-                  alt="reveur_pods_1"
-                  width={100}
-                  height={315}
-                />
-              </Card>
-            </Col>
-          </Row>
-        </Carousel.Item>
+    <Stack className="text-center" gap={4}>
+      <h1>Product Categories</h1>
+      <Carousel responsive={responsive}>
+        {props.data.map(item => (
+          <div key={item.id}>
+            <Image
+              className="d-block w-100"
+              src={api_url + item.attributes.categoryImage.data[0].attributes.url}
+              alt="hero"
+              width={100}
+              height={315}
+              loader={loaderProp}
+            />
+          </div>
+        ))}
       </Carousel>
     </Stack>
-  );
+  )
 }
-
-export default CategoryCards;
