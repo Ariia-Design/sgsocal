@@ -16,7 +16,7 @@ import Stack from 'react-bootstrap/Stack';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
 
-function Products({ navData }) {
+function Products({ navData, productsData }) {
   return (
     <>
       <NavBar props={navData}/>
@@ -127,203 +127,29 @@ function Products({ navData }) {
           <Col xs={9} xl={9}>
             <Row>
               <CardGroup>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
-              </CardGroup>
-            </Row>
-            <Row>
-              <CardGroup>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
-              </CardGroup>
-            </Row>
-            <Row>
-              <CardGroup>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
-                <Card style={{ boxShadow: 'none' }}>
-                  <MDBRipple
-                    className='bg-image hover-overlay shadow-1-strong rounded'
-                    rippleTag='div'
-                    rippleColor='light'
-                  >
-                    <Image
-                      className="d-block w-100"
-                      src={require('/public/images/stizzy_pods_1.png')}
-                      alt="stizzy_pods_1"
-                      width={100}
-                      height={315}
-                    />
-                    <a href='#!'>
-                      <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                    </a>
-                    <Card.Footer className="text-center">
-                      <a className="" href="#">Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit.Stiizy Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                    </Card.Footer>
-                  </MDBRipple>
-                </Card>
+                {productsData.data.map(item => (
+                  <Card style={{ boxShadow: 'none' }}>
+                    <MDBRipple
+                      className='bg-image hover-overlay shadow-1-strong rounded'
+                      rippleTag='div'
+                      rippleColor='light'
+                    >
+                      <Image
+                        className="d-block w-100"
+                        src={require('/public/images/stizzy_pods_1.png')}
+                        alt="stizzy_pods_1"
+                        width={100}
+                        height={315}
+                      />
+                      <a href='#!'>
+                        <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                      </a>
+                      <Card.Footer className="text-center">
+                        <a className="" href="#">{item.attributes.name}</a>
+                      </Card.Footer>
+                    </MDBRipple>
+                  </Card>
+                ))}
               </CardGroup>
             </Row>
             <Row>
@@ -354,13 +180,15 @@ function Products({ navData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse] = await Promise.all([
-    fetch('http://127.0.0.1:1337/api/nav-items')
+  const [navResponse, productsResponse] = await Promise.all([
+    fetch('http://127.0.0.1:1337/api/nav-items'),
+    fetch('http://127.0.0.1:1337/api/products')
   ])
-  const [navData] = await Promise.all([
-    navResponse.json()
+  const [navData, productsData] = await Promise.all([
+    navResponse.json(),
+    productsResponse.json()
   ])
-  return { props: { navData } };
+  return { props: { navData, productsData } };
 }
 
 export default Products
