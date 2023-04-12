@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React from "react";
+import React, {useMemo} from "react";
 import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
+import GlobalFilter from '@/components/GlobalFilter';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Container from 'react-bootstrap/Container';
@@ -16,7 +17,7 @@ import Image from 'next/image';
 import Stack from 'react-bootstrap/Stack';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
-import { useTable, useFilters, userGlobalFilter, useAsyncDebounce } from 'react-table'
+import { useTable, usePagination, useFilters, useAsyncDebounce, useGlobalFilter } from 'react-table'
 
 function Products({ navData }) {
   const data = React.useMemo(
@@ -29,13 +30,333 @@ function Products({ navData }) {
       {
         col1: 'react-table',
         col2: 'rocks',
-        col3: 'test1'
+        col3: 'zest1'
       },
       {
         col1: 'whatever',
         col2: 'you want',
-        col3: 'test2'
+        col3: 'pest2'
       },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      },
+      {
+        col1: 'react-table',
+        col2: 'rocks',
+        col3: 'zest1'
+      },
+      {
+        col1: 'whatever',
+        col2: 'you want',
+        col3: 'pest2'
+      }
     ],
     []
   )
@@ -61,21 +382,36 @@ function Products({ navData }) {
   const {
     getTableProps,
     getTableBodyProps,
-    // headerGroups,
-    rows,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    gotoPage,
+    pageCount,
+    setPageSize,
+    state,
+    setGlobalFilter,
     prepareRow,
   } = useTable({
     columns,
     data
-  })
+  },
+  useGlobalFilter,
+  usePagination
+  )
+
+  const {globalFilter, pageIndex, pageSize} = state
 
   return (
     <Stack>
       <NavBar props={navData} />
       <Container>
+        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
         <Table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
           <tbody {...getTableBodyProps()}>
-            {rows.map(row => {
+            {page.map(row => {
               prepareRow(row)
               return (
                 <tr {...row.getRowProps()} key={row.id}>
@@ -99,6 +435,40 @@ function Products({ navData }) {
             })}
           </tbody>
         </Table>
+        <div className="d-flex">
+          <span>
+            Page{' '}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>{' '}
+          </span>
+          <span>
+            | Go to page: {' '}
+            <input
+              type='number' defaultValue={pageIndex + 1}
+              onChange = { e => {
+                const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
+                gotoPage(pageNumber)
+            }}
+            style={{width: '50px'}}
+            />
+          </span>
+          <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
+            {
+              [10, 25, 50].map(pageSize => {
+                return (
+                  <option key={pageSize} value={pageSize}>
+                    Show {pageSize}
+                  </option>
+                )
+              })
+            }
+          </select>
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+          <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+        </div>
       </Container>
       <Footer />
     </Stack>
