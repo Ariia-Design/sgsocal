@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Carousel from "react-bootstrap/Carousel";
-const api_url = "http://localhost:1337";
 
 export default function Hero({ props }) {
   console.log("hero props:", props);

@@ -6,7 +6,6 @@ import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import { MDBRipple } from 'mdb-react-ui-kit';
-const api_url = "http://localhost:1337"
 
 export default function ProductCardGroup({props}) {
   console.log('products cards props:', props);
