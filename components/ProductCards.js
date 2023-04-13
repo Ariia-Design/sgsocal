@@ -30,7 +30,7 @@ export default function ProductCardGroup({props}) {
               >
                 <Image
                   className="d-block w-100"
-                  src={api_url + item.attributes.newProductsImage.data[0].attributes.url}
+                  src={item.attributes.newProductsImage.data[0].attributes.url}
                   alt="hero"
                   width={100}
                   height={315}

@@ -14,7 +14,7 @@ export default function Hero({ props }) {
           <Carousel.Item key={item.id}>
             <Image
               className="d-block w-100"
-              src={api_url + item.attributes.slideImage.data[0].attributes.url}
+              src={item.attributes.slideImage.data[0].attributes.url}
               alt="hero"
               width={100}
               height={800}
