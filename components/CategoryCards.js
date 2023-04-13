@@ -35,11 +35,13 @@ export default function CategoryCards({props}) {
     <Stack className="text-center" gap={4}>
       <h1>Product Categories</h1>
       <Carousel responsive={responsive}>
-        {props.data.map(item => (
+        {props?.data?.length > 0 && props.data.map((item) => (
           <div key={item.id} className="hover-zoom">
             <Image
               className="d-block w-100"
-              src={api_url + item.attributes.categoryImage.data[0].attributes.url}
+              src={
+                api_url + item.attributes.categoryImage.data[0].attributes.url
+              }
               alt="hero"
               width={100}
               height={315}
@@ -49,5 +51,5 @@ export default function CategoryCards({props}) {
         ))}
       </Carousel>
     </Stack>
-  )
+  );
 }

@@ -20,7 +20,7 @@ export default function ProductCardGroup({props}) {
       <h1 className="text-center">Our New Products</h1>
       <div className="d-flex flex-wrap text-center" style={{rowGap: "1.5rem"}}>
         {
-          props.data.map(item => (
+          props?.data?.length > 0 && props.data.map(item => (
             <Card key={item.id} className="card-flex-basis">
               <MDBRipple
                 className='bg-image hover-overlay shadow-1-strong rounded'

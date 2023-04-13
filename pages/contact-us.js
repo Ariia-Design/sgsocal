@@ -55,8 +55,8 @@ function ContactUs({navData}) {
 
 export async function getServerSideProps(context) {
   const [navResponse] = await Promise.all([
-    fetch('http://127.0.0.1:1337/api/nav-items')
-  ])
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
+  ]);
   const [navData] = await Promise.all([
     navResponse.json()
   ])
