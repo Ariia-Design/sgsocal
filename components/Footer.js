@@ -36,7 +36,7 @@ export default function Footer() {
                 <MDBContainer className='text-center text-md-start mt-5'>
                     <MDBRow className='mt-3'>
                         <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
-                            <Image src={require('/public/images/logo_1.jpeg')} alt="logo" width={150} />
+                            {/* <Image src={require('/public/images/logo_1.jpeg')} alt="logo" width={150} /> */}
                             <p>
                                 Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
                                 consectetur adipisicing elit.

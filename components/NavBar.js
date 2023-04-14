@@ -13,7 +13,7 @@ export default function NavBar({ props }) {
         <Col className="d-flex justify-content-start">
           <Navbar.Brand href="/">
             <Image
-              src={require("/public/images/logo_2.jpeg")}
+              src=""
               alt="logo"
               width={100}
             />
