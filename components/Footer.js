@@ -42,10 +42,10 @@ export default function Footer() {
           <MDBRow className="mt-3">
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <Image
-                src={"/images/logo_1.jpeg"}
+                src={"/images/about.jpg"}
                 alt="logo"
                 width={150}
-                height={100}
+                height={80}
               />
               <p>
                 Here you can use rows and columns to organize your footer

@@ -12,11 +12,7 @@ export default function NavBar({ props }) {
       <Container>
         <Col className="d-flex justify-content-start">
           <Navbar.Brand href="/">
-            <Image
-              src={require("/public/images/logo_2.jpeg")}
-              alt="logo"
-              width={100}
-            />
+            <Image src="/images/about.jpg" alt="logo" width={100} height={50} />
           </Navbar.Brand>
         </Col>
         <Col xs={6}>

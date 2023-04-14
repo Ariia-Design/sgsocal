@@ -19,7 +19,7 @@ export default function About() {
       <Col>
         <Image
           className="d-block w-100"
-          src={"/images/test_photo_1.jpeg"}
+          src={"/images/about.jpg"}
           alt="First slide"
           width={100}
           height={400}
