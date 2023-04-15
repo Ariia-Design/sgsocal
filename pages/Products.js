@@ -18,396 +18,513 @@ import Stack from 'react-bootstrap/Stack';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
 import { useTable, usePagination, useFilters, useAsyncDebounce, useGlobalFilter } from 'react-table'
-
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCardTitle,
+  MDBIcon,
+} from "mdb-react-ui-kit";
 function Products({ navData }) {
-  const data = React.useMemo(
-    () => [
-      {
-        col1: 'Hello',
-        col2: 'World',
-        col3: 'test'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-        col3: 'zest1'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-        col3: 'pest2'
-      }
-    ],
-    []
-  )
+  // const data = React.useMemo(
+  //   () => [
+  //     {
+  //       col1: 'Hello',
+  //       col2: 'World',
+  //       col3: 'test'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     },
+  //     {
+  //       col1: 'react-table',
+  //       col2: 'rocks',
+  //       col3: 'zest1'
+  //     },
+  //     {
+  //       col1: 'whatever',
+  //       col2: 'you want',
+  //       col3: 'pest2'
+  //     }
+  //   ],
+  //   []
+  // )
 
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Product Column 1',
-        accessor: 'col1', // accessor is the "key" in the data
-      },
-      {
-        Header: 'Product Column 2',
-        accessor: 'col2',
-      },
-      {
-        Header: 'Product Column 3',
-        accessor: 'col3',
-      }
-    ],
-    []
-  )
+  // const columns = React.useMemo(
+  //   () => [
+  //     {
+  //       Header: 'Product Column 1',
+  //       accessor: 'col1', // accessor is the "key" in the data
+  //     },
+  //     {
+  //       Header: 'Product Column 2',
+  //       accessor: 'col2',
+  //     },
+  //     {
+  //       Header: 'Product Column 3',
+  //       accessor: 'col3',
+  //     }
+  //   ],
+  //   []
+  // )
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    page,
-    nextPage,
-    previousPage,
-    canNextPage,
-    canPreviousPage,
-    pageOptions,
-    gotoPage,
-    pageCount,
-    setPageSize,
-    state,
-    setGlobalFilter,
-    prepareRow,
-  } = useTable({
-    columns,
-    data
-  },
-    useGlobalFilter,
-    usePagination
-  )
+  // const {
+  //   getTableProps,
+  //   getTableBodyProps,
+  //   page,
+  //   nextPage,
+  //   previousPage,
+  //   canNextPage,
+  //   canPreviousPage,
+  //   pageOptions,
+  //   gotoPage,
+  //   pageCount,
+  //   setPageSize,
+  //   state,
+  //   setGlobalFilter,
+  //   prepareRow,
+  // } = useTable({
+  //   columns,
+  //   data
+  // },
+  //   useGlobalFilter,
+  //   usePagination
+  // )
 
-  const { globalFilter, pageIndex, pageSize } = state
+  // const { globalFilter, pageIndex, pageSize } = state
 
   return (
     <Stack>
       <NavBar props={navData} />
-      <Container>
+
+    <MDBContainer fluid className="my-5">
+      <MDBRow className="justify-content-center">
+        <MDBCol md="3">
+          <MDBCard className="text-black">
+            <MDBIcon fab icon="apple" size="lg" className="px-3 pt-3 pb-2" />
+            <MDBCardImage
+              src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
+              position="top"
+              alt="Apple Computer"
+            />
+            <MDBCardBody>
+              <div className="text-center">
+                <MDBCardTitle>Believing is seeing</MDBCardTitle>
+                <p className="text-muted mb-4">Apple pro display XDR</p>
+              </div>
+              <div>
+                <div className="d-flex justify-content-between">
+                  <span>Pro Display XDR</span>
+                  <span>$5,999</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span>Pro stand</span>
+                  <span>$999</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span>Vesa Mount Adapter</span>
+                  <span>$199</span>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>Total</span>
+                <span>$7,197.00</span>
+              </div>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+        <MDBCol md="3">
+          <MDBCard className="text-black">
+            <MDBIcon fab icon="apple" size="lg" className="px-3 pt-3 pb-2" />
+            <MDBCardImage
+              src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
+              position="top"
+              alt="Apple Computer"
+            />
+            <MDBCardBody>
+              <div className="text-center">
+                <MDBCardTitle>Believing is seeing</MDBCardTitle>
+                <p className="text-muted mb-4">Apple pro display XDR</p>
+              </div>
+              <div>
+                <div className="d-flex justify-content-between">
+                  <span>Pro Display XDR</span>
+                  <span>$5,999</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span>Pro stand</span>
+                  <span>$999</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span>Vesa Mount Adapter</span>
+                  <span>$199</span>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>Total</span>
+                <span>$7,197.00</span>
+              </div>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+        <MDBCol md="3">
+          <MDBCard className="text-black">
+            <MDBIcon fab icon="apple" size="lg" className="px-3 pt-3 pb-2" />
+            <MDBCardImage
+              src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
+              position="top"
+              alt="Apple Computer"
+            />
+            <MDBCardBody>
+              <div className="text-center">
+                <MDBCardTitle>Believing is seeing</MDBCardTitle>
+                <p className="text-muted mb-4">Apple pro display XDR</p>
+              </div>
+              <div>
+                <div className="d-flex justify-content-between">
+                  <span>Pro Display XDR</span>
+                  <span>$5,999</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span>Pro stand</span>
+                  <span>$999</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span>Vesa Mount Adapter</span>
+                  <span>$199</span>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>Total</span>
+                <span>$7,197.00</span>
+              </div>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
+
+      {/* <Container>
         <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
         <Table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
           <tbody {...getTableBodyProps()}>
@@ -469,7 +586,7 @@ function Products({ navData }) {
           <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
           <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
         </div>
-      </Container>
+      </Container> */}
       <Footer />
     </Stack>
 
