@@ -38,7 +38,14 @@ export default function ProductCardGroup({props}) {
                 <a href='#!'>
                   <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
                 </a>
-                <a className="" href="#">{item.attributes.newProductsTitle}</a>
+                <div className="d-flex justify-content-center align-items-center" style={{height: "60px"}}>
+                  <div className="text-center col-6 product-card-title">
+                    <a href="#"><h6>{item.attributes.newProductsTitle}</h6></a>
+                  </div>
+                  <div className="text-center col-6 product-card-price">
+                    <a href="#"><h6>${item.attributes.newProductsPrice}</h6></a>
+                  </div>
+                </div>
               </MDBRipple>
             </Card>
           ))
