@@ -14,7 +14,7 @@
     height: 50vh;
     width: 100%;
   }
-  
+
   .map-container {
     height: 100%;
     width: 100%;
@@ -29,6 +29,10 @@ a, li {
 
 .dropdown-toggle::after {
     display: none !important;
+}
+
+.nav-item > a {
+    font-weight: 500;
 }
 
 @media only screen and (max-device-width: 768px) {

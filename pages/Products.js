@@ -77,7 +77,7 @@ function Products({ navData, productsData }) {
     <Stack>
       <NavBar props={navData} />
       <Container className="d-flex">
-        <div className="col-3">
+        <Col className="d-none d-sm-block d-md-block d-xl-block" xl={3}>
           <Table>
             <tbody>
               <tr>
@@ -95,16 +95,16 @@ function Products({ navData, productsData }) {
               </tr>
             </tbody>
           </Table>
-        </div>
-        <div className="col-9">
+        </Col>
+        <Col xl={9}>
           <Table {...getTableProps()}>
             <tbody {...getTableBodyProps()}>
               <tr className="d-flex flex-wrap text-center">
                 {page.map(row => {
                   console.log(row)
                   return (
-                    <td key={row.id} class="col-4">
-                      <Card className="card-flex-basis">
+                    <td key={row.id} class="col-12 col-md-6 col-xl-4">
+                      <Card>
                         <MDBRipple
                           className='bg-image hover-overlay shadow-1-strong rounded'
                           rippleTag='div'
@@ -165,7 +165,7 @@ function Products({ navData, productsData }) {
             <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
             <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
           </div>
-        </div>
+        </Col>
       </Container>
       <Footer />
     </Stack>

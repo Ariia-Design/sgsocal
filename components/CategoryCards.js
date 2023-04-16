@@ -33,15 +33,18 @@ export default function CategoryCards({ props }) {
       <Carousel responsive={responsive}>
         {props?.data?.length > 0 &&
           props.data.map((item) => (
-            <div key={item.id} className="hover-zoom">
+            <div key={item.id} className="hover-zoom position-relative">
               <Image
                 className="d-block w-100"
                 src={item.attributes.categoryImage.data[0].attributes.url}
-                alt="hero"
+                alt="category"
                 width={100}
                 height={315}
                 loader={loaderProp}
               />
+              <div className="position-absolute" style={{bottom:"0", left: "10px"}}>
+                <a href="" style={{color: "white", fontSize: "50px"}}>{item.attributes.categoryTitle}</a>
+              </div>
             </div>
           ))}
       </Carousel>

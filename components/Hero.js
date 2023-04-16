@@ -17,6 +17,7 @@ export default function Hero({ props }) {
               alt="hero"
               width={100}
               height={800}
+              priority
               loader={loaderProp}
             />
             <Carousel.Caption>
