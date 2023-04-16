@@ -120,8 +120,14 @@ function Products({ navData, productsData }) {
                           <a href='#!'>
                             <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
                           </a>
-                          <a href="#">{row.original.name}</a>
-                          <a href="#">&nbsp;${row.original.price}</a>
+                          <div className="d-flex align-items-center text-start" style={{ height: "60px" }}>
+                            <div className="col-6 product-card-title">
+                              <a href="#"><h6>{row.original.name}</h6></a>
+                            </div>
+                            <div className="text-end col-6 product-card-price">
+                              <a href="#"><h5>${row.original.price}</h5></a>
+                            </div>
+                          </div>
                         </MDBRipple>
                       </Card>
                     </td>

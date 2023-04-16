@@ -23,7 +23,7 @@ export default function ProductCardGroup({props}) {
             {
               props?.data?.length > 0 && props.data.map(item => (
                 <td key={item.id} className="col-12 col-md-6 col-xl-3">
-                  <Card key={item.id}>
+                  <Card>
                     <MDBRipple
                       className='bg-image hover-overlay shadow-1-strong rounded'
                       rippleTag='div'
