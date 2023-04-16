@@ -7,7 +7,7 @@ import Image from 'next/image';
 export default function About() {
   return  (
     <div className="d-block d-xl-flex justify-content-center align-items-center">
-        <Col>
+        <Col className="mb-4 mb-xl-0">
           <h1>Cannabis products & why to try them</h1>
           <p>Lorem ipsum dolor sit amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
           <a className='btn btn-outline-dark btn-md' href="#about-us">VIEW MORE</a>

@@ -6,9 +6,9 @@ import {Truck} from 'react-bootstrap-icons';
 
 export default function CardsInfo() {
   return (
-    <div className="d-flex align-items-center justify-content-between">
+    <div className="d-block d-md-flex align-items-center justify-content-between">
       {Array.from({ length: 3 }).map((_, idx) => (
-        <Col key={idx}>
+        <Col className="mb-3 mb-md-0" key={idx}>
           <Card style={{ boxShadow: 'none', border: 'none', textAlign: 'center' }}>
             <Row>
               <Truck
