@@ -1,10 +1,8 @@
 import React from 'react'
+import { MDBInput } from 'mdb-react-ui-kit';
 
 export default function GlobalFilter({ filter, setFilter }) {
   return (
-    <span>
-      Search: {' '}
-      <input value={filter || ''} onChange={e => setFilter(e.target.value)} />
-    </span>
+    <MDBInput label='Search' type='text' value={filter || ''} onChange={e => setFilter(e.target.value)} />
   )
 }
