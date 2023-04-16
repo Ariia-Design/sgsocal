@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function About() {
   return  (
-    <Row className="d-flex justify-content-center align-items-center">
+    <div className="d-block d-xl-flex justify-content-center align-items-center">
         <Col>
           <h1>Cannabis products & why to try them</h1>
           <p>Lorem ipsum dolor sit amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
@@ -15,12 +15,12 @@ export default function About() {
         <Col>
           <Image
           className="d-block w-100"
-          src=""
-          alt="First slide"
+          src={"/images/Farm.jpeg"}
+          alt="farm-image"
           width={100}
           height={400}
           />
         </Col>
-    </Row>
+    </div>
   )
 }
