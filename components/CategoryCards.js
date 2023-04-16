@@ -43,7 +43,7 @@ export default function CategoryCards({ props }) {
                 loader={loaderProp}
               />
               <div className="position-absolute" style={{bottom:"0", left: "10px"}}>
-                <a href="" style={{color: "white", fontSize: "50px"}}>{item.attributes.categoryTitle}</a>
+                <a href="" style={{color: "white", fontSize: "2rem"}}>{item.attributes.categoryTitle}</a>
               </div>
             </div>
           ))}

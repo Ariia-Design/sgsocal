@@ -7,6 +7,10 @@
     padding-top: 5rem;
 }
 
+img {
+    object-fit: cover;
+}
+
 .card-flex-basis {
     flex-basis: 25%;
 }
