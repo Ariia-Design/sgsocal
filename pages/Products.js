@@ -101,7 +101,6 @@ function Products({ navData, productsData }) {
             <tbody {...getTableBodyProps()}>
               <tr className="d-flex flex-wrap text-center">
                 {page.map(row => {
-                  console.log(row)
                   return (
                     <td key={row.id} class="col-12 col-md-6 col-xl-4">
                       <Card>

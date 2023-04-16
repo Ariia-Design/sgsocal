@@ -17,40 +17,47 @@ export default function ProductCardGroup({props}) {
   return (
     <Stack gap={4}>
       <h1 className="text-center">Our New Products</h1>
-      <div className="d-flex flex-wrap text-center" style={{rowGap: "1.5rem"}}>
-        {
-          props?.data?.length > 0 && props.data.map(item => (
-            <Card key={item.id} className="card-flex-basis">
-              <MDBRipple
-                className='bg-image hover-overlay shadow-1-strong rounded'
-                rippleTag='div'
-                rippleColor='light'
-                style={{ height: "100%" }}
-              >
-                <Image
-                  className="d-block w-100"
-                  src={item.attributes.newProductsImage.data[0].attributes.url}
-                  alt="hero"
-                  width={100}
-                  height={315}
-                  loader={loaderProp}
-                />
-                <a href='#!'>
-                  <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                </a>
-                <div className="d-flex justify-content-center align-items-center" style={{height: "60px"}}>
-                  <div className="text-center col-6 product-card-title">
-                    <a href="#"><h6>{item.attributes.newProductsTitle}</h6></a>
-                  </div>
-                  <div className="text-center col-6 product-card-price">
-                    <a href="#"><h6>${item.attributes.newProductsPrice}</h6></a>
-                  </div>
-                </div>
-              </MDBRipple>
-            </Card>
-          ))
-        }
-      </div>
+      <Table>
+        <tbody>
+          <tr className="d-flex flex-wrap">
+            {
+              props?.data?.length > 0 && props.data.map(item => (
+                <td key={item.id} className="col-12 col-md-6 col-xl-3">
+                  <Card key={item.id}>
+                    <MDBRipple
+                      className='bg-image hover-overlay shadow-1-strong rounded'
+                      rippleTag='div'
+                      rippleColor='light'
+                      style={{ height: "100%" }}
+                    >
+                      <Image
+                        className="d-block w-100"
+                        src={item.attributes.newProductsImage.data[0].attributes.url}
+                        alt="hero"
+                        width={100}
+                        height={315}
+                        loader={loaderProp}
+                      />
+                      <a href='#!'>
+                        <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                      </a>
+                      <div className="d-flex align-items-center text-start" style={{ height: "60px" }}>
+                        <div className="col-6 product-card-title">
+                          <a href="#"><h6>{item.attributes.newProductsTitle}</h6></a>
+                        </div>
+                        <div className="text-end col-6 product-card-price">
+                          <a href="#"><h5>${item.attributes.newProductsPrice}</h5></a>
+                        </div>
+                      </div>
+                    </MDBRipple>
+                  </Card>
+                </td>
+
+              ))
+            }
+          </tr>
+        </tbody>
+      </Table>
     </Stack>
   )
 }
