@@ -74,7 +74,7 @@ function Products({ navData, productsData }) {
   const { globalFilter, pageIndex, pageSize } = state
 
   return (
-    <>
+    <Stack gap={4}>
       <NavBar props={navData} />
       <Container className="d-flex">
         <Col className="d-none d-sm-block d-md-block d-xl-block" xl={3}>
@@ -117,15 +117,15 @@ function Products({ navData, productsData }) {
                             width={100}
                             height={315}
                           />
-                          <a href='#!'>
+                          <a href={"/Products/" + `${row.id}`}>
                             <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
                           </a>
                           <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
                             <div className="col-6 product-card-title text-start">
-                              <a href="#"><h6>{row.original.name}</h6></a>
+                              <a href={"/Products/" + `${row.id}`}><h6>{row.original.name}</h6></a>
                             </div>
                             <div className="product-card-price">
-                              <a href="#"><h5>${row.original.price}</h5></a>
+                              <a href={"/Products/" + `${row.id}`}><h5>${row.original.price}</h5></a>
                             </div>
                           </div>
                         </MDBRipple>
@@ -143,28 +143,30 @@ function Products({ navData, productsData }) {
                 {pageIndex + 1} of {pageOptions.length}
               </strong>{' '}
             </span>
-            <span>
-              | Go to page: {' '}
-              <input
-                type='number' defaultValue={pageIndex + 1}
-                onChange={e => {
-                  const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
-                  gotoPage(pageNumber)
-                }}
-                style={{ width: '50px' }}
-              />
-            </span>
-            <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
-              {
-                [10, 25, 50].map(pageSize => {
-                  return (
-                    <option key={pageSize} value={pageSize}>
-                      Show {pageSize}
-                    </option>
-                  )
-                })
-              }
-            </select>
+            <div class="d-none d-xl-block">
+              <span>
+                | Go to page: {' '}
+                <input
+                  type='number' defaultValue={pageIndex + 1}
+                  onChange={e => {
+                    const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
+                    gotoPage(pageNumber)
+                  }}
+                  style={{ width: '50px' }}
+                />
+              </span>
+              <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
+                {
+                  [10, 25, 50].map(pageSize => {
+                    return (
+                      <option key={pageSize} value={pageSize}>
+                        Show {pageSize}
+                      </option>
+                    )
+                  })
+                }
+              </select>
+            </div>
             <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
             <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
             <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
@@ -173,7 +175,7 @@ function Products({ navData, productsData }) {
         </Col>
       </Container>
       <Footer />
-    </>
+    </Stack>
   )
 }
 
