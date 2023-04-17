@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Inter } from "next/font/google";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Marquee from "react-fast-marquee";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,15 +23,33 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
       <Row className="mb-11">
         <CategoryCards props={categoryData} />
       </Row>
+      <div className="d-flex align-items-center mb-11" style={{ backgroundColor: "#F0EFE6", padding: "10rem 0"}}>
+        <div className="container">
+          <AboutUs />
+        </div>
+      </div>
+      <div className="d-flex align-items-center mb-8">
+        <div className="container">
+          <ProductCards props={newProductsData} />
+        </div>
+      </div>
+      <Row className="mb-8">
+        <Marquee
+          speed={80}
+          style=
+          {{
+            color: 'green',
+            fontSize: '3rem',
+            fontFamily: 'Italiana',
+            fontWeight: '200'
+          }}
+        >
+          I can be a React component, multiple React components, or just some text.
+        </Marquee>
+      </Row>
       <Container>
         <Row className="mb-11">
-          <AboutUs />
-        </Row>
-        <Row className="mb-11">
           <CardsInfo />
-        </Row>
-        <Row className="mb-11">
-          <ProductCards props={newProductsData} />
         </Row>
       </Container>
       <Footer />

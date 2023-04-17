@@ -83,13 +83,15 @@ function Products({ navData, productsData }) {
               <tr>
                 <td>
                   <Card>
-                    <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-                    <h5>Categories</h5>
-                    <h5>Weight</h5>
-                    <h5>Brands</h5>
-                    <h5>Types</h5>
-                    <h5>Effects</h5>
-                    <h5>Price</h5>
+                    <Stack gap={4}>
+                      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+                      <h5>Categories</h5>
+                      <h5>Weight</h5>
+                      <h5>Brands</h5>
+                      <h5>Types</h5>
+                      <h5>Effects</h5>
+                      <h5>Price</h5>
+                    </Stack>
                   </Card>
                 </td>
               </tr>
