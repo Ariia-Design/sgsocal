@@ -10,10 +10,6 @@ import { MDBRipple } from 'mdb-react-ui-kit';
 export default function ProductCardGroup({props}) {
   console.log('products cards props:', props);
 
-  const loaderProp = ({ src }) => {
-    return src;
-  }
-
   return (
     <Stack gap={4}>
       <h1 className="text-center">Our New Products</h1>
@@ -36,7 +32,6 @@ export default function ProductCardGroup({props}) {
                         alt="hero"
                         width={100}
                         height={315}
-                        loader={loaderProp}
                       />
                       <a href='#!'>
                         <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>

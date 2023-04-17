@@ -74,7 +74,7 @@ function Products({ navData, productsData }) {
   const { globalFilter, pageIndex, pageSize } = state
 
   return (
-    <Stack>
+    <>
       <NavBar props={navData} />
       <Container className="d-flex">
         <Col className="d-none d-sm-block d-md-block d-xl-block" xl={3}>
@@ -99,7 +99,7 @@ function Products({ navData, productsData }) {
         <Col xl={9}>
           <Table {...getTableProps()}>
             <tbody {...getTableBodyProps()}>
-              <tr className="d-flex flex-wrap text-center">
+              <tr className="d-flex flex-wrap">
                 {page.map(row => {
                   return (
                     <td key={row.id} class="col-12 col-md-6 col-xl-4">
@@ -113,7 +113,7 @@ function Products({ navData, productsData }) {
                           <Image
                             className="d-block w-100"
                             src={row.original.url}
-                            alt="hero"
+                            alt="product"
                             width={100}
                             height={315}
                           />
@@ -173,8 +173,7 @@ function Products({ navData, productsData }) {
         </Col>
       </Container>
       <Footer />
-    </Stack>
-
+    </>
   )
 }
 
