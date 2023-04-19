@@ -13,6 +13,7 @@ import {
   MDBBtn
 } from 'mdb-react-ui-kit';
 import Image from 'react-bootstrap';
+import Link from 'next/link'
 function ProductDetails({productItemData, navData}) {
   console.log('productItemData', productItemData)
   const loaderProp = ({ src }) => {
@@ -32,7 +33,7 @@ function ProductDetails({productItemData, navData}) {
                 <MDBCardTitle>{productItemData.attributes.name}</MDBCardTitle>
                 <MDBCardText className='text-muted'>${productItemData.attributes.price}</MDBCardText>
               </MDBCardBody>
-              <a href='/contact-us'>
+              <Link href='/contact-us'>
 
               <MDBBtn 
                 className='me-1' 
@@ -46,7 +47,7 @@ function ProductDetails({productItemData, navData}) {
                 size='md'>
                 Place Order
               </MDBBtn>
-              </a>
+              </Link>
             </MDBCol>
             <MDBCol>
             </MDBCol>
