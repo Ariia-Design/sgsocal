@@ -18,15 +18,16 @@ import Stack from 'react-bootstrap/Stack';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
 import { useTable, usePagination, useFilters, useAsyncDebounce, useGlobalFilter } from 'react-table'
-
+import Link from 'next/link';
 function Products({ navData, productsData }) {
-
+  console.log(productsData)
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData.data.map((data) => {
       let obj = {};
       obj.name = data.attributes.name;
       obj.price = data.attributes.price;
+      obj.slug = data.attributes.slug;
       obj.url = data.attributes.productImage.data.attributes.url;
       dataArray.push(obj);
     })
@@ -103,6 +104,7 @@ function Products({ navData, productsData }) {
             <tbody {...getTableBodyProps()}>
               <tr className="d-flex flex-wrap">
                 {page.map(row => {
+                  console.log('row', row)
                   return (
                     <td key={row.id} class="col-12 col-md-6 col-xl-4">
                       <Card>
@@ -119,15 +121,15 @@ function Products({ navData, productsData }) {
                             width={100}
                             height={315}
                           />
-                          <a href={"/Products/" + `${row.id}`}>
+                          <Link href={"/products/[slug]"} as={`/products/${row.original.slug}`}>
                             <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-                          </a>
+                          </Link>
                           <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
                             <div className="col-6 product-card-title text-start">
-                              <a href={"/Products/" + `${row.id}`}><h6>{row.original.name}</h6></a>
+                              <Link href={"/products/[slug]"} as={`/products/${row.original.slug}`}><h6>{row.original.name}</h6></Link>
                             </div>
                             <div className="product-card-price">
-                              <a href={"/Products/" + `${row.id}`}><h5>${row.original.price}</h5></a>
+                              <Link href={"/products/[slug]"} as={`/products/${row.original.slug}`}><h5>${row.original.price}</h5></Link>
                             </div>
                           </div>
                         </MDBRipple>
