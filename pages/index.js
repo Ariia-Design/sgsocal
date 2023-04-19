@@ -10,10 +10,11 @@ import { Inter } from "next/font/google";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Marquee from "react-fast-marquee";
-
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
+  // console.log('newProductsData', newProductsData)
   return (
     <>
       <NavBar props={navData} />
@@ -30,7 +31,11 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
       </div>
       <div className="d-flex align-items-center mb-8">
         <div className="container">
+          {/* {newProductsData.data.map(item => (
+        <Link href={"/products/[slug]"} as={`/products/${item.attributes.slug}`}> */}
           <ProductCards props={newProductsData} />
+        {/* </Link>
+          ))} */}
         </div>
       </div>
       <Row className="mb-8">
