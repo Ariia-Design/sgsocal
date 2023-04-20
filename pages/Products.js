@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import GlobalFilter from '@/components/GlobalFilter';
@@ -20,7 +20,7 @@ import { MDBRipple } from 'mdb-react-ui-kit';
 import { useTable, usePagination, useFilters, useAsyncDebounce, useGlobalFilter } from 'react-table'
 
 function Products({ navData, productsData }) {
-
+  console.log(productsData)
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData.data.map((data) => {
@@ -65,13 +65,35 @@ function Products({ navData, productsData }) {
     prepareRow,
   } = useTable({
     columns,
-    data
+    data,
+    initialState: {
+      pageSize: 12
+    }
   },
     useGlobalFilter,
     usePagination
   )
 
   const { globalFilter, pageIndex, pageSize } = state
+  const [active, setActive] = useState(1);
+
+  function onItemClick(page) {
+    event.preventDefault();
+    setActive(page)
+  }
+
+  let items = [];
+  for (let i = 1; i <= pageOptions.length; i++) {
+    items.push(
+      <Pagination.Item onClick={(e) => {
+        gotoPage(i - 1);
+        onItemClick(Number(e.target.innerHTML));
+      }}
+       key={i} active={i === active}>
+        {i}
+      </Pagination.Item>
+    )
+  }
 
   return (
     <Stack gap={4}>
@@ -104,7 +126,7 @@ function Products({ navData, productsData }) {
               <tr className="d-flex flex-wrap">
                 {page.map(row => {
                   return (
-                    <td key={row.id} class="col-12 col-md-6 col-xl-4">
+                    <td key={row.id} className="col-12 col-md-6 col-xl-4">
                       <Card>
                         <MDBRipple
                           className='bg-image hover-overlay shadow-1-strong rounded'
@@ -138,14 +160,14 @@ function Products({ navData, productsData }) {
               </tr>
             </tbody>
           </Table>
-          <div className="d-flex">
+          <div className="d-flex align-items-center">
             <span>
               Page{' '}
               <strong>
                 {pageIndex + 1} of {pageOptions.length}
               </strong>{' '}
             </span>
-            <div class="d-none d-xl-block">
+            <div className="d-none d-xl-block">
               <span>
                 | Go to page: {' '}
                 <input
@@ -169,10 +191,13 @@ function Products({ navData, productsData }) {
                 }
               </select>
             </div>
-            <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-            <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
-            <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
-            <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+            <div className="d-flex align-items-center">
+              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+              <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+              <Pagination>{items}</Pagination>
+              <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
+              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+            </div>
           </div>
         </Col>
       </Container>
