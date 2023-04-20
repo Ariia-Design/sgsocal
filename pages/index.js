@@ -7,14 +7,19 @@ import NavBar from "@/components/NavBar";
 import ProductCards from "@/components/ProductCards";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Inter } from "next/font/google";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
+import Card from 'react-bootstrap/Card';
+import Image from 'next/image';
+import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container';
+import Stack from 'react-bootstrap/Stack';
+import { MDBRipple } from 'mdb-react-ui-kit';
 const inter = Inter({ subsets: ["latin"] });
 
 function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
-  // console.log('newProductsData', newProductsData)
+  console.log('newProductsData', newProductsData)
   return (
     <>
       <NavBar props={navData} />
@@ -31,11 +36,50 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
       </div>
       <div className="d-flex align-items-center mb-8">
         <div className="container">
-          {/* {newProductsData.data.map(item => (
-        <Link href={"/products/[slug]"} as={`/products/${item.attributes.slug}`}> */}
-          <ProductCards props={newProductsData} />
-        {/* </Link>
-          ))} */}
+            <Stack gap={4}>
+              <h1 className="text-center">Our New Products</h1>
+              <Table>
+                <tbody>
+                  <tr className="d-flex flex-wrap">
+                    {
+                      newProductsData.data.map(item => (
+                        <td key={item.id} className="col-12 col-md-6 col-xl-3">
+                          <Card>
+                            <MDBRipple
+                              className='bg-image hover-overlay shadow-1-strong rounded'
+                              rippleTag='div'
+                              rippleColor='light'
+                              style={{ height: "100%" }}
+                            >
+                              <Image
+                                className="d-block w-100"
+                                src={item.attributes.newProductsImage.data[0].attributes.url}
+                                alt="hero"
+                                width={100}
+                                height={315}
+                              />
+                              <Link href={"/products/[slug]"} as={`/products/${item.attributes.slug}`}>
+                                <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                              </Link>
+                              <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
+                                <div className="col-6 product-card-title text-start">
+                                <Link href={"/products/[slug]"} as={`/products/${item.attributes.slug}`}><h6>{item.attributes.newProductsTitle}</h6></Link>
+                                </div>
+                                <div className="product-card-price">
+                                <Link href={"/products/[slug]"} as={`/products/${item.attributes.slug}`}><h5>${item.attributes.newProductsPrice}</h5></Link>
+                                </div>
+                              </div>
+                            </MDBRipple>
+                          </Card>
+                        </td>
+
+                      ))
+                    }
+                  </tr>
+                </tbody>
+              </Table>
+            </Stack>
+          {/* <ProductCards props={newProductsData} /> */}
         </div>
       </div>
       <Row className="mb-8">
