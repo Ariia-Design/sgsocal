@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React, { useMemo, useState } from "react";
+import React, { Fragment, useMemo, useState } from "react";
 import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import GlobalFilter from '@/components/GlobalFilter';
@@ -17,14 +17,76 @@ import Image from 'next/image';
 import Stack from 'react-bootstrap/Stack';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
-import { useTable, usePagination, useFilters, useAsyncDebounce, useGlobalFilter } from 'react-table'
+import { useTable, usePagination, useFilters, useGlobalFilter } from 'react-table'
 import Link from 'next/link';
+
+export const MultipleFilter = (rows, filler, filterValue) => {
+  const arr = [];
+  rows.forEach((val) => {
+    if (filterValue.includes(val.original.category)) arr.push(val);
+  });
+  return arr;
+};
+
+function setFilteredParams(filterArr, val) {
+  if (filterArr.includes(val)) {
+    filterArr = filterArr.filter((n) => {
+      return n !== val;
+    });
+  } else filterArr.push(val);
+
+  if (filterArr.length === 0) filterArr = undefined;
+  return filterArr;
+}
+
+function ColumnFilter({
+  column: { filterValue = [], setFilter, preFilteredRows, id }
+}) {
+    const options = useMemo(() => {
+      const options = new Set();
+      preFilteredRows.forEach((row) => {
+        options.add(row.values[id]);
+      });
+      return [...options.values()];
+    }, [id, preFilteredRows]);
+
+  return (
+    <Fragment>
+      <div className="block">
+        {options.map((option, i) => {
+          return (
+            <Fragment key={i}>
+              <div className="d-flex">
+                <input
+                  type="checkbox"
+                  id={option}
+                  name={option}
+                  value={option}
+                  onChange={(e) => {
+                    setFilter(setFilteredParams(filterValue, e.target.value));
+                  }}
+                ></input>
+                <label
+                  htmlFor={option}
+                  className="form-check-label"
+                >
+                  {option.toUpperCase()}
+                </label>
+              </div>
+            </Fragment>
+          );
+        })}
+      </div>
+    </Fragment>
+  );
+}
+
 function Products({ navData, productsData }) {
-  console.log(productsData)
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData.data.map((data) => {
       let obj = {};
+      obj.category = data.attributes.home_page_categories.data[0].attributes.categoryUrl;
       obj.name = data.attributes.name;
       obj.price = data.attributes.price;
       obj.slug = data.attributes.slug;
@@ -37,17 +99,36 @@ function Products({ navData, productsData }) {
   const columns = React.useMemo(() => [
       {
         Header: 'name',
-        accessor: 'name'
+        accessor: 'name',
+        Filter: "",
+        filter: ""
       },
       {
         Header: 'price',
-        accessor: 'price'
+        accessor: 'price',
+        Filter: "",
+        filter: ""
       },
       {
         Header: 'url',
-        accessor: 'url'
+        accessor: 'url',
+        Filter: "",
+        filter: ""
+      },
+      {
+        Header: 'category',
+        accessor: 'category',
+        Filter: ColumnFilter,
+        filter: MultipleFilter
       }
   ], [])
+
+  const defaultColumn = useMemo(
+    () => ({
+      Filter: ColumnFilter,
+    }),
+    []
+  )
 
   const {
     getTableProps,
@@ -61,16 +142,19 @@ function Products({ navData, productsData }) {
     gotoPage,
     pageCount,
     setPageSize,
+    headerGroups,
     state,
     setGlobalFilter,
     prepareRow,
   } = useTable({
     columns,
     data,
+    defaultColumn,
     initialState: {
       pageSize: 12
     }
   },
+    useFilters,
     useGlobalFilter,
     usePagination
   )
@@ -101,32 +185,39 @@ function Products({ navData, productsData }) {
       <NavBar props={navData} />
       <Container className="d-flex">
         <Col className="d-none d-sm-block d-md-block d-xl-block" xl={3}>
-          <Table>
-            <tbody>
-              <tr>
-                <td>
-                  <Card>
+          <Card>
+            <Table>
+              <thead>
+                {headerGroups.map((headerGroup) => (
+                  <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+                    {headerGroup.headers.map((column) => (
+                      <th {...column.getHeaderProps()} key={column.id} data-id={column.id}>
+                        <div>{column.canFilter ? column.render("Filter") : null}</div>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
                     <Stack gap={4}>
                       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
                       <h5>Categories</h5>
-                      <h5>Weight</h5>
-                      <h5>Brands</h5>
-                      <h5>Types</h5>
-                      <h5>Effects</h5>
-                      <h5>Price</h5>
                     </Stack>
-                  </Card>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+
+          </Card>
+
         </Col>
         <Col xl={9}>
           <Table {...getTableProps()}>
             <tbody {...getTableBodyProps()}>
               <tr className="d-flex flex-wrap">
                 {page.map(row => {
-                  console.log('row', row)
                   return (
                     <td key={row.id} className="col-12 col-md-6 col-xl-4">
                       <Card>

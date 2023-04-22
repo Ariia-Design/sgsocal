@@ -81,6 +81,12 @@ a, li {
     box-shadow: none !important;
 }
 
+th[data-id="name"],
+th[data-id="price"],
+th[data-id="url"] {
+    display: none;
+}
+
 @media only screen and (max-device-width: 768px) {
     .card-flex-basis {
         flex-basis: 50%;
