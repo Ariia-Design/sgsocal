@@ -17,8 +17,9 @@ export default function About() {
           className="d-block w-100"
           src={"/images/Farm.jpeg"}
           alt="farm-image"
-          width={100}
+          width={400}
           height={400}
+          objectFit="contain"
           />
         </Col>
     </div>

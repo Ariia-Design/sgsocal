@@ -36,7 +36,7 @@ export default function CategoryCards({ props }) {
         {props?.data?.length > 0 &&
           props.data.map((item) => (
             <Card key={item.id} className="hover-zoom position-relative">
-              <Link href="#">
+              <Link href="/Products">
                 <Image
                   className="d-block w-100"
                   src={item.attributes.categoryImage.data[0].attributes.url}

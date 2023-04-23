@@ -151,7 +151,13 @@ function Products({ navData, productsData }) {
     data,
     defaultColumn,
     initialState: {
-      pageSize: 12
+      pageSize: 12,
+      // filters: [
+      //   {
+      //     id: "category",
+      //     value: "edibles"
+      //   }
+      // ]
     }
   },
     useFilters,
@@ -188,11 +194,11 @@ function Products({ navData, productsData }) {
           <Card>
             <Table>
               <thead>
-                {headerGroups.map((headerGroup) => (
-                  <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+                {headerGroups.map((headerGroup, i) => (
+                  <tr {...headerGroup.getHeaderGroupProps()} key={i}>
                     {headerGroup.headers.map((column) => (
                       <th {...column.getHeaderProps()} key={column.id} data-id={column.id}>
-                        <div>{column.canFilter ? column.render("Filter") : null}</div>
+                        {column.canFilter ? column.render("Filter") : null}
                       </th>
                     ))}
                   </tr>
@@ -203,15 +209,12 @@ function Products({ navData, productsData }) {
                   <td>
                     <Stack gap={4}>
                       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-                      <h5>Categories</h5>
                     </Stack>
                   </td>
                 </tr>
               </tbody>
             </Table>
-
           </Card>
-
         </Col>
         <Col xl={9}>
           <Table {...getTableProps()}>
@@ -261,17 +264,18 @@ function Products({ navData, productsData }) {
               </strong>{' '}
             </span>
             <div className="d-none d-xl-block">
-              <span>
+              {/* <span>
                 | Go to page: {' '}
                 <input
                   type='number' defaultValue={pageIndex + 1}
                   onChange={e => {
+                    setActive(e.target.value)
                     const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
                     gotoPage(pageNumber)
                   }}
                   style={{ width: '50px' }}
                 />
-              </span>
+              </span> */}
               <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
                 {
                   [10, 25, 50].map(pageSize => {
@@ -284,13 +288,15 @@ function Products({ navData, productsData }) {
                 }
               </select>
             </div>
-            <div className="d-flex align-items-center">
-              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-              <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+            <Pagination className="d-flex align-items-center">
+              <Pagination.First onClick={() => {gotoPage(0); setActive(1);}} disabled={!canPreviousPage} />
+              {/* <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button> */}
+              <Pagination.Prev onClick={(e) => {previousPage(); console.log(e.selected)}} disabled={!canPreviousPage} />
               <Pagination>{items}</Pagination>
-              <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
-              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
-            </div>
+              {/* <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button> */}
+              <Pagination.Next onClick={(e) => {nextPage(); console.log(page)}} disabled={!canNextPage} />
+              <Pagination.Last onClick={() => {gotoPage(pageCount - 1); setActive(pageCount);}} disabled={!canNextPage} />
+            </Pagination>
           </div>
         </Col>
       </Container>
