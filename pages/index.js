@@ -94,11 +94,6 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
           I can be a React component, multiple React components, or just some text.
         </Marquee>
       </Row>
-      {/* <Container>
-        <Row className="mb-11">
-          <CardsInfo />
-        </Row>
-      </Container> */}
       <Footer />
     </>
   );
