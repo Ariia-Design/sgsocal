@@ -5,7 +5,6 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import GlobalFilter from '@/components/GlobalFilter';
 import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -15,10 +14,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Image from 'next/image';
 import Stack from 'react-bootstrap/Stack';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
 import { useTable, usePagination, useFilters, useGlobalFilter } from 'react-table'
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 export const MultipleFilter = (rows, filler, filterValue) => {
   const arr = [];
@@ -42,13 +41,16 @@ function setFilteredParams(filterArr, val) {
 function ColumnFilter({
   column: { filterValue = [], setFilter, preFilteredRows, id }
 }) {
-    const options = useMemo(() => {
-      const options = new Set();
-      preFilteredRows.forEach((row) => {
-        options.add(row.values[id]);
-      });
-      return [...options.values()];
-    }, [id, preFilteredRows]);
+  const options = useMemo(() => {
+    const options = new Set();
+    preFilteredRows.forEach((row) => {
+      options.add(row.values[id]);
+    });
+    return [...options.values()];
+  }, [id, preFilteredRows]);
+
+  const router = useRouter();
+  const category = router.query;
 
   return (
     <Fragment>
@@ -65,6 +67,7 @@ function ColumnFilter({
                   onChange={(e) => {
                     setFilter(setFilteredParams(filterValue, e.target.value));
                   }}
+                  defaultChecked={option === `${category.category}` ? true : false}
                 ></input>
                 <label
                   htmlFor={option}
@@ -81,7 +84,12 @@ function ColumnFilter({
   );
 }
 
-function Products({ navData, productsData }) {
+function Products({ props, navData, productsData }) {
+  const router = useRouter();
+  const category = router.query;
+
+  console.log(category.category);
+
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData.data.map((data) => {
@@ -130,6 +138,24 @@ function Products({ navData, productsData }) {
     []
   )
 
+  const initState = () => {
+    if (!category.category) {
+      return {
+        pageSize: 12
+      }
+    } else {
+      return {
+        pageSize: 12,
+        filters: [
+          {
+            id: "category",
+            value: [`${category.category}`]
+          }
+        ]
+      }
+    }
+  }
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -150,15 +176,7 @@ function Products({ navData, productsData }) {
     columns,
     data,
     defaultColumn,
-    initialState: {
-      pageSize: 12,
-      // filters: [
-      //   {
-      //     id: "category",
-      //     value: "edibles"
-      //   }
-      // ]
-    }
+    initialState: initState()
   },
     useFilters,
     useGlobalFilter,
