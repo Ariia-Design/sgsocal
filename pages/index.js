@@ -1,5 +1,4 @@
 import AboutUs from "@/components/AboutUs";
-import CardsInfo from "@/components/CardsInfo";
 import CategoryCards from "@/components/CategoryCards";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
