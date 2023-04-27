@@ -17,7 +17,10 @@ import { MDBRipple } from 'mdb-react-ui-kit';
 const inter = Inter({ subsets: ["latin"] });
 
 function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
-  console.log('newProductsData', newProductsData)
+  const footerData = {};
+  footerData.navData = navData;
+  footerData.categoryData = categoryData;
+
   return (
     <>
       <NavBar props={navData} />
@@ -93,7 +96,7 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
           I can be a React component, multiple React components, or just some text.
         </Marquee>
       </Row>
-      <Footer />
+      <Footer props={footerData}/>
     </>
   );
 }
