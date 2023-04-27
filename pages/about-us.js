@@ -28,12 +28,12 @@ function AboutUs({navData}) {
         </div>
         <div className='container'>
           <Row className='flex-column flex-lg-row mb-6'>
-            <Col className='mb-sm-4'>
+            <Col className='mb-xs-4'>
               <p className='display-6 fw-medium'>
                 Volumus molesties ebeam quod has auto antiopam is tractatos cbd.
               </p>
             </Col>
-            <Col className='fs-5 fw-light mb-sm-4'>
+            <Col className='fs-5 fw-light mb-xs-4'>
               <p>
                 Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor magna aliquyam eratimo volumus molestie ea eam, ut has autem antiopam tractatos.
               </p>
@@ -41,14 +41,14 @@ function AboutUs({navData}) {
                 luptatum mediocrem cum euc. In vel nemore euripidis, pro quis elitr vivendum te, sed te ubique euismod facilis. Labitur intellegat ado lescens ad eum, omnium veritus reprehend unt.
               </p>
             </Col>
-            <Col className='fs-5 fw-light mb-sm-4'>
+            <Col className='fs-5 fw-light mb-xs-4'>
               <p>
                 Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor magna aliquyam eratimo volumus molestie ea eam, ut has autem antiopam tractatos.
               </p>
             </Col>
         </Row>
         <Row className='flex-column flex-lg-row'>
-            <Col className='mb-sm-5'>
+            <Col className='pb5'>
             <Image
             className="d-block w-100"
             src={require('/public/images/tree.png')}
@@ -59,7 +59,7 @@ function AboutUs({navData}) {
 
           />
             </Col>
-            <Col className='mb-sm-5'>
+            <Col className='pb5'>
             <Image
             className="d-block w-100"
             src={require('/public/images/doc.jpeg')}
@@ -70,7 +70,7 @@ function AboutUs({navData}) {
 
           />
             </Col>
-            <Col className='mb-sm-5'>
+            <Col className='pb5'>
             <Image
             className="d-block w-100"
             src={require('/public/images/oil.jpeg')}
@@ -109,14 +109,15 @@ function AboutUs({navData}) {
             color: 'green',
             fontSize: '3rem',
             fontFamily: 'Italiana',
-            fontWeight: '200'
+            fontWeight: '200',
+            marginBottom: '3rem'
           }}
         >
           I can be a React component, multiple React components, or just some text.
         </Marquee>
         </Row>
         <Row className='flex-column flex-lg-row mx-3'>
-            <Col className='mb-sm-5'>
+            <Col className='pb5'>
             <Image
             className="d-block w-100"
             src={require('/public/images/tree.png')}
@@ -127,7 +128,7 @@ function AboutUs({navData}) {
 
           />
             </Col>
-            <Col className='mb-sm-5'>
+            <Col className='pb5'>
             <Image
             className="d-block w-100"
             src={require('/public/images/doc.jpeg')}
@@ -138,7 +139,7 @@ function AboutUs({navData}) {
 
           />
             </Col>
-            <Col className='mb-sm-5'>
+            <Col className='pb5'>
             <Image
             className="d-block w-100"
             src={require('/public/images/oil.jpeg')}
@@ -149,21 +150,10 @@ function AboutUs({navData}) {
 
           />
             </Col>
-            <Col className='mb-sm-5'>
+            <Col className='pb5'>
             <Image
             className="d-block w-100"
             src={require('/public/images/tree.png')}
-            alt="First slide"
-            width='a'
-            height={300}
-            loader={loaderProp}
-
-          />
-            </Col>
-            <Col className='mb-sm-5'>
-            <Image
-            className="d-block w-100"
-            src={require('/public/images/doc.jpeg')}
             alt="First slide"
             width='a'
             height={300}
