@@ -1,10 +1,8 @@
 import AboutUs from "@/components/AboutUs";
-import CardsInfo from "@/components/CardsInfo";
 import CategoryCards from "@/components/CategoryCards";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import NavBar from "@/components/NavBar";
-import ProductCards from "@/components/ProductCards";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Inter } from "next/font/google";
 import Row from "react-bootstrap/Row";
@@ -79,7 +77,6 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
                 </tbody>
               </Table>
             </Stack>
-          {/* <ProductCards props={newProductsData} /> */}
         </div>
       </div>
       <Row className="mb-8">
@@ -96,11 +93,6 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
           I can be a React component, multiple React components, or just some text.
         </Marquee>
       </Row>
-      <Container>
-        <Row className="mb-11">
-          <CardsInfo />
-        </Row>
-      </Container>
       <Footer />
     </>
   );

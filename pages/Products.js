@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React, { useMemo, useState } from "react";
+import React, { Fragment, useMemo, useState } from "react";
 import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import GlobalFilter from '@/components/GlobalFilter';
 import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -15,16 +14,87 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Image from 'next/image';
 import Stack from 'react-bootstrap/Stack';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
-import { useTable, usePagination, useFilters, useAsyncDebounce, useGlobalFilter } from 'react-table'
+import { useTable, usePagination, useFilters, useGlobalFilter } from 'react-table'
 import Link from 'next/link';
-function Products({ navData, productsData }) {
-  console.log(productsData)
+import { useRouter } from 'next/router'
+
+export const MultipleFilter = (rows, filler, filterValue) => {
+  const arr = [];
+  rows.forEach((val) => {
+    if (filterValue.includes(val.original.category)) arr.push(val);
+  });
+  return arr;
+};
+
+function setFilteredParams(filterArr, val) {
+  if (filterArr.includes(val)) {
+    filterArr = filterArr.filter((n) => {
+      return n !== val;
+    });
+  } else filterArr.push(val);
+
+  if (filterArr.length === 0) filterArr = undefined;
+  return filterArr;
+}
+
+function ColumnFilter({
+  column: { filterValue = [], setFilter, preFilteredRows, id }
+}) {
+  const options = useMemo(() => {
+    const options = new Set();
+    preFilteredRows.forEach((row) => {
+      options.add(row.values[id]);
+    });
+    return [...options.values()];
+  }, [id, preFilteredRows]);
+
+  const router = useRouter();
+  const category = router.query;
+
+  return (
+    <Fragment>
+      <div className="block">
+        {options.map((option, i) => {
+          return (
+            <Fragment key={i}>
+              <div className="d-flex">
+                <input
+                  type="checkbox"
+                  id={option}
+                  name={option}
+                  value={option}
+                  onChange={(e) => {
+                    setFilter(setFilteredParams(filterValue, e.target.value));
+                  }}
+                  defaultChecked={option === `${category.category}` ? true : false}
+                ></input>
+                <label
+                  htmlFor={option}
+                  className="form-check-label"
+                >
+                  {option.toUpperCase()}
+                </label>
+              </div>
+            </Fragment>
+          );
+        })}
+      </div>
+    </Fragment>
+  );
+}
+
+function Products({ props, navData, productsData }) {
+  const router = useRouter();
+  const category = router.query;
+
+  console.log(category.category);
+
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData.data.map((data) => {
       let obj = {};
+      obj.category = data.attributes.home_page_categories.data[0].attributes.categoryUrl;
       obj.name = data.attributes.name;
       obj.price = data.attributes.price;
       obj.slug = data.attributes.slug;
@@ -37,17 +107,54 @@ function Products({ navData, productsData }) {
   const columns = React.useMemo(() => [
       {
         Header: 'name',
-        accessor: 'name'
+        accessor: 'name',
+        Filter: "",
+        filter: ""
       },
       {
         Header: 'price',
-        accessor: 'price'
+        accessor: 'price',
+        Filter: "",
+        filter: ""
       },
       {
         Header: 'url',
-        accessor: 'url'
+        accessor: 'url',
+        Filter: "",
+        filter: ""
+      },
+      {
+        Header: 'category',
+        accessor: 'category',
+        Filter: ColumnFilter,
+        filter: MultipleFilter
       }
   ], [])
+
+  const defaultColumn = useMemo(
+    () => ({
+      Filter: ColumnFilter,
+    }),
+    []
+  )
+
+  const initState = () => {
+    if (!category.category) {
+      return {
+        pageSize: 12
+      }
+    } else {
+      return {
+        pageSize: 12,
+        filters: [
+          {
+            id: "category",
+            value: [`${category.category}`]
+          }
+        ]
+      }
+    }
+  }
 
   const {
     getTableProps,
@@ -61,16 +168,17 @@ function Products({ navData, productsData }) {
     gotoPage,
     pageCount,
     setPageSize,
+    headerGroups,
     state,
     setGlobalFilter,
     prepareRow,
   } = useTable({
     columns,
     data,
-    initialState: {
-      pageSize: 12
-    }
+    defaultColumn,
+    initialState: initState()
   },
+    useFilters,
     useGlobalFilter,
     usePagination
   )
@@ -101,32 +209,36 @@ function Products({ navData, productsData }) {
       <NavBar props={navData} />
       <Container className="d-flex">
         <Col className="d-none d-sm-block d-md-block d-xl-block" xl={3}>
-          <Table>
-            <tbody>
-              <tr>
-                <td>
-                  <Card>
+          <Card>
+            <Table>
+              <thead>
+                {headerGroups.map((headerGroup, i) => (
+                  <tr {...headerGroup.getHeaderGroupProps()} key={i}>
+                    {headerGroup.headers.map((column) => (
+                      <th {...column.getHeaderProps()} key={column.id} data-id={column.id}>
+                        {column.canFilter ? column.render("Filter") : null}
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
                     <Stack gap={4}>
                       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-                      <h5>Categories</h5>
-                      <h5>Weight</h5>
-                      <h5>Brands</h5>
-                      <h5>Types</h5>
-                      <h5>Effects</h5>
-                      <h5>Price</h5>
                     </Stack>
-                  </Card>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Card>
         </Col>
         <Col xl={9}>
           <Table {...getTableProps()}>
             <tbody {...getTableBodyProps()}>
               <tr className="d-flex flex-wrap">
                 {page.map(row => {
-                  console.log('row', row)
                   return (
                     <td key={row.id} className="col-12 col-md-6 col-xl-4">
                       <Card>
@@ -170,17 +282,18 @@ function Products({ navData, productsData }) {
               </strong>{' '}
             </span>
             <div className="d-none d-xl-block">
-              <span>
+              {/* <span>
                 | Go to page: {' '}
                 <input
                   type='number' defaultValue={pageIndex + 1}
                   onChange={e => {
+                    setActive(e.target.value)
                     const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
                     gotoPage(pageNumber)
                   }}
                   style={{ width: '50px' }}
                 />
-              </span>
+              </span> */}
               <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
                 {
                   [10, 25, 50].map(pageSize => {
@@ -193,13 +306,15 @@ function Products({ navData, productsData }) {
                 }
               </select>
             </div>
-            <div className="d-flex align-items-center">
-              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-              <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
+            <Pagination className="d-flex align-items-center">
+              <Pagination.First onClick={() => {gotoPage(0); setActive(1);}} disabled={!canPreviousPage} />
+              {/* <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button> */}
+              <Pagination.Prev onClick={(e) => {previousPage(); console.log(e.selected)}} disabled={!canPreviousPage} />
               <Pagination>{items}</Pagination>
-              <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
-              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
-            </div>
+              {/* <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button> */}
+              <Pagination.Next onClick={(e) => {nextPage(); console.log(page)}} disabled={!canNextPage} />
+              <Pagination.Last onClick={() => {gotoPage(pageCount - 1); setActive(pageCount);}} disabled={!canNextPage} />
+            </Pagination>
           </div>
         </Col>
       </Container>
