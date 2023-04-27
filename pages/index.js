@@ -59,15 +59,15 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
                                 width={100}
                                 height={315}
                               />
-                              <Link href={"/products/[slug]"} as={`/products/${item.attributes.slug}`}>
+                              <Link href={"/Products"}>
                                 <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
                               </Link>
                               <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
                                 <div className="col-6 product-card-title text-start">
-                                <Link href={"/products/[slug]"} as={`/products/${item.attributes.slug}`}><h6>{item.attributes.newProductsTitle}</h6></Link>
+                                <Link href={"/Products"}><h6>{item.attributes.newProductsTitle}</h6></Link>
                                 </div>
                                 <div className="product-card-price">
-                                <Link href={"/products/[slug]"} as={`/products/${item.attributes.slug}`}><h5>${item.attributes.newProductsPrice}</h5></Link>
+                                <Link href={"/Products"}><h5>${item.attributes.newProductsPrice}</h5></Link>
                                 </div>
                               </div>
                             </MDBRipple>
