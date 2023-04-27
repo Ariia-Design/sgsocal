@@ -31,7 +31,9 @@ a, li {
 .carousel-caption {
     top: 40%;
 }
-
+.pb5 {
+    padding-bottom: 3rem;
+}
 .dropdown-toggle::after {
     display: none !important;
 }
