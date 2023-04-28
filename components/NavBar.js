@@ -28,7 +28,7 @@ export default function NavBar({ props }) {
   */
   const [open, setState] = useState(false);
 
-  
+
   /*
   function that is being called every time the drawer should open or close,
   the keys tab and shift are excluded so the user can focus between
@@ -44,7 +44,7 @@ export default function NavBar({ props }) {
 
   return (
 
-    <AppBar position="static" color="default">
+    <AppBar position="static" color="default" className="py-2">
       <container>
         <Toolbar>
 
@@ -67,10 +67,10 @@ export default function NavBar({ props }) {
           </Nav>
         </Col>
         <Col></Col>
-            <IconButton 
-              edge="start" 
-              color="inherit" 
-              aria-label="open drawer" 
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
               onClick={toggleDrawer(true)}
               sx={{
                 mr: 2,
@@ -104,8 +104,8 @@ export default function NavBar({ props }) {
                   backgroundColor: "white",
                 }}>
 
-                  {/* 
-                  when clicking the icon it calls the function toggleDrawer 
+                  {/*
+                  when clicking the icon it calls the function toggleDrawer
                   and closes the drawer by setting the variable open to false
                   */}
                   <IconButton sx={{mb: 2}} onClick={toggleDrawer(false)}>
@@ -129,12 +129,12 @@ export default function NavBar({ props }) {
                   </Nav.Link>
                 </Nav.Item>
               ))}
-          </div>      
+          </div>
 </Box>
                 </Box>
-              
+
             </Drawer>
-           
+
 
           </Toolbar>
       </container>
