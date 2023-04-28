@@ -56,7 +56,7 @@ export default function Footer({props}) {
                             {props?.categoryData?.data?.length > 0 &&
                                 props.categoryData.data.map(item => (
                                     <div key={item.id}>
-                                        <a className="me-4 text-reset" value={item.attributes.categoryUrl} onClick={e => handleClick(e.target.getAttribute('value'))}>{item.attributes.categoryUrl[0].toUpperCase() + item.attributes.categoryUrl.slice(1)}</a>
+                                        <a className="text-reset" value={item.attributes.categoryUrl} onClick={e => handleClick(e.target.getAttribute('value'))}>{item.attributes.categoryUrl[0].toUpperCase() + item.attributes.categoryUrl.slice(1)}</a>
                                     </div>
                                 ))
                             }

@@ -87,9 +87,6 @@ function ColumnFilter({
 function Products({ props, navData, productsData }) {
   const router = useRouter();
   const category = router.query;
-
-  console.log(category.category);
-
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData.data.map((data) => {
@@ -185,6 +182,7 @@ function Products({ props, navData, productsData }) {
 
   const { globalFilter, pageIndex, pageSize } = state
   const [active, setActive] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   function onItemClick(page) {
     event.preventDefault();
@@ -197,6 +195,7 @@ function Products({ props, navData, productsData }) {
       <Pagination.Item onClick={(e) => {
         gotoPage(i - 1);
         onItemClick(Number(e.target.innerHTML));
+        setCurrentPage(Number(e.target.innerHTML));
       }}
        key={i} active={i === active}>
         {i}
@@ -282,18 +281,6 @@ function Products({ props, navData, productsData }) {
               </strong>{' '}
             </span>
             <div className="d-none d-xl-block">
-              {/* <span>
-                | Go to page: {' '}
-                <input
-                  type='number' defaultValue={pageIndex + 1}
-                  onChange={e => {
-                    setActive(e.target.value)
-                    const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
-                    gotoPage(pageNumber)
-                  }}
-                  style={{ width: '50px' }}
-                />
-              </span> */}
               <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
                 {
                   [10, 25, 50].map(pageSize => {
@@ -307,13 +294,11 @@ function Products({ props, navData, productsData }) {
               </select>
             </div>
             <Pagination className="d-flex align-items-center">
-              <Pagination.First onClick={() => {gotoPage(0); setActive(1);}} disabled={!canPreviousPage} />
-              {/* <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button> */}
-              <Pagination.Prev onClick={(e) => {previousPage(); console.log(e.selected)}} disabled={!canPreviousPage} />
+              <Pagination.First onClick={() => {gotoPage(0); setActive(1); setCurrentPage(1);}} disabled={!canPreviousPage} />
+              <Pagination.Prev onClick={() => {previousPage(); setCurrentPage(currentPage - 1); setActive(currentPage - 1);}} disabled={!canPreviousPage} />
               <Pagination>{items}</Pagination>
-              {/* <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button> */}
-              <Pagination.Next onClick={(e) => {nextPage(); console.log(page)}} disabled={!canNextPage} />
-              <Pagination.Last onClick={() => {gotoPage(pageCount - 1); setActive(pageCount);}} disabled={!canNextPage} />
+              <Pagination.Next onClick={() => {nextPage(); setCurrentPage(currentPage + 1); setActive(currentPage + 1);}} disabled={!canNextPage} />
+              <Pagination.Last onClick={() => {gotoPage(pageCount - 1); setActive(pageCount); setCurrentPage(pageCount);}} disabled={!canNextPage} />
             </Pagination>
           </div>
         </Col>
