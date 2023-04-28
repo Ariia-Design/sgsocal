@@ -1,16 +1,13 @@
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Row, Col } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
 
-function AboutUs({navData}) {
+function AboutUs() {
   const loaderProp = ({ src }) => {
     return src;
   };
   return (
     <>
-      <NavBar props={navData}/>
         <div className='position-relative mb-8'>
 
           <Image
@@ -84,7 +81,7 @@ function AboutUs({navData}) {
         </Row>
         <Row className='flex-column flex-lg-row mb-6'>
             <Col className='mb-sm-4'>
-              
+
             </Col>
             <Col className='fs-5 fw-light mb-sm-4'>
               <p>
@@ -162,19 +159,24 @@ function AboutUs({navData}) {
           />
             </Col>
         </Row>
-      <Footer />
     </>
   )
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
+  const [navResponse, categoriesResponse] = await Promise.all([
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
+    )
   ]);
-  const [navData] = await Promise.all([
-    navResponse.json()
+  const [navData, categoryData] = await Promise.all([
+    navResponse.json(),
+    categoriesResponse.json()
   ])
-  return { props: { navData } };
+  return { props: { navData, categoryData } };
 }
 
 export default AboutUs

@@ -1,29 +1,19 @@
 import AboutUs from "@/components/AboutUs";
 import CategoryCards from "@/components/CategoryCards";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import NavBar from "@/components/NavBar";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Inter } from "next/font/google";
-import Row from "react-bootstrap/Row";
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
-import Card from 'react-bootstrap/Card';
 import Image from 'next/image';
-import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container';
-import Stack from 'react-bootstrap/Stack';
 import { MDBRipple } from 'mdb-react-ui-kit';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Inter } from "next/font/google";
+import { Row, Card, Table, Container, Stack } from 'react-bootstrap';
+
 const inter = Inter({ subsets: ["latin"] });
 
-function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
-  const footerData = {};
-  footerData.navData = navData;
-  footerData.categoryData = categoryData;
-
+function Home({ navData, newProductsData, heroData, categoryData }) {
   return (
     <>
-      <NavBar props={navData} />
       <Row className="mb-11">
         <Hero props={heroData} />
       </Row>
@@ -96,12 +86,11 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
           I can be a React component, multiple React components, or just some text.
         </Marquee>
       </Row>
-      <Footer props={footerData}/>
     </>
   );
 }
 export async function getServerSideProps(context) {
-  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse] =
+  const [navResponse, newProductsResponse, heroResponse, categoriesResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
@@ -114,19 +103,15 @@ export async function getServerSideProps(context) {
       ),
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
-      ),
-      fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo`
-      ),
+      )
     ]);
-  const [navData, newProductsData, heroData, categoryData, logoData] = await Promise.all([
+  const [navData, newProductsData, heroData, categoryData] = await Promise.all([
     navResponse.json(),
     newProductsResponse.json(),
     heroResponse.json(),
-    categoriesResponse.json(),
-    logoResponse.json(),
+    categoriesResponse.json()
   ]);
-  return { props: { navData, newProductsData, heroData, categoryData, logoData } };
+  return { props: { navData, newProductsData, heroData, categoryData } };
 }
 
 export default Home;

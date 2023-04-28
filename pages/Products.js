@@ -1,23 +1,13 @@
+import GlobalFilter from '@/components/GlobalFilter';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router'
+import { MDBRipple } from 'mdb-react-ui-kit';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { Fragment, useMemo, useState } from "react";
-import NavBar from '@/components/NavBar'
-import Footer from '@/components/Footer'
-import GlobalFilter from '@/components/GlobalFilter';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
-import Pagination from 'react-bootstrap/Pagination';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Image from 'next/image';
-import Stack from 'react-bootstrap/Stack';
-import { MDBRipple } from 'mdb-react-ui-kit';
 import { useTable, usePagination, useFilters, useGlobalFilter } from 'react-table'
-import Link from 'next/link';
-import { useRouter } from 'next/router'
+import { Card, Container, Col, Row, Table, Pagination, Stack } from 'react-bootstrap';
 
 export const MultipleFilter = (rows, filler, filterValue) => {
   const arr = [];
@@ -84,7 +74,7 @@ function ColumnFilter({
   );
 }
 
-function Products({ props, navData, productsData }) {
+function Products({ productsData }) {
   const router = useRouter();
   const category = router.query;
   const data = React.useMemo(() => {
@@ -205,7 +195,6 @@ function Products({ props, navData, productsData }) {
 
   return (
     <Stack gap={4}>
-      <NavBar props={navData} />
       <Container className="d-flex">
         <Col className="d-none d-sm-block d-md-block d-xl-block" xl={3}>
           <Card>
@@ -303,21 +292,28 @@ function Products({ props, navData, productsData }) {
           </div>
         </Col>
       </Container>
-      <Footer />
     </Stack>
   )
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, productsResponse] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`),
+  const [navResponse, productsResponse, categoriesResponse] = await Promise.all([
+    fetch(`
+      ${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
+    )
   ]);
-  const [navData, productsData] = await Promise.all([
+  const [navData, productsData, categoryData] = await Promise.all([
     navResponse.json(),
-    productsResponse.json()
+    productsResponse.json(),
+    categoriesResponse.json()
   ])
-  return { props: { navData, productsData } };
+  return { props: { navData, productsData, categoryData } };
 }
 
 export default Products

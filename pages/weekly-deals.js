@@ -1,8 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useMemo, useState } from "react";
-import NavBar from '@/components/NavBar'
-import Footer from '@/components/Footer'
 import GlobalFilter from '@/components/GlobalFilter';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
@@ -20,7 +18,7 @@ import { MDBRipple } from 'mdb-react-ui-kit';
 import { useTable, usePagination, useFilters, useAsyncDebounce, useGlobalFilter } from 'react-table'
 import Link from 'next/link';
 function WeeklyDeals({ navData, productsData }) {
-  console.log(productsData)
+
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData.data.map((data) => {
@@ -98,7 +96,6 @@ function WeeklyDeals({ navData, productsData }) {
 
   return (
     <Stack gap={4}>
-      <NavBar props={navData} />
       <Container className="d-flex">
         <Col className="d-none d-sm-block d-md-block d-xl-block" xl={3}>
           <Table>
@@ -203,22 +200,28 @@ function WeeklyDeals({ navData, productsData }) {
           </div>
         </Col>
       </Container>
-      <Footer />
     </Stack>
   )
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, productsResponse] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`),
+  const [navResponse, productsResponse, categoriesResponse] = await Promise.all([
+    fetch(`
+      ${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
+    )
   ]);
-  const [navData, productsData] = await Promise.all([
+  const [navData, productsData, categoryData] = await Promise.all([
     navResponse.json(),
-    productsResponse.json()
+    productsResponse.json(),
+    categoriesResponse.json()
   ])
-  return { props: { navData, productsData } };
+  return { props: { navData, productsData, categoryData } };
 }
 
 export default WeeklyDeals
-
