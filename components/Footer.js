@@ -44,7 +44,7 @@ export default function Footer({props}) {
                 <MDBContainer className='text-center text-md-start mt-5'>
                     <MDBRow className='mt-3'>
                         <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
-                            <Image src={"/images/sgsocal_logo.png"} alt="logo" width={200} height={82} objectFit="contain" />
+                            <Image src={"/images/logo.png"} alt="logo" width={100} height={50} objectFit="contain" />
                             <p>
                                 Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
                                 consectetur adipisicing elit.

@@ -46,9 +46,9 @@ export default function NavBar({ props }) {
     <AppBar position="static" color="default" className="py-2">
       <container>
         <Toolbar>
-          <Col className="d-flex justify-content-start pt-3">
+          <Col className="d-flex justify-content-start">
             <Navbar.Brand href="/">
-                <Image src={"/images/sgsocal_logo.png"} alt="logo" width={200} height={82} objectFit="contain" />
+                <Image src={"/images/logo.png"} alt="logo" width={160} height={75} objectFit="contain" />
             </Navbar.Brand>
           </Col>
           <Col className="d-none d-xs-none d-lg-block" xs={6}>
