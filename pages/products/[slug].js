@@ -14,14 +14,12 @@ import {
 } from 'mdb-react-ui-kit';
 import Image from 'react-bootstrap';
 import Link from 'next/link'
-function ProductDetails({productItemData, navData}) {
-  console.log('productItemData', productItemData)
+function ProductDetails({productItemData}) {
   const loaderProp = ({ src }) => {
     return src;
   };
   return (
     <>
-      <NavBar props={navData}/>
       <Container className="d-flex justify-content-center my-5">
           <MDBCard>
           <MDBRow className='g-0'>
@@ -35,15 +33,15 @@ function ProductDetails({productItemData, navData}) {
               </MDBCardBody>
               <Link href='/contact-us'>
 
-              <MDBBtn 
-                className='me-1' 
-                style={{ 
+              <MDBBtn
+                className='me-1'
+                style={{
                   marginLeft: '1rem',
                   marginTop: '2rem',
-                  color: 'white', 
-                  backgroundColor: 'rgb(42,168,93)', 
-                  borderColor: 'rgb(42,168,93)' 
-                }} 
+                  color: 'white',
+                  backgroundColor: 'rgb(42,168,93)',
+                  borderColor: 'rgb(42,168,93)'
+                }}
                 size='md'>
                 Place Order
               </MDBBtn>
@@ -54,31 +52,27 @@ function ProductDetails({productItemData, navData}) {
           </MDBRow>
         </MDBCard>
       </Container>
-      <Footer />
     </>
   )
 }
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  
-  const [productItemResponse, navResponse] = await Promise.all([
+
+  const [productItemResponse] = await Promise.all([
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products/?slug=${slug}&populate=*`),
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
 
   ]);
-  
-  const [productItemData, navData] = await Promise.all([
-    productItemResponse.json(),
-    navResponse.json()
+
+  const [productItemData] = await Promise.all([
+    productItemResponse.json()
   ])
 
   const selectedItem = productItemData.data.find(item => item.attributes.slug === slug);
 
   return {
     props: {
-      productItemData: selectedItem,
-      navData: navData
+      productItemData: selectedItem
     }
   };
 }
