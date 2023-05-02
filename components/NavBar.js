@@ -43,102 +43,92 @@ export default function NavBar({ props }) {
   };
 
   return (
-
     <AppBar position="static" color="default" className="py-2">
       <container>
         <Toolbar>
+          <Col className="d-flex justify-content-start pt-3">
+            <Navbar.Brand href="/">
+                <Image src={"/images/sgsocal_logo.png"} alt="logo" width={200} height={82} objectFit="contain" />
+            </Navbar.Brand>
+          </Col>
+          <Col className="d-none d-xs-none d-lg-block" xs={6}>
+            <Nav className="d-lg-flex justify-content-between">
+              {props?.data?.length > 0 &&
+                props.data.map((item) => (
+                  <Nav.Item key={item.id}>
+                    <Nav.Link href={item.attributes.url}>
+                      {item.attributes.Title}
+                    </Nav.Link>
+                  </Nav.Item>
+                ))}
+            </Nav>
+          </Col>
+          <Col></Col>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer(true)}
+            sx={{
+              mr: 2,
+              display: 'block',
+              '@media (min-width: 992px)': {
+                display: 'none',
+              },
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
 
-        <Col className="d-flex justify-content-start">
-
-          <Navbar.Brand href="/">
-            <Image src={"/images/image3.jpeg"} alt="logo" width={125} height={69} objectFit='contain' />
-          </Navbar.Brand>
-        </Col>
-        <Col className="d-none d-xs-none d-lg-block" xs={6}>
-           <Nav className="d-lg-flex justify-content-between">
-             {props?.data?.length > 0 &&
-              props.data.map((item) => (
-                <Nav.Item key={item.id}>
-                  <Nav.Link href={item.attributes.url}>
-                    {item.attributes.Title}
-                  </Nav.Link>
-                </Nav.Item>
-              ))}
-          </Nav>
-        </Col>
-        <Col></Col>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer(true)}
-              sx={{
-                mr: 2,
-                display: 'block',
-                '@media (min-width: 992px)': {
-                  display: 'none',
-                },
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-
-            {/* The outside of the drawer */}
-            <Drawer
+          {/* The outside of the drawer */}
+          <Drawer
             PaperProps={{
-                sx: { width: "50%" },
-              }}
-              //from which side the drawer slides in
-              anchor="right"
-              //if open is true --> drawer is shown
-              open={open}
-              //function that is called when the drawer should close
-              onClose={toggleDrawer(false)}
-              //function that is called when the drawer should open
-              onOpen={toggleDrawer(true)}
-            >
-                {/* The inside of the drawer */}
-                <Box sx={{
-                  p: 2,
-                  height: 1,
-                  backgroundColor: "white",
-                }}>
-
-                  {/*
-                  when clicking the icon it calls the function toggleDrawer
-                  and closes the drawer by setting the variable open to false
-                  */}
-                  <IconButton sx={{mb: 2}} onClick={toggleDrawer(false)}>
-                    <CloseIcon  />
-                  </IconButton>
-
-                  <Divider sx={{mb: 2}} />
-
-                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 1}}>
-                  <div className="d-flex flex-column w-100 gap-5">
-             {props?.data?.length > 0 &&
-              props.data.map((item) => (
-                <Nav.Item key={item.id} style={{
-                     width: "50%",
-                     textAlign: 'center',
-                     marginBottom: '2rem',
-                     margin: '0 auto'
-                  }}>
-                  <Nav.Link href={item.attributes.url}>
-                    {item.attributes.Title}
-                  </Nav.Link>
-                </Nav.Item>
-              ))}
-          </div>
-</Box>
-                </Box>
-
-            </Drawer>
-
-
-          </Toolbar>
+              sx: { width: "50%" },
+            }}
+            //from which side the drawer slides in
+            anchor="right"
+            //if open is true --> drawer is shown
+            open={open}
+            //function that is called when the drawer should close
+            onClose={toggleDrawer(false)}
+            //function that is called when the drawer should open
+            // onOpen={toggleDrawer(true)}
+          >
+            {/* The inside of the drawer */}
+            <Box sx={{
+              p: 2,
+              height: 1,
+              backgroundColor: "white",
+            }}>
+              {/*
+                when clicking the icon it calls the function toggleDrawer
+                and closes the drawer by setting the variable open to false
+                */}
+              <IconButton sx={{ mb: 2 }} onClick={toggleDrawer(false)}>
+                <CloseIcon />
+              </IconButton>
+              <Divider sx={{ mb: 2 }} />
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 1 }}>
+                <div className="d-flex flex-column w-100 gap-5">
+                  {props?.data?.length > 0 &&
+                    props.data.map((item) => (
+                      <Nav.Item key={item.id} style={{
+                        width: "75%",
+                        textAlign: 'center',
+                        marginBottom: '2rem',
+                        margin: '0 auto'
+                      }}>
+                        <Nav.Link href={item.attributes.url}>
+                          {item.attributes.Title}
+                        </Nav.Link>
+                      </Nav.Item>
+                    ))}
+                </div>
+              </Box>
+            </Box>
+          </Drawer>
+        </Toolbar>
       </container>
     </AppBar>
-
   );
 }
