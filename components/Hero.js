@@ -5,6 +5,7 @@ export default function Hero({ props }) {
   const loaderProp = ({ src }) => {
     return src;
   };
+
   return (
     <Carousel controls={false}>
       {props?.data?.length > 0 &&

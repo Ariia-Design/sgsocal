@@ -63,7 +63,6 @@ function Home({ navData, newProductsData, heroData, categoryData }) {
                             </MDBRipple>
                           </Card>
                         </td>
-
                       ))
                     }
                   </tr>

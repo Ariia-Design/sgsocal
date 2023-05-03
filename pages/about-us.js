@@ -6,6 +6,7 @@ function AboutUs() {
   const loaderProp = ({ src }) => {
     return src;
   };
+
   return (
     <>
         <div className='position-relative mb-8'>
