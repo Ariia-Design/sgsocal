@@ -7,10 +7,10 @@ export default function Layout({ children, props }) {
   footerData.categoryData = props.categoryData;
 
   return (
-    <>
+    <div style={{  minHeight: "100vh", display: "flex", flexDirection: "column"}}>
       <Navbar props={props.navData}/>
-      <main>{children}</main>
-      <Footer props={footerData}/>
-    </>
+      <main style={{flexGrow: 1}}>{children}</main>
+      <Footer props={footerData} style={{marginTop: "auto"}}/>
+    </div>
   )
 }
