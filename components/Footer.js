@@ -12,12 +12,11 @@ export default function Footer({props}) {
     }
 
     return (
-        <MDBFooter bgColor='light' className='text-center text-lg-start text-muted' >
+        <MDBFooter className='text-center text-lg-start text-muted' style={{ backgroundColor: "#F0EFE6" }}>
             <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
                 <div className='me-5 d-none d-lg-block'>
                     <span>Get connected with us on social networks:</span>
                 </div>
-
                 <div>
                     <a href='' className='me-4 text-reset'>
                         <MDBIcon fab icon="facebook-f" />
@@ -39,8 +38,7 @@ export default function Footer({props}) {
                     </a>
                 </div>
             </section>
-
-            <section className=''>
+            <section>
                 <MDBContainer className='text-center text-md-start mt-5'>
                     <MDBRow className='mt-3'>
                         <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
@@ -93,10 +91,9 @@ export default function Footer({props}) {
                     </MDBRow>
                 </MDBContainer>
             </section>
-
-            <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+            <div className='text-center text-light p-4' style={{ backgroundColor: '#0c5c0a' }}>
                 © 2021 Copyright:
-                <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
+                <a className='text-light fw-bold' href='https://mdbootstrap.com/'>
                     MDBootstrap.com
                 </a>
             </div>
