@@ -17,8 +17,8 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { MDBRipple } from 'mdb-react-ui-kit';
 import { useTable, usePagination, useFilters, useAsyncDebounce, useGlobalFilter } from 'react-table'
 import Link from 'next/link';
-function WeeklyDeals({ navData, productsData }) {
 
+function WeeklyDeals({ navData, productsData }) {
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData.data.map((data) => {
