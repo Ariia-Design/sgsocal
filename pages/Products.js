@@ -259,34 +259,36 @@ function Products({ productsData }) {
             </tr>
           </tbody>
         </Table>
-        <div className="d-flex align-items-center">
+        <Col className="d-flex justify-content-between align-items-center">
+          <div className="d-flex align-items-center">
+            <Pagination>
+              <Pagination.First onClick={() => { gotoPage(0); setActive(1); setCurrentPage(1); }} disabled={!canPreviousPage} />
+              <Pagination.Prev onClick={() => { previousPage(); setCurrentPage(currentPage - 1); setActive(currentPage - 1); }} disabled={!canPreviousPage} />
+              <Pagination>{items}</Pagination>
+              <Pagination.Next onClick={() => { nextPage(); setCurrentPage(currentPage + 1); setActive(currentPage + 1); }} disabled={!canNextPage} />
+              <Pagination.Last onClick={() => { gotoPage(pageCount - 1); setActive(pageCount); setCurrentPage(pageCount); }} disabled={!canNextPage} />
+            </Pagination>
+            <div className="d-none d-xl-block">
+              <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))} style={{height: "38px"}}>
+                {
+                  [10, 25, 50].map(pageSize => {
+                    return (
+                      <option key={pageSize} value={pageSize}>
+                        Show {pageSize}
+                      </option>
+                    )
+                  })
+                }
+              </select>
+            </div>
+          </div>
           <span>
             Page{' '}
             <strong>
               {pageIndex + 1} of {pageOptions.length}
             </strong>{' '}
           </span>
-          <div className="d-none d-xl-block">
-            <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
-              {
-                [10, 25, 50].map(pageSize => {
-                  return (
-                    <option key={pageSize} value={pageSize}>
-                      Show {pageSize}
-                    </option>
-                  )
-                })
-              }
-            </select>
-          </div>
-          <Pagination className="d-flex align-items-center">
-            <Pagination.First onClick={() => {gotoPage(0); setActive(1); setCurrentPage(1);}} disabled={!canPreviousPage} />
-            <Pagination.Prev onClick={() => {previousPage(); setCurrentPage(currentPage - 1); setActive(currentPage - 1);}} disabled={!canPreviousPage} />
-            <Pagination>{items}</Pagination>
-            <Pagination.Next onClick={() => {nextPage(); setCurrentPage(currentPage + 1); setActive(currentPage + 1);}} disabled={!canNextPage} />
-            <Pagination.Last onClick={() => {gotoPage(pageCount - 1); setActive(pageCount); setCurrentPage(pageCount);}} disabled={!canNextPage} />
-          </Pagination>
-        </div>
+        </Col>
       </Col>
     </Container>
   )

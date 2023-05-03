@@ -100,3 +100,12 @@ th[data-id="url"] {
         flex-basis: 100%;
     }
 }
+
+.pagination {
+    margin: 0 !important;
+}
+
+.pagination a,
+.pagination span {
+    border: none;
+}
