@@ -14,10 +14,11 @@ import {
 } from 'mdb-react-ui-kit';
 import Image from 'react-bootstrap';
 import Link from 'next/link'
-function ProductDetails({productItemData}) {
+function ProductDetails({productItemData, navData}) {
   const loaderProp = ({ src }) => {
     return src;
   };
+
   return (
     <>
       <Container className="d-flex justify-content-center my-5">
@@ -59,20 +60,23 @@ function ProductDetails({productItemData}) {
 export async function getServerSideProps(context) {
   const { slug } = context.query;
 
-  const [productItemResponse] = await Promise.all([
+  const [productItemResponse, navResponse] = await Promise.all([
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products/?slug=${slug}&populate=*`),
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
 
   ]);
 
-  const [productItemData] = await Promise.all([
-    productItemResponse.json()
+  const [productItemData, navData] = await Promise.all([
+    productItemResponse.json(),
+    navResponse.json()
   ])
 
   const selectedItem = productItemData.data.find(item => item.attributes.slug === slug);
 
   return {
     props: {
-      productItemData: selectedItem
+      productItemData: selectedItem,
+      navData: navData
     }
   };
 }
