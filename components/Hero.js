@@ -9,7 +9,7 @@ export default function Hero({ props }) {
   return (
     <Carousel controls={false}>
       {props?.data?.length > 0 &&
-        props.data.map((item) => (
+        props?.data?.map((item) => (
           <Carousel.Item key={item.id}>
             <Image
               className="d-block w-100"

@@ -1,9 +1,9 @@
 import Image from "next/image";
+import Router from "next/router";
+import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import Carousel from "react-multi-carousel";
-import Card from 'react-bootstrap/Card';
 import "react-multi-carousel/lib/styles.css";
-import Router from 'next/router';
 
 export default function CategoryCards({ props }) {
   const responsive = {
@@ -31,16 +31,16 @@ export default function CategoryCards({ props }) {
   const handleClick = (path) => {
     Router.push({
       pathname: "/Products",
-      query: {category: path}
-    })
-  }
+      query: { category: path },
+    });
+  };
 
   return (
     <Stack className="text-center" gap={4}>
       <h1>Product Categories</h1>
       <Carousel responsive={responsive}>
         {props?.data?.length > 0 &&
-          props.data.map((item) => (
+          props?.data?.map((item) => (
             <Card key={item.id} className="hover-zoom position-relative">
               <a onClick={(e) => handleClick(e.target.id)}>
                 <Image

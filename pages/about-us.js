@@ -9,158 +9,160 @@ function AboutUs() {
 
   return (
     <>
-        <div className='position-relative mb-8'>
-
-          <Image
-            className="d-block w-100"
-            src={require('/public/images/services-title-bg-img.jpg')}
-            alt="First slide"
-            width='a'
-            height={500}
-            loader={loaderProp}
-          />
-          <div className="position-absolute top-50 start-50 translate-middle text-center">
-            <h1 className="my-0 text-white display-1">About Us</h1>
-          </div>
+      <div className="position-relative mb-8">
+        <Image
+          className="d-block w-100"
+          src={"/images/services-title-bg-img.jpg"}
+          alt="First slide"
+          width={500}
+          height={500}
+          loader={loaderProp}
+        />
+        <div className="position-absolute top-50 start-50 translate-middle text-center">
+          <h1 className="my-0 text-white display-1">About Us</h1>
         </div>
-        <div className='container'>
-          <Row className='flex-column flex-lg-row mb-6'>
-            <Col className='mb-xs-4'>
-              <p className='display-6 fw-medium'>
-                Volumus molesties ebeam quod has auto antiopam is tractatos cbd.
-              </p>
-            </Col>
-            <Col className='fs-5 fw-light mb-xs-4'>
-              <p>
-                Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor magna aliquyam eratimo volumus molestie ea eam, ut has autem antiopam tractatos.
-              </p>
-              <p>
-                luptatum mediocrem cum euc. In vel nemore euripidis, pro quis elitr vivendum te, sed te ubique euismod facilis. Labitur intellegat ado lescens ad eum, omnium veritus reprehend unt.
-              </p>
-            </Col>
-            <Col className='fs-5 fw-light mb-xs-4'>
-              <p>
-                Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor magna aliquyam eratimo volumus molestie ea eam, ut has autem antiopam tractatos.
-              </p>
-            </Col>
+      </div>
+      <div className="container">
+        <Row className="flex-column flex-lg-row mb-6">
+          <Col className="mb-xs-4">
+            <p className="display-6 fw-medium">
+              Volumus molesties ebeam quod has auto antiopam is tractatos cbd.
+            </p>
+          </Col>
+          <Col className="fs-5 fw-light mb-xs-4">
+            <p>
+              Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolor magna aliquyam eratimo volumus
+              molestie ea eam, ut has autem antiopam tractatos.
+            </p>
+            <p>
+              luptatum mediocrem cum euc. In vel nemore euripidis, pro quis
+              elitr vivendum te, sed te ubique euismod facilis. Labitur
+              intellegat ado lescens ad eum, omnium veritus reprehend unt.
+            </p>
+          </Col>
+          <Col className="fs-5 fw-light mb-xs-4">
+            <p>
+              Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolor magna aliquyam eratimo volumus
+              molestie ea eam, ut has autem antiopam tractatos.
+            </p>
+          </Col>
         </Row>
-        <Row className='flex-column flex-lg-row'>
-            <Col className='pb5'>
+        <Row className="flex-column flex-lg-row">
+          <Col className="pb5">
             <Image
-            className="d-block w-100"
-            src={require('/public/images/tree.png')}
-            alt="First slide"
-            width='a'
-            height={500}
-            loader={loaderProp}
-
-          />
-            </Col>
-            <Col className='pb5'>
+              className="d-block w-100"
+              src={"/images/tree.png"}
+              alt="First slide"
+              width={500}
+              height={500}
+              loader={loaderProp}
+            />
+          </Col>
+          <Col className="pb5">
             <Image
-            className="d-block w-100"
-            src={require('/public/images/doc.jpeg')}
-            alt="First slide"
-            width='a'
-            height={500}
-            loader={loaderProp}
-
-          />
-            </Col>
-            <Col className='pb5'>
+              className="d-block w-100"
+              src={"/images/doc.jpeg"}
+              alt="First slide"
+              width={500}
+              height={500}
+              loader={loaderProp}
+            />
+          </Col>
+          <Col className="pb5">
             <Image
-            className="d-block w-100"
-            src={require('/public/images/oil.jpeg')}
-            alt="First slide"
-            width='a'
-            height={500}
-            loader={loaderProp}
-
-          />
-            </Col>
+              className="d-block w-100"
+              src={"/images/oil.jpeg"}
+              alt="First slide"
+              width={500}
+              height={500}
+              loader={loaderProp}
+            />
+          </Col>
         </Row>
-        <Row className='flex-column flex-lg-row mb-6'>
-            <Col className='mb-sm-4'>
-
-            </Col>
-            <Col className='fs-5 fw-light mb-sm-4'>
-              <p>
-                Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor magna aliquyam eratimo volumus molestie ea eam, ut has autem antiopam tractatos.
-              </p>
-              <p>
-                luptatum mediocrem cum euc. In vel nemore euripidis, pro quis elitr vivendum te, sed te ubique euismod facilis. Labitur intellegat ado lescens ad eum, omnium veritus reprehend unt.
-              </p>
-            </Col>
-            <Col className='fs-5 fw-light mb-sm-4'>
-              <p>
-                Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolor magna aliquyam eratimo volumus molestie ea eam, ut has autem antiopam tractatos.
-              </p>
-            </Col>
+        <Row className="flex-column flex-lg-row mb-6">
+          <Col className="mb-sm-4"></Col>
+          <Col className="fs-5 fw-light mb-sm-4">
+            <p>
+              Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolor magna aliquyam eratimo volumus
+              molestie ea eam, ut has autem antiopam tractatos.
+            </p>
+            <p>
+              luptatum mediocrem cum euc. In vel nemore euripidis, pro quis
+              elitr vivendum te, sed te ubique euismod facilis. Labitur
+              intellegat ado lescens ad eum, omnium veritus reprehend unt.
+            </p>
+          </Col>
+          <Col className="fs-5 fw-light mb-sm-4">
+            <p>
+              Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolor magna aliquyam eratimo volumus
+              molestie ea eam, ut has autem antiopam tractatos.
+            </p>
+          </Col>
         </Row>
-        </div>
-        <Row>
+      </div>
+      <Row>
         <Marquee
           speed={80}
-          style=
-          {{
-            color: 'green',
-            fontSize: '3rem',
-            fontFamily: 'Italiana',
-            fontWeight: '200',
-            marginBottom: '3rem'
+          style={{
+            color: "green",
+            fontSize: "3rem",
+            fontFamily: "Italiana",
+            fontWeight: "200",
+            marginBottom: "3rem",
           }}
         >
-          I can be a React component, multiple React components, or just some text.
+          I can be a React component, multiple React components, or just some
+          text.
         </Marquee>
-        </Row>
-        <Row className='flex-column flex-lg-row mx-3'>
-            <Col className='pb5'>
-            <Image
+      </Row>
+      <Row className="flex-column flex-lg-row mx-3">
+        <Col className="pb5">
+          <Image
             className="d-block w-100"
-            src={require('/public/images/tree.png')}
+            src={"/images/tree.png"}
             alt="First slide"
-            width='a'
+            width={500}
             height={300}
             loader={loaderProp}
-
           />
-            </Col>
-            <Col className='pb5'>
-            <Image
+        </Col>
+        <Col className="pb5">
+          <Image
             className="d-block w-100"
-            src={require('/public/images/doc.jpeg')}
+            src={"/images/doc.jpeg"}
             alt="First slide"
-            width='a'
+            width={500}
             height={300}
             loader={loaderProp}
-
           />
-            </Col>
-            <Col className='pb5'>
-            <Image
+        </Col>
+        <Col className="pb5">
+          <Image
             className="d-block w-100"
-            src={require('/public/images/oil.jpeg')}
+            src={"/images/oil.jpeg"}
             alt="First slide"
-            width='a'
+            width={500}
             height={300}
             loader={loaderProp}
-
           />
-            </Col>
-            <Col className='pb5'>
-            <Image
+        </Col>
+        <Col className="pb5">
+          <Image
             className="d-block w-100"
-            src={require('/public/images/tree.png')}
+            src={"/images/tree.png"}
             alt="First slide"
-            width='a'
+            width={500}
             height={300}
             loader={loaderProp}
-
           />
-            </Col>
-        </Row>
+        </Col>
+      </Row>
     </>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
