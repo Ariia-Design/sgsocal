@@ -18,7 +18,7 @@ function ContactUs() {
             <div className='col'>
               <Image
               className="d-block w-100"
-              src={require('/images/contact-img.jpg')}
+              src={'/images/contact-img.jpg'}
               alt="First slide"
               layout='responsive'
               width={500}
