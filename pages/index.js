@@ -11,8 +11,7 @@ import { Row, Card, Table, Container, Stack } from 'react-bootstrap';
 
 const inter = Inter({ subsets: ["latin"] });
 
-function Home({ navData, newProductsData, heroData, categoryData, logoData, aboutUsData }) {
-  console.log(aboutUsData)
+function Home({ navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData }) {
   return (
     <>
       <Row className="mb-11">
@@ -50,7 +49,7 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData, abou
                                 width={100}
                                 height={315}
                               />
-                              <Link href={"/Products"}>
+                              <Link href={"/home-page-new-products/[slug]"} as={`/home-page-new-products/${item.attributes.slug}`}>
                                 <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
                               </Link>
                               <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
@@ -83,14 +82,14 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData, abou
             fontWeight: '200'
           }}
         >
-          I can be a React component, multiple React components, or just some text.
+          {marqueeData.data[0].attributes.marqueeText}
         </Marquee>
       </Row>
     </>
   );
 }
 export async function getServerSideProps(context) {
-  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse, aboutUsResponse] =
+  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse, aboutUsResponse, marqueeResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
@@ -109,17 +108,21 @@ export async function getServerSideProps(context) {
       ),
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-about-uses?populate=*`
+      ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-marquees`
       )
     ]);
-  const [navData, newProductsData, heroData, categoryData, logoData, aboutUsData] = await Promise.all([
+  const [navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData] = await Promise.all([
     navResponse.json(),
     newProductsResponse.json(),
     heroResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
-    aboutUsResponse.json()
+    aboutUsResponse.json(),
+    marqueeResponse.json()
   ]);
-  return { props: { navData, newProductsData, heroData, categoryData, logoData, aboutUsData } };
+  return { props: { navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData } };
 }
 
 export default Home;
