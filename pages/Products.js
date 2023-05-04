@@ -1,13 +1,18 @@
-import GlobalFilter from '@/components/GlobalFilter';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router'
-import { MDBRipple } from 'mdb-react-ui-kit';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import GlobalFilter from "@/components/GlobalFilter";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { MDBRipple } from "mdb-react-ui-kit";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { Fragment, useMemo, useState } from "react";
-import { useTable, usePagination, useFilters, useGlobalFilter } from 'react-table'
-import { Card, Container, Col, Row, Table, Pagination } from 'react-bootstrap';
+import { Card, Col, Container, Pagination, Table } from "react-bootstrap";
+import {
+  useFilters,
+  useGlobalFilter,
+  usePagination,
+  useTable,
+} from "react-table";
 
 export const MultipleFilter = (rows, filler, filterValue) => {
   const arr = [];
@@ -29,7 +34,7 @@ function setFilteredParams(filterArr, val) {
 }
 
 function ColumnFilter({
-  column: { filterValue = [], setFilter, preFilteredRows, id }
+  column: { filterValue = [], setFilter, preFilteredRows, id },
 }) {
   const options = useMemo(() => {
     const options = new Set();
@@ -45,7 +50,7 @@ function ColumnFilter({
   return (
     <Fragment>
       <div className="block">
-        {options.map((option, i) => {
+        {options?.map((option, i) => {
           return (
             <Fragment key={i}>
               <div className="d-flex">
@@ -57,12 +62,11 @@ function ColumnFilter({
                   onChange={(e) => {
                     setFilter(setFilteredParams(filterValue, e.target.value));
                   }}
-                  defaultChecked={option === `${category.category}` ? true : false}
+                  defaultChecked={
+                    option === `${category.category}` ? true : false
+                  }
                 ></input>
-                <label
-                  htmlFor={option}
-                  className="form-check-label"
-                >
+                <label htmlFor={option} className="form-check-label">
                   {option.toUpperCase()}
                 </label>
               </div>
@@ -79,69 +83,73 @@ function Products({ productsData }) {
   const category = router.query;
   const data = React.useMemo(() => {
     const dataArray = [];
-    productsData.data.map((data) => {
+    productsData?.data?.map((data) => {
       let obj = {};
-      obj.category = data.attributes.home_page_categories.data[0].attributes.categoryUrl;
+      obj.category =
+        data.attributes.home_page_categories.data[0].attributes.categoryUrl;
       obj.name = data.attributes.name;
       obj.price = data.attributes.price;
       obj.slug = data.attributes.slug;
       obj.url = data.attributes.productImage.data.attributes.url;
       dataArray.push(obj);
-    })
-    return dataArray
-  }, [productsData.data])
+    });
+    return dataArray;
+  }, [productsData.data]);
 
-  const columns = React.useMemo(() => [
+  const columns = React.useMemo(
+    () => [
       {
-        Header: 'name',
-        accessor: 'name',
+        Header: "name",
+        accessor: "name",
         Filter: "",
-        filter: ""
+        filter: "",
       },
       {
-        Header: 'price',
-        accessor: 'price',
+        Header: "price",
+        accessor: "price",
         Filter: "",
-        filter: ""
+        filter: "",
       },
       {
-        Header: 'url',
-        accessor: 'url',
+        Header: "url",
+        accessor: "url",
         Filter: "",
-        filter: ""
+        filter: "",
       },
       {
-        Header: 'category',
-        accessor: 'category',
+        Header: "category",
+        accessor: "category",
         Filter: ColumnFilter,
-        filter: MultipleFilter
-      }
-  ], [])
+        filter: MultipleFilter,
+      },
+    ],
+    []
+  );
 
   const defaultColumn = useMemo(
     () => ({
       Filter: ColumnFilter,
     }),
     []
-  )
+  );
 
   const initState = () => {
     if (!category.category) {
       return {
-        pageSize: 12
-      }
+        pageSize: 12,
+      };
     } else {
       return {
         pageSize: 12,
         filters: [
           {
             id: "category",
-            value: [`${category.category}`]
-          }
-        ]
-      }
+            value: [`${category.category}`],
+          },
+        ],
+      };
     }
-  }
+  };
 
   const {
     getTableProps,
@@ -159,38 +167,42 @@ function Products({ productsData }) {
     state,
     setGlobalFilter,
     prepareRow,
-  } = useTable({
-    columns,
-    data,
-    defaultColumn,
-    initialState: initState()
-  },
+  } = useTable(
+    {
+      columns,
+      data,
+      defaultColumn,
+      initialState: initState(),
+    },
     useFilters,
     useGlobalFilter,
     usePagination
-  )
+  );
 
-  const { globalFilter, pageIndex, pageSize } = state
+  const { globalFilter, pageIndex, pageSize } = state;
   const [active, setActive] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
   function onItemClick(page) {
     event.preventDefault();
-    setActive(page)
+    setActive(page);
   }
 
   let items = [];
   for (let i = 1; i <= pageOptions.length; i++) {
     items.push(
-      <Pagination.Item onClick={(e) => {
-        gotoPage(i - 1);
-        onItemClick(Number(e.target.innerHTML));
-        setCurrentPage(Number(e.target.innerHTML));
-      }}
-       key={i} active={i === active}>
+      <Pagination.Item
+        onClick={(e) => {
+          gotoPage(i - 1);
+          onItemClick(Number(e.target.innerHTML));
+          setCurrentPage(Number(e.target.innerHTML));
+        }}
+        key={i}
+        active={i === active}
+      >
         {i}
       </Pagination.Item>
-    )
+    );
   }
 
   return (
@@ -199,10 +211,14 @@ function Products({ productsData }) {
         <Card>
           <Table>
             <thead>
-              {headerGroups.map((headerGroup, i) => (
+              {headerGroups?.map((headerGroup, i) => (
                 <tr {...headerGroup.getHeaderGroupProps()} key={i}>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()} key={column.id} data-id={column.id}>
+                  {headerGroup.headers?.map((column) => (
+                    <th
+                      {...column.getHeaderProps()}
+                      key={column.id}
+                      data-id={column.id}
+                    >
                       {column.canFilter ? column.render("Filter") : null}
                     </th>
                   ))}
@@ -212,7 +228,10 @@ function Products({ productsData }) {
             <tbody>
               <tr>
                 <td>
-                  <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+                  <GlobalFilter
+                    filter={globalFilter}
+                    setFilter={setGlobalFilter}
+                  />
                 </td>
               </tr>
             </tbody>
@@ -223,14 +242,14 @@ function Products({ productsData }) {
         <Table {...getTableProps()}>
           <tbody {...getTableBodyProps()}>
             <tr className="d-flex flex-wrap">
-              {page.map(row => {
+              {page?.map((row) => {
                 return (
                   <td key={row.id} className="col-12 col-md-6 col-xl-4">
                     <Card>
                       <MDBRipple
-                        className='bg-image hover-overlay shadow-1-strong rounded'
-                        rippleTag='div'
-                        rippleColor='light'
+                        className="bg-image hover-overlay shadow-1-strong rounded"
+                        rippleTag="div"
+                        rippleColor="light"
                         style={{ height: "100%" }}
                       >
                         <Image
@@ -240,21 +259,42 @@ function Products({ productsData }) {
                           width={100}
                           height={315}
                         />
-                        <Link href={"/products/[slug]"} as={`/products/${row.original.slug}`}>
-                          <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                        <Link
+                          href={"/products/[slug]"}
+                          as={`/products/${row.original.slug}`}
+                        >
+                          <div
+                            className="mask"
+                            style={{
+                              backgroundColor: "rgba(251, 251, 251, 0.2)",
+                            }}
+                          ></div>
                         </Link>
-                        <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
+                        <div
+                          className="d-flex align-items-center justify-content-between"
+                          style={{ height: "60px" }}
+                        >
                           <div className="col-6 product-card-title text-start">
-                            <Link href={"/products/[slug]"} as={`/products/${row.original.slug}`}><h6>{row.original.name}</h6></Link>
+                            <Link
+                              href={"/products/[slug]"}
+                              as={`/products/${row.original.slug}`}
+                            >
+                              <h6>{row.original.name}</h6>
+                            </Link>
                           </div>
                           <div className="product-card-price">
-                            <Link href={"/products/[slug]"} as={`/products/${row.original.slug}`}><h5>${row.original.price}</h5></Link>
+                            <Link
+                              href={"/products/[slug]"}
+                              as={`/products/${row.original.slug}`}
+                            >
+                              <h5>${row.original.price}</h5>
+                            </Link>
                           </div>
                         </div>
                       </MDBRipple>
                     </Card>
                   </td>
-                )
+                );
               })}
             </tr>
           </tbody>
@@ -262,60 +302,86 @@ function Products({ productsData }) {
         <Col className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center">
             <Pagination>
-              <Pagination.First onClick={() => { gotoPage(0); setActive(1); setCurrentPage(1); }} disabled={!canPreviousPage} />
-              <Pagination.Prev onClick={() => { previousPage(); setCurrentPage(currentPage - 1); setActive(currentPage - 1); }} disabled={!canPreviousPage} />
+              <Pagination.First
+                onClick={() => {
+                  gotoPage(0);
+                  setActive(1);
+                  setCurrentPage(1);
+                }}
+                disabled={!canPreviousPage}
+              />
+              <Pagination.Prev
+                onClick={() => {
+                  previousPage();
+                  setCurrentPage(currentPage - 1);
+                  setActive(currentPage - 1);
+                }}
+                disabled={!canPreviousPage}
+              />
               <Pagination>{items}</Pagination>
-              <Pagination.Next onClick={() => { nextPage(); setCurrentPage(currentPage + 1); setActive(currentPage + 1); }} disabled={!canNextPage} />
-              <Pagination.Last onClick={() => { gotoPage(pageCount - 1); setActive(pageCount); setCurrentPage(pageCount); }} disabled={!canNextPage} />
+              <Pagination.Next
+                onClick={() => {
+                  nextPage();
+                  setCurrentPage(currentPage + 1);
+                  setActive(currentPage + 1);
+                }}
+                disabled={!canNextPage}
+              />
+              <Pagination.Last
+                onClick={() => {
+                  gotoPage(pageCount - 1);
+                  setActive(pageCount);
+                  setCurrentPage(pageCount);
+                }}
+                disabled={!canNextPage}
+              />
             </Pagination>
             <div className="d-none d-xl-block">
-              <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))} style={{height: "38px"}}>
-                {
-                  [10, 25, 50].map(pageSize => {
-                    return (
-                      <option key={pageSize} value={pageSize}>
-                        Show {pageSize}
-                      </option>
-                    )
-                  })
-                }
+              <select
+                value={pageSize}
+                onChange={(e) => setPageSize(Number(e.target.value))}
+                style={{ height: "38px" }}
+              >
+                {[10, 25, 50]?.map((pageSize) => {
+                  return (
+                    <option key={pageSize} value={pageSize}>
+                      Show {pageSize}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
           <span>
-            Page{' '}
+            Page{" "}
             <strong>
               {pageIndex + 1} of {pageOptions.length}
-            </strong>{' '}
+            </strong>{" "}
           </span>
         </Col>
       </Col>
     </Container>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, productsResponse, categoriesResponse, logoResponse] = await Promise.all([
-    fetch(`
-      ${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
-    ),
-    fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`
-    ),
-    fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
-    ),
-    fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
-    )
-  ]);
+  const [navResponse, productsResponse, categoriesResponse, logoResponse] =
+    await Promise.all([
+      fetch(`
+      ${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
+      fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
+      ),
+      fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`),
+    ]);
   const [navData, productsData, categoryData, logoData] = await Promise.all([
     navResponse.json(),
     productsResponse.json(),
     categoriesResponse.json(),
-    logoResponse.json()
-  ])
+    logoResponse.json(),
+  ]);
   return { props: { navData, productsData, categoryData, logoData } };
 }
 
-export default Products
+export default Products;

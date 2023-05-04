@@ -21,6 +21,8 @@ function ContactUs() {
               src={require('/public/images/contact-img.jpg')}
               alt="First slide"
               layout='responsive'
+              width={500}
+              height={500}
               />
             </div>
             <Col>

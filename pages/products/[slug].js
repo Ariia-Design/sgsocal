@@ -25,12 +25,12 @@ function ProductDetails({productItemData, navData}) {
           <MDBCard>
           <MDBRow className='g-0'>
             <MDBCol md='4 text-center'>
-              <MDBCardImage src={productItemData.attributes.productImage.data.attributes.url} alt='...' fluid />
+              <MDBCardImage src={productItemData?.attributes?.productImage?.data?.attributes?.url} alt='...' fluid />
             </MDBCol>
             <MDBCol md='8 text-sm-left'>
               <MDBCardBody>
-                <MDBCardTitle>{productItemData.attributes.name}</MDBCardTitle>
-                <MDBCardText className='text-muted'>${productItemData.attributes.price}</MDBCardText>
+                <MDBCardTitle>{productItemData?.attributes?.name}</MDBCardTitle>
+                <MDBCardText className='text-muted'>${productItemData?.attributes?.price}</MDBCardText>
               </MDBCardBody>
               <Link href='/contact-us'>
 
@@ -71,7 +71,7 @@ export async function getServerSideProps(context) {
     navResponse.json()
   ])
 
-  const selectedItem = productItemData.data.find(item => item.attributes.slug === slug);
+  const selectedItem = productItemData?.data?.find(item => item.attributes.slug === slug);
 
   return {
     props: {
