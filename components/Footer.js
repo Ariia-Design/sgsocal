@@ -74,7 +74,7 @@ export default function Footer({props}) {
                         <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
                             <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
                             <p>
-                                <MDBIcon icon="home" className="me-2" />
+                                <MDBIcon icon="home" className="me-3" />
                                 New York, NY 10012, US
                             </p>
                             <p>
@@ -82,10 +82,12 @@ export default function Footer({props}) {
                                 info@example.com
                             </p>
                             <p>
-                                <MDBIcon icon="phone" className="me-3" /> + 01 234 567 88
+                                <MDBIcon icon="phone" className="me-3" />
+                                + 01 234 567 88
                             </p>
                             <p>
-                                <MDBIcon icon="print" className="me-3" /> + 01 234 567 89
+                                <MDBIcon icon="print" className="me-3" />
+                                + 01 234 567 89
                             </p>
                         </MDBCol>
                     </MDBRow>
