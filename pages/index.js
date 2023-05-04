@@ -11,7 +11,8 @@ import { Row, Card, Table, Container, Stack } from 'react-bootstrap';
 
 const inter = Inter({ subsets: ["latin"] });
 
-function Home({ navData, newProductsData, heroData, categoryData }) {
+function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
+  console.log(logoData)
   return (
     <>
       <Row className="mb-11">
@@ -89,7 +90,7 @@ function Home({ navData, newProductsData, heroData, categoryData }) {
   );
 }
 export async function getServerSideProps(context) {
-  const [navResponse, newProductsResponse, heroResponse, categoriesResponse] =
+  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
@@ -102,15 +103,19 @@ export async function getServerSideProps(context) {
       ),
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
-      )
+      ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
+      ),
     ]);
-  const [navData, newProductsData, heroData, categoryData] = await Promise.all([
+  const [navData, newProductsData, heroData, categoryData, logoData] = await Promise.all([
     navResponse.json(),
     newProductsResponse.json(),
     heroResponse.json(),
-    categoriesResponse.json()
+    categoriesResponse.json(),
+    logoResponse.json()
   ]);
-  return { props: { navData, newProductsData, heroData, categoryData } };
+  return { props: { navData, newProductsData, heroData, categoryData, logoData } };
 }
 
 export default Home;

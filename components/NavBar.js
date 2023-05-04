@@ -21,7 +21,6 @@ import ListItem from "@mui/material";
 import { margin } from "@mui/system";
 
 export default function NavBar({ props }) {
-
   /*
   react useState hook to save the current open/close state of the drawer,
   normally variables dissapear afte the function was executed
@@ -48,13 +47,13 @@ export default function NavBar({ props }) {
         <Toolbar>
           <Col className="d-flex justify-content-start">
             <Navbar.Brand href="/">
-                <Image src={"/images/logo.png"} alt="logo" width={160} height={75} objectFit="contain" />
+              <Image src={props.logoData.data.attributes.logoImage.data.attributes.url} alt="logo" width={160} height={75} objectFit="contain" />
             </Navbar.Brand>
           </Col>
           <Col className="d-none d-xs-none d-lg-block" xs={6}>
             <Nav className="d-lg-flex justify-content-between">
-              {props?.data?.length > 0 &&
-                props.data.map((item) => (
+              {props?.navData?.data?.length > 0 &&
+                props.navData.data.map((item) => (
                   <Nav.Item key={item.id}>
                     <Nav.Link href={item.attributes.url}>
                       {item.attributes.Title}
