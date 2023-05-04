@@ -14,7 +14,7 @@ import {
 } from 'mdb-react-ui-kit';
 import Image from 'react-bootstrap';
 import Link from 'next/link'
-function ProductDetails({productItemData, navData}) {
+function ProductDetails({productItemData}) {
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -60,16 +60,18 @@ function ProductDetails({productItemData, navData}) {
 export async function getServerSideProps(context) {
   const { slug } = context.query;
 
-  const [productItemResponse, navResponse, logoResponse] = await Promise.all([
+  const [productItemResponse, navResponse, logoResponse, categoriesResponse] = await Promise.all([
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products/?slug=${slug}&populate=*`),
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`)
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`),
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`)
   ]);
 
-  const [productItemData, navData, logoData] = await Promise.all([
+  const [productItemData, navData, logoData, categoryData] = await Promise.all([
     productItemResponse.json(),
     navResponse.json(),
-    logoResponse.json()
+    logoResponse.json(),
+    categoriesResponse.json()
   ])
 
   const selectedItem = productItemData?.data?.find(item => item.attributes.slug === slug);
@@ -78,7 +80,8 @@ export async function getServerSideProps(context) {
     props: {
       productItemData: selectedItem,
       navData: navData,
-      logoData: logoData
+      logoData: logoData,
+      categoryData: categoryData
     }
   };
 }

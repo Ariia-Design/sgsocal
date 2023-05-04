@@ -59,16 +59,18 @@ function ProductDetails({ newProductItemData, navData }) {
 export async function getServerSideProps(context) {
   const { slug } = context.query;
 
-  const [newProductItemResponse, navResponse, logoResponse] = await Promise.all([
+  const [newProductItemResponse, navResponse, logoResponse, categoriesResponse] = await Promise.all([
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-new-products/?slug=${slug}&populate=*`),
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`)
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`),
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`)
   ]);
 
-  const [newProductItemData, navData, logoData] = await Promise.all([
+  const [newProductItemData, navData, logoData, categoryData] = await Promise.all([
     newProductItemResponse.json(),
     navResponse.json(),
-    logoResponse.json()
+    logoResponse.json(),
+    categoriesResponse.json()
   ])
 
   const selectedNewItem = newProductItemData.data.find(item => item.attributes.slug === slug);
@@ -77,7 +79,8 @@ export async function getServerSideProps(context) {
     props: {
       newProductItemData: selectedNewItem,
       navData: navData,
-      logoData: logoData
+      logoData: logoData,
+      categoryData: categoryData
     }
   };
 }
