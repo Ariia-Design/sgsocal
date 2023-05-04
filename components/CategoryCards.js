@@ -53,6 +53,9 @@ export default function CategoryCards({ props }) {
                   loader={loaderProp}
                 />
               </a>
+              <div className="position-absolute text-light ps-3" style={{bottom:0}}>
+                <h3>{item.attributes.categoryTitle}</h3>
+              </div>
             </Card>
           ))}
       </Carousel>
