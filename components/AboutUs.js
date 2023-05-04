@@ -4,18 +4,18 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'next/image';
 
-export default function About() {
+export default function About({props}) {
   return  (
     <div className="d-block d-xl-flex justify-content-center align-items-center">
         <Col className="mb-4 mb-xl-0">
-          <h1>Cannabis products & why to try them</h1>
-          <p>Lorem ipsum dolor sit amet, for consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+          <h1>{props.data[0].attributes.aboutUsTitle}</h1>
+          <p>{props.data[0].attributes.aboutUsText}</p>
           <a className='btn btn-outline-dark btn-md' href="#about-us">VIEW MORE</a>
         </Col>
         <Col>
           <Image
           className="d-block w-100"
-          src={"/images/Farm.jpeg"}
+          src={props.data[0].attributes.aboutUsImage.data.attributes.url}
           alt="farm-image"
           width={400}
           height={400}
