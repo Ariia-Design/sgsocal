@@ -5,7 +5,7 @@ import React from 'react';
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { useMemo } from "react";
 
-function ContactUs() {
+function ContactUs({contactUsData}) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyD_-c6BEBqCGE4XFKJQWuCPQ-GKBRB6Kqk',
   });
@@ -18,7 +18,10 @@ function ContactUs() {
             <div className='col'>
               <Image
               className="d-block w-100"
-              src={require('/public/images/contact-img.jpg')}
+              width={400}
+              height={400}
+              objectFit="contain"
+              src={contactUsData.data[0].attributes.contactUsImage.data.attributes.url}
               alt="First slide"
               layout='responsive'
               />
@@ -87,7 +90,7 @@ function ContactUs() {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, categoriesResponse, logoResponse] = await Promise.all([
+  const [navResponse, categoriesResponse, logoResponse, contactUsResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
@@ -96,14 +99,18 @@ export async function getServerSideProps(context) {
     ),
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/contact-uses?populate=*`
     )
   ]);
-  const [navData, categoryData, logoData] = await Promise.all([
+  const [navData, categoryData, logoData, contactUsData] = await Promise.all([
     navResponse.json(),
     categoriesResponse.json(),
-    logoResponse.json()
+    logoResponse.json(),
+    contactUsResponse.json()
   ])
-  return { props: { navData, categoryData, logoData } };
+  return { props: { navData, categoryData, logoData, contactUsData } };
 }
 
 export default ContactUs
