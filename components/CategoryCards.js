@@ -4,7 +4,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function CategoryCards({ props }) {
-  console.log("category props:", props.data);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },

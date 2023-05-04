@@ -2,7 +2,6 @@ import Image from "next/image";
 import Carousel from "react-bootstrap/Carousel";
 
 export default function Hero({ props }) {
-  console.log("hero props:", props);
   const loaderProp = ({ src }) => {
     return src;
   };
