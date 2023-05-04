@@ -12,7 +12,7 @@ function AboutUs() {
       <div className="position-relative mb-8">
         <Image
           className="d-block w-100"
-          src={require("/public/images/services-title-bg-img.jpg")}
+          src={require("/images/services-title-bg-img.jpg")}
           alt="First slide"
           width={500}
           height={500}
@@ -53,7 +53,7 @@ function AboutUs() {
           <Col className="pb5">
             <Image
               className="d-block w-100"
-              src={require("/public/images/tree.png")}
+              src={require("/images/tree.png")}
               alt="First slide"
               width={500}
               height={500}
@@ -63,7 +63,7 @@ function AboutUs() {
           <Col className="pb5">
             <Image
               className="d-block w-100"
-              src={require("/public/images/doc.jpeg")}
+              src={require("/images/doc.jpeg")}
               alt="First slide"
               width={500}
               height={500}
@@ -73,7 +73,7 @@ function AboutUs() {
           <Col className="pb5">
             <Image
               className="d-block w-100"
-              src={require("/public/images/oil.jpeg")}
+              src={require("/images/oil.jpeg")}
               alt="First slide"
               width={500}
               height={500}
@@ -123,7 +123,7 @@ function AboutUs() {
         <Col className="pb5">
           <Image
             className="d-block w-100"
-            src={require("/public/images/tree.png")}
+            src={require("/images/tree.png")}
             alt="First slide"
             width={500}
             height={300}
@@ -133,7 +133,7 @@ function AboutUs() {
         <Col className="pb5">
           <Image
             className="d-block w-100"
-            src={require("/public/images/doc.jpeg")}
+            src={require("/images/doc.jpeg")}
             alt="First slide"
             width={500}
             height={300}
@@ -143,7 +143,7 @@ function AboutUs() {
         <Col className="pb5">
           <Image
             className="d-block w-100"
-            src={require("/public/images/oil.jpeg")}
+            src={require("/images/oil.jpeg")}
             alt="First slide"
             width={500}
             height={300}
@@ -153,7 +153,7 @@ function AboutUs() {
         <Col className="pb5">
           <Image
             className="d-block w-100"
-            src={require("/public/images/tree.png")}
+            src={require("/images/tree.png")}
             alt="First slide"
             width={500}
             height={300}
