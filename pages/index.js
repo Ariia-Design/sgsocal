@@ -11,8 +11,8 @@ import { Row, Card, Table, Container, Stack } from 'react-bootstrap';
 
 const inter = Inter({ subsets: ["latin"] });
 
-function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
-  console.log(logoData)
+function Home({ navData, newProductsData, heroData, categoryData, logoData, aboutUsData }) {
+  console.log(aboutUsData)
   return (
     <>
       <Row className="mb-11">
@@ -23,7 +23,7 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
       </Row>
       <div className="d-flex align-items-center mb-11" style={{ backgroundColor: "#F0EFE6", padding: "10rem 0"}}>
         <div className="container">
-          <AboutUs />
+          <AboutUs props={aboutUsData}/>
         </div>
       </div>
       <div className="d-flex align-items-center mb-8">
@@ -90,7 +90,7 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData }) {
   );
 }
 export async function getServerSideProps(context) {
-  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse] =
+  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse, aboutUsResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
@@ -107,15 +107,19 @@ export async function getServerSideProps(context) {
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
       ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-about-uses?populate=*`
+      )
     ]);
-  const [navData, newProductsData, heroData, categoryData, logoData] = await Promise.all([
+  const [navData, newProductsData, heroData, categoryData, logoData, aboutUsData] = await Promise.all([
     navResponse.json(),
     newProductsResponse.json(),
     heroResponse.json(),
     categoriesResponse.json(),
-    logoResponse.json()
+    logoResponse.json(),
+    aboutUsResponse.json()
   ]);
-  return { props: { navData, newProductsData, heroData, categoryData, logoData } };
+  return { props: { navData, newProductsData, heroData, categoryData, logoData, aboutUsData } };
 }
 
 export default Home;

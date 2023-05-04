@@ -25,7 +25,6 @@ function ContactUs() {
             </div>
             <Col>
             <h1 className="display-6 pb-4">Opening Hours</h1>
-
               <div className="position-relative d-inline-block w-100 align-top">
                 <div className="d-flex align-items-baseline mb-3">
                   <p className='position-relative m-0 text-capitalize'>Monday</p>
@@ -88,19 +87,23 @@ function ContactUs() {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, categoriesResponse] = await Promise.all([
+  const [navResponse, categoriesResponse, logoResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
     )
   ]);
-  const [navData, categoryData] = await Promise.all([
+  const [navData, categoryData, logoData] = await Promise.all([
     navResponse.json(),
-    categoriesResponse.json()
+    categoriesResponse.json(),
+    logoResponse.json()
   ])
-  return { props: { navData, categoryData } };
+  return { props: { navData, categoryData, logoData } };
 }
 
 export default ContactUs

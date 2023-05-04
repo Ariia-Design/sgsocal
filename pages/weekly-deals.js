@@ -203,7 +203,7 @@ function WeeklyDeals({ navData, productsData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, productsResponse, categoriesResponse] = await Promise.all([
+  const [navResponse, productsResponse, categoriesResponse, logoResponse] = await Promise.all([
     fetch(`
       ${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
@@ -212,14 +212,18 @@ export async function getServerSideProps(context) {
     ),
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
     )
   ]);
-  const [navData, productsData, categoryData] = await Promise.all([
+  const [navData, productsData, categoryData, logoData] = await Promise.all([
     navResponse.json(),
     productsResponse.json(),
-    categoriesResponse.json()
+    categoriesResponse.json(),
+    logoResponse.json()
   ])
-  return { props: { navData, productsData, categoryData } };
+  return { props: { navData, productsData, categoryData, logoData } };
 }
 
 export default WeeklyDeals

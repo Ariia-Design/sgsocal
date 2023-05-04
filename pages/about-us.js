@@ -18,7 +18,6 @@ function AboutUs() {
             width='a'
             height={500}
             loader={loaderProp}
-
           />
           <div className="position-absolute top-50 start-50 translate-middle text-center">
             <h1 className="my-0 text-white display-1">About Us</h1>
@@ -165,19 +164,23 @@ function AboutUs() {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, categoriesResponse] = await Promise.all([
+  const [navResponse, categoriesResponse, logoResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
     )
   ]);
-  const [navData, categoryData] = await Promise.all([
+  const [navData, categoryData, logoData] = await Promise.all([
     navResponse.json(),
-    categoriesResponse.json()
+    categoriesResponse.json(),
+    logoResponse.json()
   ])
-  return { props: { navData, categoryData } };
+  return { props: { navData, categoryData, logoData } };
 }
 
 export default AboutUs
