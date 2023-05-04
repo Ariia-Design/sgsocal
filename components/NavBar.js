@@ -109,8 +109,8 @@ export default function NavBar({ props }) {
               <Divider sx={{ mb: 2 }} />
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 1 }}>
                 <div className="d-flex flex-column w-100 gap-5">
-                  {props?.data?.length > 0 &&
-                    props.data.map((item) => (
+                  {props?.navData?.data?.length > 0 &&
+                    props.navData.data.map((item) => (
                       <Nav.Item key={item.id} style={{
                         width: "75%",
                         textAlign: 'center',
