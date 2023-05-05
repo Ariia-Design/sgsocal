@@ -2,9 +2,8 @@ import AboutUs from "@/components/AboutUs";
 import CategoryCards from "@/components/CategoryCards";
 import Hero from "@/components/Hero";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { MDBRipple } from "mdb-react-ui-kit";
+import { MDBCardImage, MDBRipple } from "mdb-react-ui-kit";
 import { Inter } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 import { Card, Row, Stack, Table } from "react-bootstrap";
 import Marquee from "react-fast-marquee";
@@ -44,12 +43,13 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData, abou
                           rippleColor='light'
                           style={{ height: "100%" }}
                         >
-                          <Image
+                          <MDBCardImage
                             className="d-block w-100"
                             src={item.attributes.newProductsImage.data[0].attributes.url}
-                            alt="hero"
+                            alt="newProductsImage"
                             width={100}
                             height={315}
+                            quality={100}
                           />
                           <Link href={"/home-page-new-products/[slug]"} as={`/home-page-new-products/${item.attributes.slug}`}>
                             <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>

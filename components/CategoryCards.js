@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Router from "next/router";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { MDBCardImage } from "mdb-react-ui-kit";
 
 export default function CategoryCards({ props }) {
   const responsive = {
@@ -43,13 +43,14 @@ export default function CategoryCards({ props }) {
           props?.data?.map((item) => (
             <Card key={item.id} className="hover-zoom position-relative">
               <a onClick={(e) => handleClick(e.target.id)}>
-                <Image
+                <MDBCardImage
                   className="d-block w-100"
                   src={item.attributes.categoryImage.data[0].attributes.url}
                   alt="category"
                   id={item.attributes.categoryUrl}
                   width={100}
                   height={315}
+                  quality={100}
                   loader={loaderProp}
                 />
               </a>

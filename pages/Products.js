@@ -1,8 +1,7 @@
 import GlobalFilter from "@/components/GlobalFilter";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { MDBRipple } from "mdb-react-ui-kit";
-import Image from "next/image";
+import { MDBCardImage, MDBRipple } from "mdb-react-ui-kit";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Fragment, useMemo, useState } from "react";
@@ -252,12 +251,13 @@ function Products({ productsData }) {
                         rippleColor="light"
                         style={{ height: "100%" }}
                       >
-                        <Image
+                        <MDBCardImage
                           className="d-block w-100"
                           src={row.original.url}
                           alt="product"
                           width={100}
                           height={315}
+                          quality={100}
                         />
                         <Link
                           href={"/products/[slug]"}
