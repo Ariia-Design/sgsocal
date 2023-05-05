@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Row, Col } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
 
-function AboutUs() {
+function AboutUs({ aboutUsData }) {
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -12,40 +12,24 @@ function AboutUs() {
       <div className="position-relative mb-8">
         <Image
           className="d-block w-100"
-          src={"/images/services-title-bg-img.jpg"}
+          src={aboutUsData.data[0].attributes.aboutUsHero.data.attributes.url}
           alt="about-us"
-          width={500}
+          width={100}
           height={500}
+          objectFit="contain"
           loader={loaderProp}
         />
-        <div className="position-absolute top-50 start-50 translate-middle text-center">
-          <h1 className="my-0 text-white display-1">About Us</h1>
-        </div>
       </div>
       <div className="container">
         <Row className="flex-column flex-lg-row mb-6">
           <Col className="mb-xs-4">
             <p className="display-6 fw-medium">
-              Volumus molesties ebeam quod has auto antiopam is tractatos cbd.
+              {aboutUsData.data[0].attributes.aboutUsHeader}
             </p>
           </Col>
           <Col className="fs-5 fw-light mb-xs-4">
             <p>
-              Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolor magna aliquyam eratimo volumus
-              molestie ea eam, ut has autem antiopam tractatos.
-            </p>
-            <p>
-              luptatum mediocrem cum euc. In vel nemore euripidis, pro quis
-              elitr vivendum te, sed te ubique euismod facilis. Labitur
-              intellegat ado lescens ad eum, omnium veritus reprehend unt.
-            </p>
-          </Col>
-          <Col className="fs-5 fw-light mb-xs-4">
-            <p>
-              Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolor magna aliquyam eratimo volumus
-              molestie ea eam, ut has autem antiopam tractatos.
+              {aboutUsData.data[0].attributes.aboutUsText1}
             </p>
           </Col>
         </Row>
@@ -53,30 +37,33 @@ function AboutUs() {
           <Col className="pb5">
             <Image
               className="d-block w-100"
-              src={"/images/tree.png"}
+              src={aboutUsData.data[0].attributes.aboutUsImage3.data.attributes.url}
               alt="First slide"
               width={500}
               height={500}
+              objectFit="contain"
               loader={loaderProp}
             />
           </Col>
           <Col className="pb5">
             <Image
               className="d-block w-100"
-              src={"/images/doc.jpeg"}
+              src={aboutUsData.data[0].attributes.aboutUsImages2.data.attributes.url}
               alt="First slide"
               width={500}
               height={500}
+              objectFit="contain"
               loader={loaderProp}
             />
           </Col>
           <Col className="pb5">
             <Image
               className="d-block w-100"
-              src={"/images/oil.jpeg"}
+              src={aboutUsData.data[0].attributes.aboutUsImages.data[0].attributes.url}
               alt="First slide"
               width={500}
               height={500}
+              objectFit="contain"
               loader={loaderProp}
             />
           </Col>
@@ -84,23 +71,7 @@ function AboutUs() {
         <Row className="flex-column flex-lg-row mb-6">
           <Col className="mb-sm-4"></Col>
           <Col className="fs-5 fw-light mb-sm-4">
-            <p>
-              Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolor magna aliquyam eratimo volumus
-              molestie ea eam, ut has autem antiopam tractatos.
-            </p>
-            <p>
-              luptatum mediocrem cum euc. In vel nemore euripidis, pro quis
-              elitr vivendum te, sed te ubique euismod facilis. Labitur
-              intellegat ado lescens ad eum, omnium veritus reprehend unt.
-            </p>
-          </Col>
-          <Col className="fs-5 fw-light mb-sm-4">
-            <p>
-              Amet, for consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolor magna aliquyam eratimo volumus
-              molestie ea eam, ut has autem antiopam tractatos.
-            </p>
+            <p>{aboutUsData.data[0].attributes.aboutUsText2}</p>
           </Col>
         </Row>
       </div>
@@ -115,48 +86,51 @@ function AboutUs() {
             marginBottom: "3rem",
           }}
         >
-          I can be a React component, multiple React components, or just some
-          text.
+          {aboutUsData.data[0].attributes.aboutUsMarquee}
         </Marquee>
       </Row>
       <Row className="flex-column flex-lg-row mx-3">
         <Col className="pb5">
           <Image
             className="d-block w-100"
-            src={"/images/tree.png"}
+            src={aboutUsData.data[0].attributes.aboutUsImage3.data.attributes.url}
             alt="First slide"
             width={500}
             height={300}
+            objectFit="contain"
             loader={loaderProp}
           />
         </Col>
         <Col className="pb5">
           <Image
             className="d-block w-100"
-            src={"/images/doc.jpeg"}
+            src={aboutUsData.data[0].attributes.aboutUsImages2.data.attributes.url}
             alt="First slide"
             width={500}
             height={300}
+            objectFit="contain"
             loader={loaderProp}
           />
         </Col>
         <Col className="pb5">
           <Image
             className="d-block w-100"
-            src={"/images/oil.jpeg"}
+            src={aboutUsData.data[0].attributes.aboutUsImages.data[0].attributes.url}
             alt="First slide"
             width={500}
             height={300}
+            objectFit="contain"
             loader={loaderProp}
           />
         </Col>
         <Col className="pb5">
           <Image
             className="d-block w-100"
-            src={"/images/tree.png"}
+            src={aboutUsData.data[0].attributes.aboutUsImage3.data.attributes.url}
             alt="First slide"
             width={500}
             height={300}
+            objectFit="contain"
             loader={loaderProp}
           />
         </Col>
@@ -166,7 +140,7 @@ function AboutUs() {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, categoriesResponse, logoResponse] = await Promise.all([
+  const [navResponse, categoriesResponse, logoResponse, aboutUsResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
@@ -175,14 +149,18 @@ export async function getServerSideProps(context) {
     ),
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about-us-heroes?populate=*`
     )
   ]);
-  const [navData, categoryData, logoData] = await Promise.all([
+  const [navData, categoryData, logoData, aboutUsData] = await Promise.all([
     navResponse.json(),
     categoriesResponse.json(),
-    logoResponse.json()
+    logoResponse.json(),
+    aboutUsResponse.json()
   ])
-  return { props: { navData, categoryData, logoData } };
+  return { props: { navData, categoryData, logoData, aboutUsData } };
 }
 
 export default AboutUs
