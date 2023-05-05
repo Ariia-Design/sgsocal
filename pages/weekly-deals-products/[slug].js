@@ -14,8 +14,8 @@ import {
 } from 'mdb-react-ui-kit';
 import Image from 'react-bootstrap';
 import Link from 'next/link'
+
 function ProductDetails({ weeklyDealsProductItemData }) {
-  console.log(weeklyDealsProductItemData)
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -41,8 +41,8 @@ function ProductDetails({ weeklyDealsProductItemData }) {
                     marginLeft: '1rem',
                     marginTop: '2rem',
                     color: 'white',
-                    backgroundColor: 'rgb(42,168,93)',
-                    borderColor: 'rgb(42,168,93)'
+                    backgroundColor: '#0c5c0a',
+                    borderColor: '#0c5c0a'
                   }}
                   size='md'>
                   Place Order
