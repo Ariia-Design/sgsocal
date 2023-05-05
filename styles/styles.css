@@ -104,9 +104,16 @@ th[data-id="url"] {
 
 .pagination {
   margin: 0 !important;
+  --bs-pagination-color: #6c757d !important;
+  --bs-pagination-hover-color: #6c757d !important;
 }
 
 .pagination a,
 .pagination span {
   border: none;
+}
+
+.page-item.active .page-link {
+  background-color: #e9fce8 !important;
+  color: #0c5c0a !important;
 }
