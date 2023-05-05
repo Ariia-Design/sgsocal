@@ -24,10 +24,6 @@ export default function CategoryCards({ props }) {
     },
   };
 
-  const loaderProp = ({ src }) => {
-    return src;
-  };
-
   const handleClick = (path) => {
     Router.push({
       pathname: "/Products",
@@ -51,7 +47,6 @@ export default function CategoryCards({ props }) {
                   width={100}
                   height={315}
                   quality={100}
-                  loader={loaderProp}
                 />
               </a>
               <div className="position-absolute text-light ps-3" style={{bottom:0}}>
