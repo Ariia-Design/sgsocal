@@ -16,7 +16,7 @@ export default function About({props}) {
           <Image
           className="d-block w-100"
           src={props.data[0].attributes.aboutUsImage.data.attributes.url}
-          alt="farm-image"
+          alt="about-us"
           width={400}
           height={400}
           objectFit="contain"
