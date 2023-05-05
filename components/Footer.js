@@ -85,7 +85,7 @@ export default function Footer({ props }) {
                 ))}
             </MDBCol>
 
-            <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
+            <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Pages</h6>
               {props?.navData?.data?.length > 0 &&
                 props.navData?.data?.map((item) => (
@@ -97,34 +97,34 @@ export default function Footer({ props }) {
                 ))}
             </MDBCol>
 
-                        <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
-                            <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
-                            <p>
-                                <MDBIcon icon="home" className="me-3" />
-                                New York, NY 10012, US
-                            </p>
-                            <p>
-                                <MDBIcon icon="envelope" className="me-3" />
-                                info@example.com
-                            </p>
-                            <p>
-                                <MDBIcon icon="phone" className="me-3" />
-                                 + 01 234 567 88
-                            </p>
-                            <p>
-                                <MDBIcon icon="print" className="me-3" />
-                                 + 01 234 567 89
-                            </p>
-                        </MDBCol>
-                    </MDBRow>
-                </MDBContainer>
-            </section>
-            <div className='text-center text-light p-4' style={{ backgroundColor: '#0c5c0a' }}>
-                © 2023 Copyright:&nbsp;
-                <a className='text-light fw-bold' href='https://sgsocal.com/'>
-                    sgsocal.com
-                </a>
-            </div>
-        </MDBFooter>
-    );
+            <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
+                <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
+                <p>
+                    <MDBIcon icon="home" className="me-3" />
+                    New York, NY 10012, US
+                </p>
+                <p>
+                    <MDBIcon icon="envelope" className="me-3" />
+                    info@example.com
+                </p>
+                <p>
+                    <MDBIcon icon="phone" className="me-3" />
+                      + 01 234 567 88
+                </p>
+                <p>
+                    <MDBIcon icon="print" className="me-3" />
+                      + 01 234 567 89
+                </p>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </section>
+      <div className='text-center text-light p-4' style={{ backgroundColor: '#0c5c0a' }}>
+          © 2023 Copyright:&nbsp;
+          <a className='text-light fw-bold' href='https://sgsocal.com/'>
+              sgsocal.com
+          </a>
+      </div>
+    </MDBFooter>
+  );
 }
