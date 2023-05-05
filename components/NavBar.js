@@ -101,7 +101,7 @@ export default function NavBar({ props }) {
               sx={{
                 p: 2,
                 height: 1,
-                backgroundColor: "white",
+                backgroundColor: "#f5f5f5",
               }}
             >
               {/*
@@ -123,13 +123,8 @@ export default function NavBar({ props }) {
                 <div className="d-flex flex-column w-100 gap-5">
                   {props?.navData?.data?.length > 0 &&
                     props.navData.data.map((item) => (
-                      <Nav.Item key={item.id} style={{
-                        width: "75%",
-                        textAlign: 'center',
-                        marginBottom: '2rem',
-                        margin: '0 auto'
-                      }}>
-                        <Nav.Link href={item.attributes.url}>
+                      <Nav.Item key={item.id} className="d-flex justify-content-center">
+                        <Nav.Link href={item.attributes.url} className="d-flex align-items-center justify-content-center" style={{ height: "40px" }}>
                           {item.attributes.Title}
                         </Nav.Link>
                       </Nav.Item>
