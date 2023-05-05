@@ -14,7 +14,7 @@ import {
 } from 'mdb-react-ui-kit';
 import Image from 'react-bootstrap';
 import Link from 'next/link'
-function ProductDetails({ newProductItemData, navData }) {
+function ProductDetails({ newProductItemData }) {
   const loaderProp = ({ src }) => {
     return src;
   };
