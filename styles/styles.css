@@ -117,3 +117,13 @@ th[data-id="url"] {
   background-color: #e9fce8 !important;
   color: #0c5c0a !important;
 }
+
+.btn-outline-light {
+  --bs-btn-hover-bg: #F0EFE6 !important;
+  --bs-btn-hover-border-color: #F0EFE6 !important;
+}
+
+.btn-outline-dark {
+  --bs-btn-hover-bg: #0c5c0a !important;
+  --bs-btn-hover-border-color: #0c5c0a !important;
+}

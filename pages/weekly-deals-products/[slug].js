@@ -33,23 +33,14 @@ function ProductDetails({ weeklyDealsProductItemData }) {
                 <MDBCardTitle>{weeklyDealsProductItemData?.attributes?.name}</MDBCardTitle>
                 <MDBCardText className='text-muted' style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>${weeklyDealsProductItemData?.attributes?.discountPrice}</MDBCardText>
                 <MDBCardText className='text-muted'>${weeklyDealsProductItemData?.attributes?.originalPrice}</MDBCardText>
+                <Link href='/contact-us'>
+                  <MDBBtn
+                    className='btn btn-light btn-outline-dark me-1'
+                    size='md'>
+                    Place Order
+                  </MDBBtn>
+                </Link>
               </MDBCardBody>
-              <Link href='/contact-us'>
-                <MDBBtn
-                  className='me-1'
-                  style={{
-                    marginLeft: '1rem',
-                    marginTop: '2rem',
-                    color: 'white',
-                    backgroundColor: '#0c5c0a',
-                    borderColor: '#0c5c0a'
-                  }}
-                  size='md'>
-                  Place Order
-                </MDBBtn>
-              </Link>
-            </MDBCol>
-            <MDBCol>
             </MDBCol>
           </MDBRow>
         </MDBCard>

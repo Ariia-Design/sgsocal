@@ -30,25 +30,16 @@ function ProductDetails({ newProductItemData }) {
             </MDBCol>
             <MDBCol md='6 text-sm-left'>
               <MDBCardBody>
-                <MDBCardTitle>{newProductItemData.attributes.name}</MDBCardTitle>
+                <MDBCardTitle>{newProductItemData.attributes.newProductsTitle}</MDBCardTitle>
                 <MDBCardText className='text-muted'>${newProductItemData.attributes.newProductsPrice}</MDBCardText>
+                <Link href='/contact-us'>
+                  <MDBBtn
+                    className='btn btn-light btn-outline-dark me-1'
+                    size='md'>
+                    Place Order
+                  </MDBBtn>
+                </Link>
               </MDBCardBody>
-              <Link href='/contact-us'>
-                <MDBBtn
-                  className='me-1'
-                  style={{
-                    marginLeft: '1rem',
-                    marginTop: '2rem',
-                    color: 'white',
-                    backgroundColor: '#0c5c0a',
-                    borderColor: '#0c5c0a'
-                  }}
-                  size='md'>
-                  Place Order
-                </MDBBtn>
-              </Link>
-            </MDBCol>
-            <MDBCol>
             </MDBCol>
           </MDBRow>
         </MDBCard>
