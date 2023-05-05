@@ -23,11 +23,11 @@ function ProductDetails({ newProductItemData, navData }) {
     <>
       <Container className="d-flex justify-content-center my-5">
         <MDBCard>
-          <MDBRow className='g-0'>
-            <MDBCol md='4 text-center'>
-              <MDBCardImage src={newProductItemData.attributes.newProductsImage.data[0].attributes.url} alt='...' fluid />
+          <MDBRow>
+            <MDBCol md='6 text-center'>
+              <MDBCardImage src={newProductItemData.attributes.newProductsImage.data[0].attributes.url} width={400} quality={100} alt='product' fluid />
             </MDBCol>
-            <MDBCol md='8 text-sm-left'>
+            <MDBCol md='6 text-sm-left'>
               <MDBCardBody>
                 <MDBCardTitle>{newProductItemData.attributes.name}</MDBCardTitle>
                 <MDBCardText className='text-muted'>${newProductItemData.attributes.newProductsPrice}</MDBCardText>
