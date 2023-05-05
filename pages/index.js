@@ -46,7 +46,7 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData, abou
                           <MDBCardImage
                             className="d-block w-100"
                             src={item.attributes.newProductsImage.data[0].attributes.url}
-                            alt="newProductsImage"
+                            alt="product"
                             width={100}
                             height={315}
                             quality={100}

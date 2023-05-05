@@ -22,7 +22,7 @@ function ContactUs({contactUsData}) {
               height={400}
               objectFit="contain"
               src={contactUsData.data[0].attributes.contactUsImage.data.attributes.url}
-              alt="First slide"
+              alt="contact-us"
               layout='responsive'
               />
             </div>

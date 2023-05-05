@@ -13,7 +13,7 @@ function AboutUs() {
         <Image
           className="d-block w-100"
           src={"/images/services-title-bg-img.jpg"}
-          alt="First slide"
+          alt="about-us"
           width={500}
           height={500}
           loader={loaderProp}
