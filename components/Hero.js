@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Carousel from "react-bootstrap/Carousel";
 
 export default function Hero({ props }) {
@@ -23,13 +24,13 @@ export default function Hero({ props }) {
             <Carousel.Caption>
               <h1>{item.attributes.slideTitle}</h1>
               <p>{item.attributes.slideText}</p>
-              <a
+              <Link
                 className="btn btn-outline-light btn-lg"
-                href="#!"
+                href="/about-us"
                 role="button"
               >
                 VIEW MORE
-              </a>
+              </Link>
             </Carousel.Caption>
           </Carousel.Item>
         ))}

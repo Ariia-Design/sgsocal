@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'next/image';
+import Link from "next/link";
 
 export default function About({props}) {
   return  (
@@ -10,7 +11,7 @@ export default function About({props}) {
         <Col className="mb-4 mb-xl-0">
           <h1>{props.data[0].attributes.aboutUsTitle}</h1>
           <p>{props.data[0].attributes.aboutUsText}</p>
-          <a className='btn btn-outline-dark btn-md' href="#about-us">VIEW MORE</a>
+          <Link className='btn btn-outline-dark btn-md' href="/contact-us">VIEW MORE</Link>
         </Col>
         <Col>
           <Image
