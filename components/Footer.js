@@ -9,7 +9,6 @@ import Image from "next/image";
 import Router from "next/router";
 
 export default function Footer({ props }) {
-  console.log(props.footerData.data[0].attributes)
   const handleClick = (path) => {
     Router.push({
       pathname: "/Products",
