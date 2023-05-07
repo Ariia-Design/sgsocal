@@ -11,11 +11,14 @@ export default function Layout({ children, props }) {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
+    window.localStorage.getItem("age_verified") ? setShow(false) : setShow(true);
   }, [])
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    window.localStorage.setItem("age_verified", true);
+    setShow(false);
+  }
 
   const navBarData = {};
   navBarData.navData = props.navData;
