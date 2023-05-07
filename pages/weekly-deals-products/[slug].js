@@ -31,8 +31,11 @@ function ProductDetails({ weeklyDealsProductItemData }) {
             <MDBCol md='6 text-sm-left'>
               <MDBCardBody>
                 <MDBCardTitle>{weeklyDealsProductItemData?.attributes?.name}</MDBCardTitle>
-                <MDBCardText className='text-muted' style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>${weeklyDealsProductItemData?.attributes?.discountPrice}</MDBCardText>
-                <MDBCardText className='text-muted'>${weeklyDealsProductItemData?.attributes?.originalPrice}</MDBCardText>
+                <div className="d-flex">
+                  <h6 className='text-muted' style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>${weeklyDealsProductItemData?.attributes?.discountPrice}</h6>
+                  <h5 className='text-muted'>${weeklyDealsProductItemData?.attributes?.originalPrice}</h5>
+                </div>
+                <MDBCardText className='text-muted'>{weeklyDealsProductItemData?.attributes?.productDescription}</MDBCardText>
                 <Link href='/contact-us'>
                   <MDBBtn
                     className='btn btn-light btn-outline-dark me-1'

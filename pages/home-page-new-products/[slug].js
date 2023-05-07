@@ -32,6 +32,7 @@ function ProductDetails({ newProductItemData }) {
               <MDBCardBody>
                 <MDBCardTitle>{newProductItemData.attributes.newProductsTitle}</MDBCardTitle>
                 <MDBCardText className='text-muted'>${newProductItemData.attributes.newProductsPrice}</MDBCardText>
+                <MDBCardText className='text-muted'>{newProductItemData.attributes.newProductsDescription}</MDBCardText>
                 <Link href='/contact-us'>
                   <MDBBtn
                     className='btn btn-light btn-outline-dark me-1'
