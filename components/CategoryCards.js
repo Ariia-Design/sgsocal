@@ -37,7 +37,7 @@ export default function CategoryCards({ props }) {
       <Carousel responsive={responsive}>
         {props?.data?.length > 0 &&
           props?.data?.map((item) => (
-            <Card key={item.id} className="hover-zoom position-relative">
+            <Card key={item.id} className="hover-zoom position-relative" style={{cursor: "pointer"}}>
               <a onClick={(e) => handleClick(e.target.id)}>
                 <MDBCardImage
                   className="d-block w-100"

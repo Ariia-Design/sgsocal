@@ -71,7 +71,7 @@ export default function Footer({ props }) {
               <h6 className="text-uppercase fw-bold mb-4">Products</h6>
               {props?.categoryData?.data?.length > 0 &&
                 props.categoryData?.data?.map((item) => (
-                  <div key={item.id}>
+                  <div key={item.id} style={{cursor: "pointer"}}>
                     <a
                       className="text-reset"
                       value={item.attributes.categoryUrl}
