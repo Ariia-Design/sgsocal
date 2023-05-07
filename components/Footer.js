@@ -9,6 +9,7 @@ import Image from "next/image";
 import Router from "next/router";
 
 export default function Footer({ props }) {
+  console.log(props.footerData.data[0].attributes)
   const handleClick = (path) => {
     Router.push({
       pathname: "/Products",
@@ -100,20 +101,20 @@ export default function Footer({ props }) {
             <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
                 <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
                 <p>
-                    <MDBIcon icon="home" className="me-3" />
-                    New York, NY 10012, US
+                  <MDBIcon icon="home" className="me-3" />
+                  {props.footerData.data[0].attributes.footerAddress}
                 </p>
                 <p>
-                    <MDBIcon icon="envelope" className="me-3" />
-                    info@example.com
+                  <MDBIcon icon="envelope" className="me-3" />
+                  {props.footerData.data[0].attributes.footerEmail}
                 </p>
                 <p>
-                    <MDBIcon icon="phone" className="me-3" />
-                      + 01 234 567 88
+                  <MDBIcon icon="phone" className="me-3" />
+                  {props.footerData.data[0].attributes.footerNumber}
                 </p>
                 <p>
-                    <MDBIcon icon="print" className="me-3" />
-                      + 01 234 567 89
+                  <MDBIcon icon="print" className="me-3" />
+                  {props.footerData.data[0].attributes.footerFax}
                 </p>
             </MDBCol>
           </MDBRow>
