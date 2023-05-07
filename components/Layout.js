@@ -7,7 +7,6 @@ import React, { useState, useEffect } from 'react';
 import { ModalBody } from 'react-bootstrap';
 
 export default function Layout({ children, props }) {
-  console.log(props.logoData.data.attributes.logoImage.data.attributes.url)
   const [show, setShow] = useState(true);
   const [isLoading, setIsLoading] = useState(false)
 
