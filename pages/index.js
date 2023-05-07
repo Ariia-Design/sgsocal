@@ -10,7 +10,7 @@ import Marquee from "react-fast-marquee";
 
 const inter = Inter({ subsets: ["latin"] });
 
-function Home({ navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData }) {
+function Home({ newProductsData, heroData, categoryData, aboutUsData, marqueeData }) {
   return (
     <>
       <Row className="mb-11">
@@ -89,7 +89,7 @@ function Home({ navData, newProductsData, heroData, categoryData, logoData, abou
   );
 }
 export async function getServerSideProps(context) {
-  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse, aboutUsResponse, marqueeResponse] =
+  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse, aboutUsResponse, marqueeResponse, footerResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
@@ -111,18 +111,22 @@ export async function getServerSideProps(context) {
       ),
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-marquees`
+      ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
       )
     ]);
-  const [navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData] = await Promise.all([
+  const [navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData, footerData] = await Promise.all([
     navResponse.json(),
     newProductsResponse.json(),
     heroResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
     aboutUsResponse.json(),
-    marqueeResponse.json()
+    marqueeResponse.json(),
+    footerResponse.json()
   ]);
-  return { props: { navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData } };
+  return { props: { navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData, footerData } };
 }
 
 export default Home;

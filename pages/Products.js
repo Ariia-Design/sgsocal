@@ -365,23 +365,32 @@ function Products({ productsData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, productsResponse, categoriesResponse, logoResponse] =
+  const [navResponse, productsResponse, categoriesResponse, logoResponse, footerResponse] =
     await Promise.all([
-      fetch(`
-      ${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
-      fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
+      ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`
+      ),
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
       ),
-      fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
+      ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
+      )
     ]);
-  const [navData, productsData, categoryData, logoData] = await Promise.all([
+  const [navData, productsData, categoryData, logoData, footerData] = await Promise.all([
     navResponse.json(),
     productsResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
+    footerResponse.json()
   ]);
-  return { props: { navData, productsData, categoryData, logoData } };
+  return { props: { navData, productsData, categoryData, logoData, footerData } };
 }
 
 export default Products;

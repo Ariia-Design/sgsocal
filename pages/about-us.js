@@ -140,7 +140,7 @@ function AboutUs({ aboutUsData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, categoriesResponse, logoResponse, aboutUsResponse] = await Promise.all([
+  const [navResponse, categoriesResponse, logoResponse, aboutUsResponse, footerResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
@@ -152,15 +152,19 @@ export async function getServerSideProps(context) {
     ),
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about-us-heroes?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
     )
   ]);
-  const [navData, categoryData, logoData, aboutUsData] = await Promise.all([
+  const [navData, categoryData, logoData, aboutUsData, footerData] = await Promise.all([
     navResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
-    aboutUsResponse.json()
+    aboutUsResponse.json(),
+    footerResponse.json()
   ])
-  return { props: { navData, categoryData, logoData, aboutUsData } };
+  return { props: { navData, categoryData, logoData, aboutUsData, footerData } };
 }
 
 export default AboutUs

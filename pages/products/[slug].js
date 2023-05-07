@@ -51,18 +51,20 @@ function ProductDetails({ productItemData }) {
 export async function getServerSideProps(context) {
   const { slug } = context.query;
 
-  const [productItemResponse, navResponse, logoResponse, categoriesResponse] = await Promise.all([
+  const [productItemResponse, navResponse, logoResponse, categoriesResponse, footerResponse] = await Promise.all([
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products/?slug=${slug}&populate=*`),
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`),
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`)
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`),
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`)
   ]);
 
-  const [productItemData, navData, logoData, categoryData] = await Promise.all([
+  const [productItemData, navData, logoData, categoryData, footerData] = await Promise.all([
     productItemResponse.json(),
     navResponse.json(),
     logoResponse.json(),
-    categoriesResponse.json()
+    categoriesResponse.json(),
+    footerResponse.json()
   ])
 
   const selectedItem = productItemData?.data?.find(item => item.attributes.slug === slug);
@@ -72,7 +74,8 @@ export async function getServerSideProps(context) {
       productItemData: selectedItem,
       navData: navData,
       logoData: logoData,
-      categoryData: categoryData
+      categoryData: categoryData,
+      footerData: footerData
     }
   };
 }
