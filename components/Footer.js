@@ -52,7 +52,8 @@ export default function Footer({ props }) {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <Image
                 src={
-                  props?.logoData?.data?.attributes?.logoImage?.data?.attributes?.url
+                  props?.logoData?.data?.attributes?.logoImage?.data?.attributes
+                    ?.url
                 }
                 alt="logo"
                 width={160}
@@ -69,8 +70,8 @@ export default function Footer({ props }) {
             <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Products</h6>
               {props?.categoryData?.data?.length > 0 &&
-                props.categoryData?.data?.map((item) => (
-                  <div key={item.id} style={{cursor: "pointer"}}>
+                props?.categoryData?.data?.map((item) => (
+                  <div key={item.id} style={{ cursor: "pointer" }}>
                     <a
                       className="text-reset"
                       value={item.attributes.categoryUrl}
@@ -88,7 +89,7 @@ export default function Footer({ props }) {
             <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Pages</h6>
               {props?.navData?.data?.length > 0 &&
-                props.navData?.data?.map((item) => (
+                props?.navData?.data?.map((item) => (
                   <div key={item.id}>
                     <a className="text-reset" href={item.attributes.url}>
                       {item.attributes.Title}
@@ -97,33 +98,36 @@ export default function Footer({ props }) {
                 ))}
             </MDBCol>
 
-            <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
-                <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
-                <p>
-                  <MDBIcon icon="home" className="me-3" />
-                  {props.footerData.data[0].attributes.footerAddress}
-                </p>
-                <p>
-                  <MDBIcon icon="envelope" className="me-3" />
-                  {props.footerData.data[0].attributes.footerEmail}
-                </p>
-                <p>
-                  <MDBIcon icon="phone" className="me-3" />
-                  {props.footerData.data[0].attributes.footerNumber}
-                </p>
-                <p>
-                  <MDBIcon icon="print" className="me-3" />
-                  {props.footerData.data[0].attributes.footerFax}
-                </p>
+            <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
+              <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+              <p>
+                <MDBIcon icon="home" className="me-3" />
+                {props?.footerData?.data?.[0]?.attributes?.footerAddress}
+              </p>
+              <p>
+                <MDBIcon icon="envelope" className="me-3" />
+                {props?.footerData?.data?.[0]?.attributes?.footerEmail}
+              </p>
+              <p>
+                <MDBIcon icon="phone" className="me-3" />
+                {props?.footerData?.data?.[0]?.attributes?.footerNumber}
+              </p>
+              <p>
+                <MDBIcon icon="print" className="me-3" />
+                {props?.footerData?.data?.[0]?.attributes?.footerFax}
+              </p>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
       </section>
-      <div className='text-center text-light p-4' style={{ backgroundColor: '#0c5c0a' }}>
-          © 2023 Copyright:&nbsp;
-          <a className='text-light fw-bold' href='https://sgsocal.com/'>
-              sgsocal.com
-          </a>
+      <div
+        className="text-center text-light p-4"
+        style={{ backgroundColor: "#0c5c0a" }}
+      >
+        © 2023 Copyright:&nbsp;
+        <a className="text-light fw-bold" href="https://sgsocal.com/">
+          sgsocal.com
+        </a>
       </div>
     </MDBFooter>
   );
