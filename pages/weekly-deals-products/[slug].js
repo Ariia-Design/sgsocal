@@ -32,8 +32,8 @@ function ProductDetails({ weeklyDealsProductItemData }) {
               <MDBCardBody>
                 <MDBCardTitle>{weeklyDealsProductItemData?.attributes?.name}</MDBCardTitle>
                 <span>
-                  <h6 className='text-muted' style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>${weeklyDealsProductItemData?.attributes?.discountPrice}</h6>
-                  <h5 className='text-muted'>${weeklyDealsProductItemData?.attributes?.originalPrice}</h5>
+                  <h6 className='text-muted' style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>${weeklyDealsProductItemData?.attributes?.originalPrice}</h6>
+                  <h5 className='text-muted'>${weeklyDealsProductItemData?.attributes?.discountPrice}</h5>
                 </span>
                 <MDBCardText className='text-muted'>{weeklyDealsProductItemData?.attributes?.productDescription}</MDBCardText>
                 <Link href='/contact-us'>
