@@ -4,17 +4,12 @@ import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import Looks3Icon from '@mui/icons-material/Looks3';
 import { Card, Col, Container, Pagination, Table, Row } from "react-bootstrap";
 import { useMemo } from "react";
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+// import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
 function howItWorks({ aboutUsData }) {
   const loaderProp = ({ src }) => {
     return src;
   };
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyD_-c6BEBqCGE4XFKJQWuCPQ-GKBRB6Kqk',
-  });
-
-  const center = useMemo(() => ({ lat: 37.376140, lng: -118.420620 }), []);
 
   return(
     <div style={{ color: "#0c5c0a" }}>
@@ -68,7 +63,7 @@ function howItWorks({ aboutUsData }) {
             <h1>RELAX</h1>
           </Col>
         </div>
-        <div className='container my-5'>
+        {/* <div className='container my-5'>
 
           <div className="App">
             {!isLoaded ? (
@@ -83,7 +78,7 @@ function howItWorks({ aboutUsData }) {
               </GoogleMap>
             )}
           </div>
-        </div>
+        </div> */}
       </Container>
     </div>
   )
