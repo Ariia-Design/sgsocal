@@ -1,3 +1,7 @@
+main {
+  background-color: #F0EFE6;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -44,14 +48,16 @@ li {
 }
 
 .product-card-title > a,
-.product-card-price > a,
 .nav-item > a {
   color: #737373 !important;
 }
 
+.product-card-price > a {
+  color: black;
+}
+
 .nav-item > a:hover {
   color: #0c5c0a !important;
-  filter: brightness(125%);
   transition: 0.3s;
 }
 

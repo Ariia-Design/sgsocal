@@ -1,104 +1,516 @@
-import AboutUs from "@/components/AboutUs";
-import CategoryCards from "@/components/CategoryCards";
-import Hero from "@/components/Hero";
+// import AboutUs from "@/components/AboutUs";
+// import CategoryCards from "@/components/CategoryCards";
+// import Hero from "@/components/Hero";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import { MDBCardImage, MDBRipple } from "mdb-react-ui-kit";
+// import { Inter } from "next/font/google";
+// import Link from "next/link";
+// import { Card, Row, Stack, Table } from "react-bootstrap";
+// import Marquee from "react-fast-marquee";
+
+// const inter = Inter({ subsets: ["latin"] });
+
+// function Home({ newProductsData, heroData, categoryData, aboutUsData, marqueeData }) {
+//   return (
+//     <>
+//       <Row className="mb-11">
+//         <Hero props={heroData} />
+//       </Row>
+//       <Row className="mb-11">
+//         <CategoryCards props={categoryData} />
+//       </Row>
+//       <div
+//         className="d-flex align-items-center mb-11"
+//         style={{ backgroundColor: "#F0EFE6", padding: "10rem 0" }}
+//       >
+//         <div className="container">
+//           <AboutUs props={aboutUsData} />
+//         </div>
+//       </div>
+//       <div className="d-flex align-items-center mb-8">
+//         <div className="container">
+//           <Stack gap={4}>
+//             <h1 className="text-center">Our New Products</h1>
+//             <Table>
+//               <tbody>
+//                 <tr className="d-flex flex-wrap">
+//                   {newProductsData?.data?.map(item => (
+//                     <td key={item.id} className="col-12 col-md-6 col-xl-3">
+//                       <Card>
+//                         <MDBRipple
+//                           className='bg-image hover-overlay shadow-1-strong rounded'
+//                           rippleTag='div'
+//                           rippleColor='light'
+//                           style={{ height: "100%" }}
+//                         >
+//                           <MDBCardImage
+//                             className="d-block w-100"
+//                             src={item.attributes.newProductsImage.data[0].attributes.url}
+//                             alt="product"
+//                             width={100}
+//                             height={315}
+//                             quality={100}
+//                           />
+//                           <Link href={"/home-page-new-products/[slug]"} as={`/home-page-new-products/${item.attributes.slug}`}>
+//                             <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+//                           </Link>
+//                           <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
+//                             <div className="col-6 product-card-title text-start">
+//                               <Link href={"/Products"}><h6>{item.attributes.newProductsTitle}</h6></Link>
+//                             </div>
+//                             <div className="product-card-price">
+//                               <Link href={"/Products"}><h5>${item.attributes.newProductsPrice}</h5></Link>
+//                             </div>
+//                           </div>
+//                         </MDBRipple>
+//                       </Card>
+//                     </td>
+//                   ))}
+//                 </tr>
+//               </tbody>
+//             </Table>
+//           </Stack>
+//         </div>
+//       </div>
+//       <Row className="mb-8">
+//         <Marquee
+//           speed={80}
+//           style={{
+//             color: "green",
+//             fontSize: "3rem",
+//             fontFamily: "Italiana",
+//             fontWeight: "200",
+//           }}
+//         >
+//           {marqueeData.data[0].attributes.marqueeText}
+//         </Marquee>
+//       </Row>
+//     </>
+//   );
+// }
+// export async function getServerSideProps(context) {
+//   const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse, aboutUsResponse, marqueeResponse, footerResponse] =
+//     await Promise.all([
+//       fetch(
+//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
+//       ),
+//       fetch(
+//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-new-products?populate=*`
+//       ),
+//       fetch(
+//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-heroes?populate=*`
+//       ),
+//       fetch(
+//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
+//       ),
+//       fetch(
+//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
+//       ),
+//       fetch(
+//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-about-uses?populate=*`
+//       ),
+//       fetch(
+//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-marquees`
+//       ),
+//       fetch(
+//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
+//       )
+//     ]);
+//   const [navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData, footerData] = await Promise.all([
+//     navResponse.json(),
+//     newProductsResponse.json(),
+//     heroResponse.json(),
+//     categoriesResponse.json(),
+//     logoResponse.json(),
+//     aboutUsResponse.json(),
+//     marqueeResponse.json(),
+//     footerResponse.json()
+//   ]);
+//   return { props: { navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData, footerData } };
+// }
+
+// export default Home;
+import GlobalFilter from "@/components/GlobalFilter";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MDBCardImage, MDBRipple } from "mdb-react-ui-kit";
-import { Inter } from "next/font/google";
 import Link from "next/link";
-import { Card, Row, Stack, Table } from "react-bootstrap";
-import Marquee from "react-fast-marquee";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { Fragment, useMemo, useState } from "react";
+import { Card, Col, Container, Pagination, Table, Row } from "react-bootstrap";
+import {
+  useFilters,
+  useGlobalFilter,
+  usePagination,
+  useTable,
+} from "react-table";
 
-const inter = Inter({ subsets: ["latin"] });
+export const MultipleFilter = (rows, filler, filterValue) => {
+  const arr = [];
+  rows.forEach((val) => {
+    if (filterValue.includes(val.original.category)) arr.push(val);
+  });
+  return arr;
+};
 
-function Home({ newProductsData, heroData, categoryData, aboutUsData, marqueeData }) {
+function setFilteredParams(filterArr, val) {
+  if (filterArr.includes(val)) {
+    filterArr = filterArr.filter((n) => {
+      return n !== val;
+    });
+  } else filterArr.push(val);
+
+  if (filterArr.length === 0) filterArr = undefined;
+  return filterArr;
+}
+
+function ColumnFilter({
+  column: { filterValue = [], setFilter, preFilteredRows, id },
+}) {
+  const options = useMemo(() => {
+    const options = new Set();
+    preFilteredRows.forEach((row) => {
+      options.add(row.values[id]);
+    });
+    return [...options.values()];
+  }, [id, preFilteredRows]);
+
+  const router = useRouter();
+  const category = router.query;
+
+  return (
+    <Fragment>
+      <div className="d-flex justify-content-around flex-wrap">
+        {options?.map((option, i) => {
+          return (
+            <Fragment key={i}>
+              <div className="d-flex">
+                <input
+                  type="checkbox"
+                  id={option}
+                  name={option}
+                  value={option}
+                  onChange={(e) => {
+                    setFilter(setFilteredParams(filterValue, e.target.value));
+                  }}
+                  defaultChecked={
+                    option === `${category.category}` ? true : false
+                  }
+                ></input>
+                <label htmlFor={option} className="form-check-label">
+                  {option.toUpperCase()}
+                </label>
+              </div>
+            </Fragment>
+          );
+        })}
+      </div>
+    </Fragment>
+  );
+}
+
+function Products({ productsData, aboutUsData }) {
+  const router = useRouter();
+  const category = router.query;
+  const data = React.useMemo(() => {
+    const dataArray = [];
+    productsData?.data?.map((data) => {
+      let obj = {};
+      obj.category =
+        data.attributes.home_page_categories.data[0].attributes.categoryUrl;
+      obj.name = data.attributes.name;
+      obj.price = data.attributes.price;
+      obj.slug = data.attributes.slug;
+      obj.url = data.attributes.productImage.data.attributes.url;
+      dataArray.push(obj);
+    });
+    return dataArray;
+  }, [productsData.data]);
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "name",
+        accessor: "name",
+        Filter: "",
+        filter: "",
+      },
+      {
+        Header: "price",
+        accessor: "price",
+        Filter: "",
+        filter: "",
+      },
+      {
+        Header: "url",
+        accessor: "url",
+        Filter: "",
+        filter: "",
+      },
+      {
+        Header: "category",
+        accessor: "category",
+        Filter: ColumnFilter,
+        filter: MultipleFilter,
+      },
+    ],
+    []
+  );
+
+  const defaultColumn = useMemo(
+    () => ({
+      Filter: ColumnFilter,
+    }),
+    []
+  );
+
+  const initState = () => {
+    if (!category.category) {
+      return {
+        pageSize: 12,
+      };
+    } else {
+      return {
+        pageSize: 12,
+        filters: [
+          {
+            id: "category",
+            value: [`${category.category}`],
+          },
+        ],
+      };
+    }
+  };
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    gotoPage,
+    pageCount,
+    setPageSize,
+    headerGroups,
+    state,
+    setGlobalFilter,
+    prepareRow,
+  } = useTable(
+    {
+      columns,
+      data,
+      defaultColumn,
+      initialState: initState(),
+    },
+    useFilters,
+    useGlobalFilter,
+    usePagination
+  );
+
+  const { globalFilter, pageIndex, pageSize } = state;
+  const [active, setActive] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  function onItemClick(page) {
+    event.preventDefault();
+    setActive(page);
+  }
+
+  let items = [];
+  for (let i = 1; i <= pageOptions.length; i++) {
+    items.push(
+      <Pagination.Item
+        onClick={(e) => {
+          gotoPage(i - 1);
+          onItemClick(Number(e.target.innerHTML));
+          setCurrentPage(Number(e.target.innerHTML));
+        }}
+        key={i}
+        active={i === active}
+      >
+        {i}
+      </Pagination.Item>
+    );
+  }
+
+  const loaderProp = ({ src }) => {
+    return src;
+  };
+
   return (
     <>
-      <Row className="mb-11">
-        <Hero props={heroData} />
-      </Row>
-      <Row className="mb-11">
-        <CategoryCards props={categoryData} />
-      </Row>
-      <div
-        className="d-flex align-items-center mb-11"
-        style={{ backgroundColor: "#F0EFE6", padding: "10rem 0" }}
-      >
-        <div className="container">
-          <AboutUs props={aboutUsData} />
-        </div>
-      </div>
-      <div className="d-flex align-items-center mb-8">
-        <div className="container">
-          <Stack gap={4}>
-            <h1 className="text-center">Our New Products</h1>
-            <Table>
-              <tbody>
-                <tr className="d-flex flex-wrap">
-                  {newProductsData?.data?.map(item => (
-                    <td key={item.id} className="col-12 col-md-6 col-xl-3">
+      <Image
+        className="d-block w-100"
+        src={aboutUsData.data[0].attributes.aboutUsHero.data.attributes.url}
+        alt="hero"
+        width={100}
+        height={350}
+        loader={loaderProp}
+      />
+      <Container className="d-flex py-5">
+        <Col xl={12}>
+          <Table {...getTableProps()}>
+            <thead>
+              {headerGroups?.map((headerGroup, i) => (
+                <tr {...headerGroup.getHeaderGroupProps()} key={i}>
+                  {headerGroup.headers?.map((column) => (
+                    <th
+                      {...column.getHeaderProps()}
+                      key={column.id}
+                      data-id={column.id}
+                    >
+                      {column.canFilter ? column.render("Filter") : null}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              <tr>
+                <td>
+                  <GlobalFilter
+                    filter={globalFilter}
+                    setFilter={setGlobalFilter}
+                  />
+                </td>
+              </tr>
+              <tr className="d-flex flex-wrap">
+                {page?.map((row) => {
+                  return (
+                    <td key={row.id} className="col-12 col-md-6 col-xl-3">
                       <Card>
                         <MDBRipple
-                          className='bg-image hover-overlay shadow-1-strong rounded'
-                          rippleTag='div'
-                          rippleColor='light'
+                          className="bg-image hover-overlay shadow-1-strong rounded"
+                          rippleTag="div"
+                          rippleColor="light"
                           style={{ height: "100%" }}
                         >
                           <MDBCardImage
                             className="d-block w-100"
-                            src={item.attributes.newProductsImage.data[0].attributes.url}
+                            src={row.original.url}
                             alt="product"
                             width={100}
                             height={315}
                             quality={100}
                           />
-                          <Link href={"/home-page-new-products/[slug]"} as={`/home-page-new-products/${item.attributes.slug}`}>
-                            <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                          <Link
+                            href={"/products/[slug]"}
+                            as={`/products/${row.original.slug}`}
+                          >
+                            <div
+                              className="mask"
+                              style={{
+                                backgroundColor: "rgba(251, 251, 251, 0.2)",
+                              }}
+                            ></div>
                           </Link>
-                          <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
+                          <div
+                            className="d-flex align-items-center justify-content-between px-3"
+                            style={{ height: "65px" }}
+                          >
                             <div className="col-6 product-card-title text-start">
-                              <Link href={"/Products"}><h6>{item.attributes.newProductsTitle}</h6></Link>
+                              <Link
+                                href={"/products/[slug]"}
+                                as={`/products/${row.original.slug}`}
+                              >
+                                <h6>{row.original.name}</h6>
+                              </Link>
                             </div>
                             <div className="product-card-price">
-                              <Link href={"/Products"}><h5>${item.attributes.newProductsPrice}</h5></Link>
+                              <Link
+                                href={"/products/[slug]"}
+                                as={`/products/${row.original.slug}`}
+                              >
+                                <h5>${row.original.price}</h5>
+                              </Link>
                             </div>
                           </div>
                         </MDBRipple>
                       </Card>
                     </td>
-                  ))}
-                </tr>
-              </tbody>
-            </Table>
-          </Stack>
-        </div>
-      </div>
-      <Row className="mb-8">
-        <Marquee
-          speed={80}
-          style={{
-            color: "green",
-            fontSize: "3rem",
-            fontFamily: "Italiana",
-            fontWeight: "200",
-          }}
-        >
-          {marqueeData.data[0].attributes.marqueeText}
-        </Marquee>
-      </Row>
+                  );
+                })}
+              </tr>
+            </tbody>
+          </Table>
+          <Col className="d-flex justify-content-between align-items-center">
+            <div className="d-flex align-items-center">
+              <Pagination>
+                <Pagination.First
+                  onClick={() => {
+                    gotoPage(0);
+                    setActive(1);
+                    setCurrentPage(1);
+                  }}
+                  disabled={!canPreviousPage}
+                />
+                <Pagination.Prev
+                  onClick={() => {
+                    previousPage();
+                    setCurrentPage(currentPage - 1);
+                    setActive(currentPage - 1);
+                  }}
+                  disabled={!canPreviousPage}
+                />
+                <Pagination>{items}</Pagination>
+                <Pagination.Next
+                  onClick={() => {
+                    nextPage();
+                    setCurrentPage(currentPage + 1);
+                    setActive(currentPage + 1);
+                  }}
+                  disabled={!canNextPage}
+                />
+                <Pagination.Last
+                  onClick={() => {
+                    gotoPage(pageCount - 1);
+                    setActive(pageCount);
+                    setCurrentPage(pageCount);
+                  }}
+                  disabled={!canNextPage}
+                />
+              </Pagination>
+              <div className="d-none d-xl-block">
+                <select
+                  value={pageSize}
+                  onChange={(e) => setPageSize(Number(e.target.value))}
+                  style={{ height: "38px" }}
+                >
+                  {[10, 25, 50]?.map((pageSize) => {
+                    return (
+                      <option key={pageSize} value={pageSize}>
+                        Show {pageSize}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
+            <span>
+              Page{" "}
+              <strong>
+                {pageIndex + 1} of {pageOptions.length}
+              </strong>{" "}
+            </span>
+          </Col>
+        </Col>
+      </Container>
     </>
   );
 }
+
 export async function getServerSideProps(context) {
-  const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse, aboutUsResponse, marqueeResponse, footerResponse] =
+  const [navResponse, productsResponse, categoriesResponse, logoResponse, footerResponse, aboutUsResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
       ),
       fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-new-products?populate=*`
-      ),
-      fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-heroes?populate=*`
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=*`
       ),
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
@@ -107,26 +519,21 @@ export async function getServerSideProps(context) {
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
       ),
       fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-about-uses?populate=*`
-      ),
-      fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-marquees`
-      ),
-      fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
-      )
+      ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about-us-heroes?populate=*`
+      ),
     ]);
-  const [navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData, footerData] = await Promise.all([
+  const [navData, productsData, categoryData, logoData, footerData, aboutUsData] = await Promise.all([
     navResponse.json(),
-    newProductsResponse.json(),
-    heroResponse.json(),
+    productsResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
-    aboutUsResponse.json(),
-    marqueeResponse.json(),
-    footerResponse.json()
+    footerResponse.json(),
+    aboutUsResponse.json()
   ]);
-  return { props: { navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData, footerData } };
+  return { props: { navData, productsData, categoryData, logoData, footerData, aboutUsData } };
 }
 
-export default Home;
+export default Products;

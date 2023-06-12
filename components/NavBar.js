@@ -36,7 +36,7 @@ export default function NavBar({ props }) {
   };
 
   return (
-    <AppBar position="static" color="default" className="py-2">
+    <AppBar position="static" color="default" className="py-2" style={{ backgroundColor: "#F0EFE6" }}>
       <container>
         <Toolbar>
           <Col className="d-flex justify-content-start">
@@ -53,7 +53,7 @@ export default function NavBar({ props }) {
               />
             </Navbar.Brand>
           </Col>
-          <Col className="d-none d-xs-none d-lg-block" xs={6}>
+          <Col className="d-none d-xs-none d-lg-block" lg={5} xl={4}>
             <Nav className="d-lg-flex justify-content-between">
               {props?.navData?.data?.length > 0 &&
                 props?.navData?.data?.map((item) => (
