@@ -24,7 +24,7 @@ function ProductDetails({ productItemData }) {
     <>
       <Container className="d-flex justify-content-center my-5">
         <MDBCard>
-          <MDBRow>
+          <MDBRow className="d-flex align-items-center">
             <MDBCol md='6 text-center'>
               <MDBCardImage src={productItemData?.attributes?.productImage?.data?.attributes?.url} width={400} quality={100} alt='product' fluid/>
             </MDBCol>
