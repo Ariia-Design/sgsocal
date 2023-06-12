@@ -1,135 +1,3 @@
-// import AboutUs from "@/components/AboutUs";
-// import CategoryCards from "@/components/CategoryCards";
-// import Hero from "@/components/Hero";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { MDBCardImage, MDBRipple } from "mdb-react-ui-kit";
-// import { Inter } from "next/font/google";
-// import Link from "next/link";
-// import { Card, Row, Stack, Table } from "react-bootstrap";
-// import Marquee from "react-fast-marquee";
-
-// const inter = Inter({ subsets: ["latin"] });
-
-// function Home({ newProductsData, heroData, categoryData, aboutUsData, marqueeData }) {
-//   return (
-//     <>
-//       <Row className="mb-11">
-//         <Hero props={heroData} />
-//       </Row>
-//       <Row className="mb-11">
-//         <CategoryCards props={categoryData} />
-//       </Row>
-//       <div
-//         className="d-flex align-items-center mb-11"
-//         style={{ backgroundColor: "#F0EFE6", padding: "10rem 0" }}
-//       >
-//         <div className="container">
-//           <AboutUs props={aboutUsData} />
-//         </div>
-//       </div>
-//       <div className="d-flex align-items-center mb-8">
-//         <div className="container">
-//           <Stack gap={4}>
-//             <h1 className="text-center">Our New Products</h1>
-//             <Table>
-//               <tbody>
-//                 <tr className="d-flex flex-wrap">
-//                   {newProductsData?.data?.map(item => (
-//                     <td key={item.id} className="col-12 col-md-6 col-xl-3">
-//                       <Card>
-//                         <MDBRipple
-//                           className='bg-image hover-overlay shadow-1-strong rounded'
-//                           rippleTag='div'
-//                           rippleColor='light'
-//                           style={{ height: "100%" }}
-//                         >
-//                           <MDBCardImage
-//                             className="d-block w-100"
-//                             src={item.attributes.newProductsImage.data[0].attributes.url}
-//                             alt="product"
-//                             width={100}
-//                             height={315}
-//                             quality={100}
-//                           />
-//                           <Link href={"/home-page-new-products/[slug]"} as={`/home-page-new-products/${item.attributes.slug}`}>
-//                             <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
-//                           </Link>
-//                           <div className="d-flex align-items-center justify-content-between" style={{ height: "60px" }}>
-//                             <div className="col-6 product-card-title text-start">
-//                               <Link href={"/Products"}><h6>{item.attributes.newProductsTitle}</h6></Link>
-//                             </div>
-//                             <div className="product-card-price">
-//                               <Link href={"/Products"}><h5>${item.attributes.newProductsPrice}</h5></Link>
-//                             </div>
-//                           </div>
-//                         </MDBRipple>
-//                       </Card>
-//                     </td>
-//                   ))}
-//                 </tr>
-//               </tbody>
-//             </Table>
-//           </Stack>
-//         </div>
-//       </div>
-//       <Row className="mb-8">
-//         <Marquee
-//           speed={80}
-//           style={{
-//             color: "green",
-//             fontSize: "3rem",
-//             fontFamily: "Italiana",
-//             fontWeight: "200",
-//           }}
-//         >
-//           {marqueeData.data[0].attributes.marqueeText}
-//         </Marquee>
-//       </Row>
-//     </>
-//   );
-// }
-// export async function getServerSideProps(context) {
-//   const [navResponse, newProductsResponse, heroResponse, categoriesResponse, logoResponse, aboutUsResponse, marqueeResponse, footerResponse] =
-//     await Promise.all([
-//       fetch(
-//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
-//       ),
-//       fetch(
-//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-new-products?populate=*`
-//       ),
-//       fetch(
-//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-heroes?populate=*`
-//       ),
-//       fetch(
-//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
-//       ),
-//       fetch(
-//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
-//       ),
-//       fetch(
-//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-about-uses?populate=*`
-//       ),
-//       fetch(
-//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-marquees`
-//       ),
-//       fetch(
-//         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
-//       )
-//     ]);
-//   const [navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData, footerData] = await Promise.all([
-//     navResponse.json(),
-//     newProductsResponse.json(),
-//     heroResponse.json(),
-//     categoriesResponse.json(),
-//     logoResponse.json(),
-//     aboutUsResponse.json(),
-//     marqueeResponse.json(),
-//     footerResponse.json()
-//   ]);
-//   return { props: { navData, newProductsData, heroData, categoryData, logoData, aboutUsData, marqueeData, footerData } };
-// }
-
-// export default Home;
 import GlobalFilter from "@/components/GlobalFilter";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -382,7 +250,7 @@ function Products({ productsData, aboutUsData }) {
                 {page?.map((row) => {
                   return (
                     <td key={row.id} className="col-12 col-md-6 col-xl-3">
-                      <Card>
+                      <Card style={{ position: "relative" }}>
                         <MDBRipple
                           className="bg-image hover-overlay shadow-1-strong rounded"
                           rippleTag="div"
@@ -397,6 +265,7 @@ function Products({ productsData, aboutUsData }) {
                             height={315}
                             quality={100}
                           />
+                          <label className="p-2 h7" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a" , color: "white"}}>Sativa</label>
                           <Link
                             href={"/products/[slug]"}
                             as={`/products/${row.original.slug}`}
@@ -409,25 +278,30 @@ function Products({ productsData, aboutUsData }) {
                             ></div>
                           </Link>
                           <div
-                            className="d-flex align-items-center justify-content-between px-3"
-                            style={{ height: "65px" }}
+                            className="d-flex align-items-center p-2"
+                            style={{ height: "75px", backgroundColor: "#333333" }}
                           >
-                            <div className="col-6 product-card-title text-start">
+                            <Col xl={10} className="product-card-title text-start">
                               <Link
                                 href={"/products/[slug]"}
                                 as={`/products/${row.original.slug}`}
                               >
-                                <h6>{row.original.name}</h6>
+                                <div>
+                                  <h7>{row.original.name}</h7>
+                                </div>
+                                <div>
+                                  <h7>THC: 30.26% - CBD: 0.08%</h7>
+                                </div>
                               </Link>
-                            </div>
-                            <div className="product-card-price">
+                            </Col>
+                            <Col xl={2} className="product-card-price text-end">
                               <Link
                                 href={"/products/[slug]"}
                                 as={`/products/${row.original.slug}`}
                               >
                                 <h5>${row.original.price}</h5>
                               </Link>
-                            </div>
+                            </Col>
                           </div>
                         </MDBRipple>
                       </Card>

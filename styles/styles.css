@@ -48,12 +48,12 @@ li {
 }
 
 .product-card-title > a,
-.nav-item > a {
-  color: #737373 !important;
+.product-card-price > a {
+  color: white;
 }
 
-.product-card-price > a {
-  color: black;
+.nav-item > a {
+  color: #737373 !important;
 }
 
 .nav-item > a:hover {
