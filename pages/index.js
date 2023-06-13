@@ -91,6 +91,9 @@ function Products({ productsData, aboutUsData }) {
       obj.price = data.attributes.price;
       obj.slug = data.attributes.slug;
       obj.url = data.attributes.productImage.data.attributes.url;
+      obj.strainType = data.attributes.strainType;
+      obj.thcLevel = data.attributes.thcLevel;
+      obj.cbdLevel = data.attributes.cbdLevel;
       dataArray.push(obj);
     });
     return dataArray;
@@ -265,7 +268,10 @@ function Products({ productsData, aboutUsData }) {
                             height={315}
                             quality={100}
                           />
-                          <label className="p-2 h7" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a" , color: "white"}}>Sativa</label>
+                          {row.original.strainType
+                            ? <label className="p-2 h7" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{row.original.strainType}</label>
+                            : ""
+                          }
                           <Link
                             href={"/products/[slug]"}
                             as={`/products/${row.original.slug}`}
@@ -278,7 +284,7 @@ function Products({ productsData, aboutUsData }) {
                             ></div>
                           </Link>
                           <div
-                            className="d-flex align-items-center p-2"
+                            className="d-flex align-items-center justify-content-between p-2"
                             style={{ height: "75px", backgroundColor: "#333333" }}
                           >
                             <Col xl={10} className="product-card-title text-start">
@@ -286,12 +292,14 @@ function Products({ productsData, aboutUsData }) {
                                 href={"/products/[slug]"}
                                 as={`/products/${row.original.slug}`}
                               >
-                                <div>
+                                <Row>
                                   <h7>{row.original.name}</h7>
-                                </div>
-                                <div>
-                                  <h7>THC: 30.26% - CBD: 0.08%</h7>
-                                </div>
+                                </Row>
+                                <Row>
+                                  { row.original.thcLevel && row.original.cbdLevel
+                                  ? <h7>THC: {row.original.thcLevel} - CBD: {row.original.cbdLevel}</h7>
+                                  : "" }
+                                </Row>
                               </Link>
                             </Col>
                             <Col xl={2} className="product-card-price text-end">

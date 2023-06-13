@@ -1,15 +1,12 @@
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
-import { Container } from 'react-bootstrap';
 import React from 'react';
+import { Card, Col, Container, Pagination, Table, Row } from "react-bootstrap";
 import {
-  MDBCard,
   MDBCardTitle,
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBRow,
-  MDBCol,
   MDBBtn
 } from 'mdb-react-ui-kit';
 import Image from 'react-bootstrap';
@@ -23,17 +20,26 @@ function ProductDetails({ productItemData }) {
   return (
     <>
       <Container className="d-flex justify-content-center my-5">
-        <MDBCard>
-          <MDBRow className="d-flex align-items-center">
-            <MDBCol md='6 text-center'>
-              <MDBCardImage src={productItemData?.attributes?.productImage?.data?.attributes?.url} width={400} quality={100} alt='product' fluid/>
-            </MDBCol>
-            <MDBCol md='6 text-sm-left'>
+        <Card className="p-5">
+          <Row className="d-flex align-items-center">
+            <Col md={6} className="text-center">
+              <MDBCardImage style={{ position: "relative" }} src={productItemData?.attributes?.productImage?.data?.attributes?.url} width={400} quality={100} alt='product' fluid/>
+              {productItemData.attributes.strainType
+                ? <label className="p-2 h7" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{productItemData.attributes.strainType}</label>
+                : ""
+              }
+            </Col>
+            <Col md={6} className="text-sm-left">
               <MDBCardBody>
-                <MDBCardTitle>{productItemData?.attributes?.name}</MDBCardTitle>
-                <MDBCardText className='text-muted'>${productItemData?.attributes?.price}</MDBCardText>
+                <MDBCardTitle><h4>{productItemData?.attributes?.name}</h4></MDBCardTitle>
+                {
+                  productItemData?.attributes?.thcLevel && productItemData?.attributes?.cbdLevel
+                    ? <MDBCardTitle><h6>THC: {productItemData?.attributes?.thcLevel} - CBD: {productItemData?.attributes?.cbdLevel}</h6></MDBCardTitle>
+                    : ""
+                }
+                <MDBCardTitle>${productItemData?.attributes?.price}</MDBCardTitle>
                 <MDBCardText className='text-muted'>{productItemData?.attributes.productDescription}</MDBCardText>
-                <Link href='/contact-us'>
+                <Link href='/how-it-works'>
                   <MDBBtn
                     className='btn btn-light btn-outline-dark me-1'
                     size='md'>
@@ -41,9 +47,9 @@ function ProductDetails({ productItemData }) {
                   </MDBBtn>
                 </Link>
               </MDBCardBody>
-            </MDBCol>
-          </MDBRow>
-        </MDBCard>
+            </Col>
+          </Row>
+        </Card>
       </Container>
     </>
   )
