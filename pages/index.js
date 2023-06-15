@@ -387,7 +387,7 @@ function Products({ productsData, heroData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, productsResponse, categoriesResponse, logoResponse, footerResponse, heroResponse] =
+  const [navResponse, productsResponse, categoriesResponse, logoResponse, heroResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
@@ -402,21 +402,17 @@ export async function getServerSideProps(context) {
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
       ),
       fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
-      ),
-      fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heroes?populate=*`
       ),
     ]);
-  const [navData, productsData, categoryData, logoData, footerData, heroData] = await Promise.all([
+  const [navData, productsData, categoryData, logoData, heroData] = await Promise.all([
     navResponse.json(),
     productsResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
-    footerResponse.json(),
     heroResponse.json()
   ]);
-  return { props: { navData, productsData, categoryData, logoData, footerData, heroData } };
+  return { props: { navData, productsData, categoryData, logoData, heroData } };
 }
 
 export default Products;

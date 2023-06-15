@@ -58,7 +58,7 @@ function ContactUs({ heroData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, logoResponse, footerResponse, heroResponse] = await Promise.all([
+  const [navResponse, logoResponse, heroResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
@@ -66,19 +66,15 @@ export async function getServerSideProps(context) {
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
     ),
     fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
-    ),
-    fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heroes?populate=*`
     )
   ]);
-  const [navData, logoData, footerData, heroData] = await Promise.all([
+  const [navData, logoData, heroData] = await Promise.all([
     navResponse.json(),
     logoResponse.json(),
-    footerResponse.json(),
     heroResponse.json()
   ])
-  return { props: { navData, logoData, footerData, heroData } };
+  return { props: { navData, logoData, heroData } };
 }
 
 export default ContactUs

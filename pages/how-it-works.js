@@ -7,7 +7,7 @@ import LooksOneIcon from '@mui/icons-material/LooksOne';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import Looks3Icon from '@mui/icons-material/Looks3';
 
-function ContactUs({ contactUsData, heroData }) {
+function ContactUs({ heroData }) {
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -91,35 +91,23 @@ function ContactUs({ contactUsData, heroData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, categoriesResponse, logoResponse, contactUsResponse, footerResponse, heroResponse] = await Promise.all([
+  const [navResponse, logoResponse, heroResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
-    ),
-    fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`
     ),
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
     ),
     fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/contact-uses?populate=*`
-    ),
-    fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
-    ),
-    fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heroes?populate=*`
     )
   ]);
-  const [navData, categoryData, logoData, contactUsData, footerData, heroData] = await Promise.all([
+  const [navData, logoData, heroData] = await Promise.all([
     navResponse.json(),
-    categoriesResponse.json(),
     logoResponse.json(),
-    contactUsResponse.json(),
-    footerResponse.json(),
     heroResponse.json()
   ])
-  return { props: { navData, categoryData, logoData, contactUsData, footerData, heroData } };
+  return { props: { navData, logoData, heroData } };
 }
 
 export default ContactUs
