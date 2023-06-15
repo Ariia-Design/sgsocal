@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { MDBCardImage, MDBRipple } from "mdb-react-ui-kit";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import React, { Fragment, useMemo, useState } from "react";
 import { Card, Col, Container, Pagination, Table, Row } from "react-bootstrap";
 import {
@@ -44,9 +43,6 @@ function ColumnFilter({
     return [...options.values()];
   }, [id, preFilteredRows]);
 
-  const router = useRouter();
-  const category = router.query;
-
   return (
     <Fragment>
       <div className="d-flex justify-content-around flex-wrap">
@@ -62,9 +58,6 @@ function ColumnFilter({
                   onChange={(e) => {
                     setFilter(setFilteredParams(filterValue, e.target.value));
                   }}
-                  defaultChecked={
-                    option === `${category.category}` ? true : false
-                  }
                 ></input>
                 <label htmlFor={option} className="form-check-label">
                   {option.toUpperCase()}
@@ -79,12 +72,10 @@ function ColumnFilter({
 }
 
 function Products({ productsData, heroData }) {
-  console.log(heroData);
-  const router = useRouter();
-  const category = router.query;
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData?.data?.map((data) => {
+      console.log(data)
       let obj = {};
       obj.category =
         data.attributes.home_page_categories.data[0].attributes.categoryUrl;
@@ -137,24 +128,6 @@ function Products({ productsData, heroData }) {
     []
   );
 
-  const initState = () => {
-    if (!category.category) {
-      return {
-        pageSize: 12,
-      };
-    } else {
-      return {
-        pageSize: 12,
-        filters: [
-          {
-            id: "category",
-            value: [`${category.category}`],
-          },
-        ],
-      };
-    }
-  };
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -176,7 +149,6 @@ function Products({ productsData, heroData }) {
       columns,
       data,
       defaultColumn,
-      initialState: initState(),
     },
     useFilters,
     useGlobalFilter,
@@ -217,7 +189,7 @@ function Products({ productsData, heroData }) {
     <>
       <Image
         className="d-block w-100"
-        src={heroData.data[0].attributes.heroImage.data.attributes.url}
+        src={heroData.data.attributes.heroImage.data.attributes.url}
         alt="hero"
         width={100}
         height={350}
@@ -402,7 +374,7 @@ export async function getServerSideProps(context) {
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
       ),
       fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heroes?populate=*`
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/hero?populate=*`
       ),
     ]);
   const [navData, productsData, categoryData, logoData, heroData] = await Promise.all([
