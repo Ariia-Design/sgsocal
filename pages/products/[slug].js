@@ -23,7 +23,7 @@ function ProductDetails({ productItemData }) {
         <Card className="p-5">
           <Row className="d-flex align-items-center">
             <Col md={6} className="text-center">
-              <MDBCardImage style={{ position: "relative" }} src={productItemData?.attributes?.productImage?.data?.attributes?.url} width={400} quality={100} alt='product' fluid/>
+              <MDBCardImage style={{ position: "relative", maxWidth: "100%", maxHeight: "100%" }} src={productItemData?.attributes?.productImage?.data?.attributes?.url} alt='product' objectFit="contain" fill />
               {productItemData.attributes.strainType
                 ? <label className="p-2 h7" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{productItemData.attributes.strainType}</label>
                 : ""
