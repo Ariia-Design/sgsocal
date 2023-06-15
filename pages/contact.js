@@ -12,7 +12,7 @@ function ContactUs({ heroData }) {
       <Row>
         <Image
           className="d-block w-100"
-          src={heroData.data[0].attributes.heroImage.data.attributes.url}
+          src={heroData.data.attributes.heroImage.data.attributes.url}
           alt="hero"
           width={100}
           height={350}
@@ -66,7 +66,7 @@ export async function getServerSideProps(context) {
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
     ),
     fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heroes?populate=*`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/hero?populate=*`
     )
   ]);
   const [navData, logoData, heroData] = await Promise.all([
