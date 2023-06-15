@@ -7,7 +7,7 @@ import LooksOneIcon from '@mui/icons-material/LooksOne';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import Looks3Icon from '@mui/icons-material/Looks3';
 
-function ContactUs({ contactUsData, aboutUsData }) {
+function ContactUs({ contactUsData, heroData }) {
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -21,7 +21,7 @@ function ContactUs({ contactUsData, aboutUsData }) {
     <div style={{ color: "#0c5c0a" }}>
       <Image
         className="d-block w-100"
-        src={aboutUsData.data[0].attributes.aboutUsHero.data.attributes.url}
+        src={heroData.data[0].attributes.heroImage.data.attributes.url}
         alt="hero"
         width={100}
         height={350}
@@ -91,7 +91,7 @@ function ContactUs({ contactUsData, aboutUsData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, categoriesResponse, logoResponse, contactUsResponse, footerResponse, aboutUsResponse] = await Promise.all([
+  const [navResponse, categoriesResponse, logoResponse, contactUsResponse, footerResponse, heroResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
@@ -108,18 +108,18 @@ export async function getServerSideProps(context) {
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
     ),
     fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about-us-heroes?populate=*`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heroes?populate=*`
     )
   ]);
-  const [navData, categoryData, logoData, contactUsData, footerData, aboutUsData] = await Promise.all([
+  const [navData, categoryData, logoData, contactUsData, footerData, heroData] = await Promise.all([
     navResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
     contactUsResponse.json(),
     footerResponse.json(),
-    aboutUsResponse.json()
+    heroResponse.json()
   ])
-  return { props: { navData, categoryData, logoData, contactUsData, footerData, aboutUsData } };
+  return { props: { navData, categoryData, logoData, contactUsData, footerData, heroData } };
 }
 
 export default ContactUs

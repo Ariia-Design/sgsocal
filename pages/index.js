@@ -78,7 +78,8 @@ function ColumnFilter({
   );
 }
 
-function Products({ productsData, aboutUsData }) {
+function Products({ productsData, heroData }) {
+  console.log(heroData);
   const router = useRouter();
   const category = router.query;
   const data = React.useMemo(() => {
@@ -216,7 +217,7 @@ function Products({ productsData, aboutUsData }) {
     <>
       <Image
         className="d-block w-100"
-        src={aboutUsData.data[0].attributes.aboutUsHero.data.attributes.url}
+        src={heroData.data[0].attributes.heroImage.data.attributes.url}
         alt="hero"
         width={100}
         height={350}
@@ -386,7 +387,7 @@ function Products({ productsData, aboutUsData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, productsResponse, categoriesResponse, logoResponse, footerResponse, aboutUsResponse] =
+  const [navResponse, productsResponse, categoriesResponse, logoResponse, footerResponse, heroResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
@@ -404,18 +405,18 @@ export async function getServerSideProps(context) {
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
       ),
       fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about-us-heroes?populate=*`
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heroes?populate=*`
       ),
     ]);
-  const [navData, productsData, categoryData, logoData, footerData, aboutUsData] = await Promise.all([
+  const [navData, productsData, categoryData, logoData, footerData, heroData] = await Promise.all([
     navResponse.json(),
     productsResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
     footerResponse.json(),
-    aboutUsResponse.json()
+    heroResponse.json()
   ]);
-  return { props: { navData, productsData, categoryData, logoData, footerData, aboutUsData } };
+  return { props: { navData, productsData, categoryData, logoData, footerData, heroData } };
 }
 
 export default Products;

@@ -2,7 +2,7 @@ import Row from 'react-bootstrap/Row';
 import Image from 'next/image';
 import React from 'react';
 
-function ContactUs({ aboutUsData }) {
+function ContactUs({ heroData }) {
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -12,7 +12,7 @@ function ContactUs({ aboutUsData }) {
       <Row>
         <Image
           className="d-block w-100"
-          src={aboutUsData.data[0].attributes.aboutUsHero.data.attributes.url}
+          src={heroData.data[0].attributes.heroImage.data.attributes.url}
           alt="hero"
           width={100}
           height={350}
@@ -58,7 +58,7 @@ function ContactUs({ aboutUsData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, logoResponse, footerResponse, aboutUsResponse] = await Promise.all([
+  const [navResponse, logoResponse, footerResponse, heroResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
@@ -69,16 +69,16 @@ export async function getServerSideProps(context) {
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
     ),
     fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about-us-heroes?populate=*`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heroes?populate=*`
     )
   ]);
-  const [navData, logoData, footerData, aboutUsData] = await Promise.all([
+  const [navData, logoData, footerData, heroData] = await Promise.all([
     navResponse.json(),
     logoResponse.json(),
     footerResponse.json(),
-    aboutUsResponse.json()
+    heroResponse.json()
   ])
-  return { props: { navData, logoData, footerData, aboutUsData } };
+  return { props: { navData, logoData, footerData, heroData } };
 }
 
 export default ContactUs
