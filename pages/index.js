@@ -75,7 +75,6 @@ function Products({ productsData, heroData }) {
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData?.data?.map((data) => {
-      console.log(data)
       let obj = {};
       obj.category =
         data.attributes.home_page_categories.data[0].attributes.categoryUrl;
