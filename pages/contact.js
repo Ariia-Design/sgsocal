@@ -21,38 +21,20 @@ function Contact({ heroData, contactData }) {
         />
       </Row>
       <Row className="py-5">
-        <Row>
-          <h1>Hours</h1>
-          <h3>{contactData.data[0].attributes.hours}</h3>
-        </Row>
-        <Row>
-          <h1>Call or text us</h1>
-          <h3>{contactData.data[0].attributes.phoneNumber}</h3>
-        </Row>
-        <Row>
-          <h1>General questions / Customer support</h1>
-          <h3>{contactData.data[0].attributes.emailOne}</h3>
-        </Row>
-        <Row>
-          <h1>Press</h1>
-          <h3>{contactData.data[0].attributes.emailTwo}</h3>
-        </Row>
-        <Row>
-          <h1>Partnerships</h1>
-          <h3>{contactData.data[0].attributes.emailThree}</h3>
-        </Row>
-        <Row>
-          <a href={contactData.data[0].attributes.facebookLink} style={{ color: "#0c5c0a" }}><h1>Facebook</h1></a>
-        </Row>
-        <Row>
-          <a href={contactData.data[0].attributes.instagramLink} style={{ color: "#0c5c0a" }}><h1>Instagram</h1></a>
-        </Row>
-        <Row>
-          <a href={contactData.data[0].attributes.leaflyLink} style={{ color: "#0c5c0a" }}><h1>Leafly</h1></a>
-        </Row>
-        <Row>
-          <a href={contactData.data[0].attributes.weedmapsLink} style={{ color: "#0c5c0a" }}><h1>Weedmaps</h1></a>
-        </Row>
+        <h1>Hours</h1>
+        <h3>{contactData.data[0].attributes.hours}</h3>
+        <h1>Call or text us</h1>
+        <h3>{contactData.data[0].attributes.phoneNumber}</h3>
+        <h1>General questions / Customer support</h1>
+        <h3>{contactData.data[0].attributes.emailOne}</h3>
+        <h1>Press</h1>
+        <h3>{contactData.data[0].attributes.emailTwo}</h3>
+        <h1>Partnerships</h1>
+        <h3>{contactData.data[0].attributes.emailThree}</h3>
+        <a href={contactData.data[0].attributes.facebookLink} style={{ color: "#0c5c0a" }}><h1>Facebook</h1></a>
+        <a href={contactData.data[0].attributes.instagramLink} style={{ color: "#0c5c0a" }}><h1>Instagram</h1></a>
+        <a href={contactData.data[0].attributes.leaflyLink} style={{ color: "#0c5c0a" }}><h1>Leafly</h1></a>
+        <a href={contactData.data[0].attributes.weedmapsLink} style={{ color: "#0c5c0a" }}><h1>Weedmaps</h1></a>
       </Row>
     </div>
   )
