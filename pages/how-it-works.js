@@ -2,13 +2,12 @@ import Image from 'next/image';
 import React from 'react';
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { useMemo } from "react";
-import { Card, Col, Container, Pagination, Table, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import LooksOneIcon from '@mui/icons-material/LooksOne';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import Looks3Icon from '@mui/icons-material/Looks3';
 
 function ContactUs({ heroData, howItWorksData }) {
-  console.log(howItWorksData.data[0].attributes.stepOneHeader)
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -28,11 +27,11 @@ function ContactUs({ heroData, howItWorksData }) {
         height={350}
         loader={loaderProp}
       />
-      <div className='container my-5 col-12 col-lg-6'>
-        <div className="d-flex justify-content-center">
+      <Container className='my-5 col-12 col-lg-6'>
+        <Row className="justify-content-center">
           <p>{howItWorksData.data[0].attributes.description}</p>
-        </div>
-        <div className="d-flex">
+        </Row>
+        <Row>
           <Col lg={3}>
             <LooksOneIcon
               style={{ fontSize: 100 }}
@@ -46,8 +45,8 @@ function ContactUs({ heroData, howItWorksData }) {
               <li>{howItWorksData.data[0].attributes.stepOneBulletThree}</li>
             </ul>
           </Col>
-        </div>
-        <div className="d-flex">
+        </Row>
+        <Row>
           <Col lg={3}>
             <LooksTwoIcon
               style={{ fontSize: 100 }}
@@ -61,8 +60,8 @@ function ContactUs({ heroData, howItWorksData }) {
               <li>{howItWorksData.data[0].attributes.stepTwoBulletThree}</li>
             </ul>
           </Col>
-        </div>
-        <div className="d-flex">
+        </Row>
+        <Row>
           <Col lg={3}>
             <Looks3Icon
               style={{ fontSize: 100 }}
@@ -76,9 +75,9 @@ function ContactUs({ heroData, howItWorksData }) {
               <li>{howItWorksData.data[0].attributes.stepThreeBulletThree}</li>
             </ul>
           </Col>
-        </div>
-      </div>
-      <div className='container my-5'>
+        </Row>
+      </Container>
+      <Container className='my-5'>
         <div className="App">
           {!isLoaded ? (
             <h1>Loading...</h1>
@@ -92,7 +91,7 @@ function ContactUs({ heroData, howItWorksData }) {
             </GoogleMap>
           )}
         </div>
-      </div>
+      </Container>
     </div>
   )
 }
