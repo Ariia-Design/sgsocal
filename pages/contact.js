@@ -1,8 +1,9 @@
 import Row from 'react-bootstrap/Row';
 import Image from 'next/image';
 import React from 'react';
+import Link from "next/link";
 
-function ContactUs({ heroData }) {
+function Contact({ heroData, contactData }) {
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -22,35 +23,35 @@ function ContactUs({ heroData }) {
       <Row className="py-5">
         <Row>
           <h1>Hours</h1>
-          <h3>8-10am</h3>
+          <h3>{contactData.data[0].attributes.hours}</h3>
         </Row>
         <Row>
           <h1>Call or text us</h1>
-          <h3>(100)100-1000</h3>
+          <h3>{contactData.data[0].attributes.phoneNumber}</h3>
         </Row>
         <Row>
           <h1>General questions / Customer support</h1>
-          <h3>put@youremail.com</h3>
+          <h3>{contactData.data[0].attributes.emailOne}</h3>
         </Row>
         <Row>
           <h1>Press</h1>
-          <h3>put@youremail.com</h3>
+          <h3>{contactData.data[0].attributes.emailTwo}</h3>
         </Row>
         <Row>
           <h1>Partnerships</h1>
-          <h3>put@youremail.com</h3>
+          <h3>{contactData.data[0].attributes.emailThree}</h3>
         </Row>
         <Row>
-          <a><h1>Facebook</h1></a>
+          <a href={contactData.data[0].attributes.facebookLink} style={{ color: "#0c5c0a" }}><h1>Facebook</h1></a>
         </Row>
         <Row>
-          <a><h1>Instagram</h1></a>
+          <a href={contactData.data[0].attributes.instagramLink} style={{ color: "#0c5c0a" }}><h1>Instagram</h1></a>
         </Row>
         <Row>
-          <a><h1>Leafly</h1></a>
+          <a href={contactData.data[0].attributes.leaflyLink} style={{ color: "#0c5c0a" }}><h1>Leafly</h1></a>
         </Row>
         <Row>
-          <a><h1>Weedmaps</h1></a>
+          <a href={contactData.data[0].attributes.weedmapsLink} style={{ color: "#0c5c0a" }}><h1>Weedmaps</h1></a>
         </Row>
       </Row>
     </div>
@@ -58,7 +59,7 @@ function ContactUs({ heroData }) {
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, logoResponse, heroResponse] = await Promise.all([
+  const [navResponse, logoResponse, heroResponse, contactResponse] = await Promise.all([
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
     ),
@@ -67,14 +68,18 @@ export async function getServerSideProps(context) {
     ),
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/hero?populate=*`
+    ),
+    fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/contacts`
     )
   ]);
-  const [navData, logoData, heroData] = await Promise.all([
+  const [navData, logoData, heroData, contactData] = await Promise.all([
     navResponse.json(),
     logoResponse.json(),
-    heroResponse.json()
+    heroResponse.json(),
+    contactResponse.json()
   ])
-  return { props: { navData, logoData, heroData } };
+  return { props: { navData, logoData, heroData, contactData } };
 }
 
-export default ContactUs
+export default Contact
