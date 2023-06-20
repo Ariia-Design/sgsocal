@@ -28,16 +28,16 @@ function ContactUs({ heroData, howItWorksData }) {
         loader={loaderProp}
       />
       <Container className='my-5 col-12 col-lg-6'>
-        <Row className="justify-content-center">
+        <Row>
           <p>{howItWorksData.data[0].attributes.description}</p>
         </Row>
         <Row>
-          <Col lg={3}>
+          <Col xs={4} sm={3}>
             <LooksOneIcon
               style={{ fontSize: 100 }}
             ></LooksOneIcon>
           </Col>
-          <Col lg={9}>
+          <Col xs={8} sm={9}>
             <h1>{howItWorksData.data[0].attributes.stepOneHeader}</h1>
             <ul>
               <li>{howItWorksData.data[0].attributes.stepOneBulletOne}</li>
@@ -47,12 +47,12 @@ function ContactUs({ heroData, howItWorksData }) {
           </Col>
         </Row>
         <Row>
-          <Col lg={3}>
+          <Col xs={4} sm={3}>
             <LooksTwoIcon
               style={{ fontSize: 100 }}
             ></LooksTwoIcon>
           </Col>
-          <Col lg={9}>
+          <Col xs={8} sm={9}>
             <h1>PLACE AN ORDER</h1>
             <ul>
               <li>{howItWorksData.data[0].attributes.stepTwoBulletOne}</li>
@@ -62,12 +62,12 @@ function ContactUs({ heroData, howItWorksData }) {
           </Col>
         </Row>
         <Row>
-          <Col lg={3}>
+          <Col xs={4} sm={3}>
             <Looks3Icon
               style={{ fontSize: 100 }}
             ></Looks3Icon>
           </Col>
-          <Col lg={9}>
+          <Col xs={8} sm={9}>
             <h1>RELAX</h1>
             <ul>
               <li>{howItWorksData.data[0].attributes.stepThreeBulletOne}</li>
