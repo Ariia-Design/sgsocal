@@ -194,8 +194,8 @@ function Products({ productsData, heroData }) {
         height={350}
         loader={loaderProp}
       />
-      <Container className="d-flex py-5">
-        <Col xl={12}>
+      <Container className="py-5">
+        <Row>
           <Table {...getTableProps()}>
             <thead>
               {headerGroups?.map((headerGroup, i) => (
@@ -241,7 +241,7 @@ function Products({ productsData, heroData }) {
                             quality={100}
                           />
                           {row.original.strainType
-                            ? <label className="p-2 h7" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{row.original.strainType}</label>
+                            ? <label className="p-2 h6" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{row.original.strainType}</label>
                             : ""
                           }
                           <Link
@@ -265,11 +265,11 @@ function Products({ productsData, heroData }) {
                                 as={`/products/${row.original.slug}`}
                               >
                                 <Row>
-                                  <h7>{row.original.name}</h7>
+                                  <h6>{row.original.name}</h6>
                                 </Row>
                                 <Row>
                                   { row.original.thcLevel && row.original.cbdLevel
-                                  ? <h7>THC: {row.original.thcLevel} - CBD: {row.original.cbdLevel}</h7>
+                                  ? <label>THC: {row.original.thcLevel} - CBD: {row.original.cbdLevel}</label>
                                   : "" }
                                 </Row>
                               </Link>
@@ -351,7 +351,7 @@ function Products({ productsData, heroData }) {
               </strong>{" "}
             </span>
           </Col>
-        </Col>
+        </Row>
       </Container>
     </>
   );
