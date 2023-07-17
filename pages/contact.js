@@ -15,7 +15,7 @@ function Contact({ heroData, contactData }) {
         src={heroData.data.attributes.heroImage.data.attributes.url}
         alt="hero"
         width={100}
-        height={350}
+        height={400}
         loader={loaderProp}
       />
       <Row className="py-5">

@@ -24,7 +24,7 @@ function ContactUs({ heroData, howItWorksData }) {
         src={heroData.data.attributes.heroImage.data.attributes.url}
         alt="hero"
         width={100}
-        height={350}
+        height={400}
         loader={loaderProp}
       />
       <Container className='my-5 col-12 col-lg-6'>
