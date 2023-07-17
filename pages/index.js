@@ -148,6 +148,7 @@ function Products({ productsData, heroData }) {
       columns,
       data,
       defaultColumn,
+      initialState: { pageSize: 20 },
     },
     useFilters,
     useGlobalFilter,
@@ -334,7 +335,7 @@ function Products({ productsData, heroData }) {
                   onChange={(e) => setPageSize(Number(e.target.value))}
                   style={{ height: "38px" }}
                 >
-                  {[10, 25, 50]?.map((pageSize) => {
+                  {[20, 50, 100]?.map((pageSize) => {
                     return (
                       <option key={pageSize} value={pageSize}>
                         Show {pageSize}
