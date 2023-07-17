@@ -40,9 +40,7 @@ function ContactUs({ heroData, howItWorksData }) {
           <Col xs={8} sm={9}>
             <h1>{howItWorksData.data[0].attributes.stepOneHeader}</h1>
             <ul>
-              <li>{howItWorksData.data[0].attributes.stepOneBulletOne}</li>
-              <li>{howItWorksData.data[0].attributes.stepOneBulletTwo}</li>
-              <li>{howItWorksData.data[0].attributes.stepOneBulletThree}</li>
+              <li>Click <a target="_blank" href="https://form.jotform.com/231304984223149" style={{ fontWeight: "bold" }}>HERE</a> to sign up before placing your first order to verify your age</li>
             </ul>
           </Col>
         </Row>
@@ -58,21 +56,6 @@ function ContactUs({ heroData, howItWorksData }) {
               <li>{howItWorksData.data[0].attributes.stepTwoBulletOne}</li>
               <li>{howItWorksData.data[0].attributes.stepTwoBulletTwo}</li>
               <li>{howItWorksData.data[0].attributes.stepTwoBulletThree}</li>
-            </ul>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4} sm={3}>
-            <Looks3Icon
-              style={{ fontSize: 100 }}
-            ></Looks3Icon>
-          </Col>
-          <Col xs={8} sm={9}>
-            <h1>RELAX</h1>
-            <ul>
-              <li>{howItWorksData.data[0].attributes.stepThreeBulletOne}</li>
-              <li>{howItWorksData.data[0].attributes.stepThreeBulletTwo}</li>
-              <li>{howItWorksData.data[0].attributes.stepThreeBulletThree}</li>
             </ul>
           </Col>
         </Row>
