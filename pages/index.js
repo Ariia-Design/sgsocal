@@ -192,7 +192,7 @@ function Products({ productsData, heroData }) {
         src={heroData.data.attributes.heroImage.data.attributes.url}
         alt="hero"
         width={100}
-        height={350}
+        height={400}
         loader={loaderProp}
       />
       <Container className="py-5">
