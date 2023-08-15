@@ -48,7 +48,6 @@ export default function NavBar({ props }) {
                 alt="logo"
                 width={160}
                 height={75}
-                objectFit="contain"
                 priority
               />
             </Navbar.Brand>
