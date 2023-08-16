@@ -3,9 +3,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MDBCardImage, MDBRipple } from "mdb-react-ui-kit";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Image from "next/image";
 import React, { Fragment, useMemo, useState } from "react";
-import { Card, Col, Container, Pagination, Table } from "react-bootstrap";
+import { Card, Col, Container, Pagination, Table, Row } from "react-bootstrap";
 import {
   useFilters,
   useGlobalFilter,
@@ -43,12 +43,9 @@ function ColumnFilter({
     return [...options.values()];
   }, [id, preFilteredRows]);
 
-  const router = useRouter();
-  const category = router.query;
-
   return (
     <Fragment>
-      <div className="block">
+      <div className="d-flex justify-content-around flex-wrap">
         {options?.map((option, i) => {
           return (
             <Fragment key={i}>
@@ -61,9 +58,6 @@ function ColumnFilter({
                   onChange={(e) => {
                     setFilter(setFilteredParams(filterValue, e.target.value));
                   }}
-                  defaultChecked={
-                    option === `${category.category}` ? true : false
-                  }
                 ></input>
                 <label htmlFor={option} className="form-check-label">
                   {option.toUpperCase()}
@@ -77,9 +71,7 @@ function ColumnFilter({
   );
 }
 
-function Products({ productsData }) {
-  const router = useRouter();
-  const category = router.query;
+function WeeklyDeals({ productsData, heroData }) {
   const data = React.useMemo(() => {
     const dataArray = [];
     productsData?.data?.map((data) => {
@@ -87,10 +79,12 @@ function Products({ productsData }) {
       obj.category =
         data.attributes.home_page_categories.data[0].attributes.categoryUrl;
       obj.name = data.attributes.name;
-      obj.originalPrice = data.attributes.originalPrice;
-      obj.discountPrice = data.attributes.discountPrice;
+      obj.price = data.attributes.price;
       obj.slug = data.attributes.slug;
       obj.url = data.attributes.productImage.data.attributes.url;
+      obj.strainType = data.attributes.strainType;
+      obj.thcLevel = data.attributes.thcLevel;
+      obj.cbdLevel = data.attributes.cbdLevel;
       dataArray.push(obj);
     });
     return dataArray;
@@ -133,24 +127,6 @@ function Products({ productsData }) {
     []
   );
 
-  const initState = () => {
-    if (!category.category) {
-      return {
-        pageSize: 12,
-      };
-    } else {
-      return {
-        pageSize: 12,
-        filters: [
-          {
-            id: "category",
-            value: [`${category.category}`],
-          },
-        ],
-      };
-    }
-  };
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -172,7 +148,7 @@ function Products({ productsData }) {
       columns,
       data,
       defaultColumn,
-      initialState: initState(),
+      initialState: { pageSize: 20 },
     },
     useFilters,
     useGlobalFilter,
@@ -205,11 +181,23 @@ function Products({ productsData }) {
     );
   }
 
+  const loaderProp = ({ src }) => {
+    return src;
+  };
+
   return (
-    <Container className="d-flex my-5">
-      <Col className="d-none d-sm-block d-md-block d-xl-block" xl={3}>
-        <Card>
-          <Table>
+    <>
+      <Image
+        className="d-block w-100"
+        src={heroData.data.attributes.heroImage.data.attributes.url}
+        alt="hero"
+        width={100}
+        height={400}
+        loader={loaderProp}
+      />
+      <Container className="py-5">
+        <Row>
+          <Table {...getTableProps()}>
             <thead>
               {headerGroups?.map((headerGroup, i) => (
                 <tr {...headerGroup.getHeaderGroupProps()} key={i}>
@@ -225,7 +213,7 @@ function Products({ productsData }) {
                 </tr>
               ))}
             </thead>
-            <tbody>
+            <tbody {...getTableBodyProps()}>
               <tr>
                 <td>
                   <GlobalFilter
@@ -234,140 +222,144 @@ function Products({ productsData }) {
                   />
                 </td>
               </tr>
-            </tbody>
-          </Table>
-        </Card>
-      </Col>
-      <Col xl={9}>
-        <Table {...getTableProps()}>
-          <tbody {...getTableBodyProps()}>
-            <tr className="d-flex flex-wrap">
-              {page?.map((row) => {
-                return (
-                  <td key={row.id} className="col-12 col-md-6 col-xl-4">
-                    <Card>
-                      <MDBRipple
-                        className="bg-image hover-overlay shadow-1-strong rounded"
-                        rippleTag="div"
-                        rippleColor="light"
-                        style={{ height: "100%" }}
-                      >
-                        <MDBCardImage
-                          className="d-block w-100"
-                          src={row.original.url}
-                          alt="product"
-                          width={100}
-                          height={315}
-                          quality={100}
-                        />
-                        <Link
-                          href={"/weekly-deals-products/[slug]"}
-                          as={`/weekly-deals-products/${row.original.slug}`}
-                        >
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.2)",
-                            }}
-                          ></div>
-                        </Link>
-                        <div
-                          className="d-flex align-items-center justify-content-between"
-                          style={{ height: "60px" }}
-                        >
-                          <div className="col-6 product-card-title text-start">
-                            <Link
-                              href={"/weekly-deals-products/[slug]"}
-                              as={`/weekly-deals-products/${row.original.slug}`}
-                            >
-                              <h6>{row.original.name}</h6>
-                            </Link>
-                          </div>
-                          <div className="product-card-price">
-                            <Link
-                              href={"/weekly-deals-products/[slug]"}
-                              as={`/weekly-deals-products/${row.original.slug}`}
-                            >
-                              <h6 className="text-muted" style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>${row.original.originalPrice}</h6>
-                              <h5>${row.original.discountPrice}</h5>
-                            </Link>
-                          </div>
-                        </div>
-                      </MDBRipple>
-                    </Card>
-                  </td>
-                );
-              })}
-            </tr>
-          </tbody>
-        </Table>
-        <Col className="d-flex justify-content-between align-items-center">
-          <div className="d-flex align-items-center">
-            <Pagination>
-              <Pagination.First
-                onClick={() => {
-                  gotoPage(0);
-                  setActive(1);
-                  setCurrentPage(1);
-                }}
-                disabled={!canPreviousPage}
-              />
-              <Pagination.Prev
-                onClick={() => {
-                  previousPage();
-                  setCurrentPage(currentPage - 1);
-                  setActive(currentPage - 1);
-                }}
-                disabled={!canPreviousPage}
-              />
-              <Pagination>{items}</Pagination>
-              <Pagination.Next
-                onClick={() => {
-                  nextPage();
-                  setCurrentPage(currentPage + 1);
-                  setActive(currentPage + 1);
-                }}
-                disabled={!canNextPage}
-              />
-              <Pagination.Last
-                onClick={() => {
-                  gotoPage(pageCount - 1);
-                  setActive(pageCount);
-                  setCurrentPage(pageCount);
-                }}
-                disabled={!canNextPage}
-              />
-            </Pagination>
-            <div className="d-none d-xl-block">
-              <select
-                value={pageSize}
-                onChange={(e) => setPageSize(Number(e.target.value))}
-                style={{ height: "38px" }}
-              >
-                {[10, 25, 50]?.map((pageSize) => {
+              <tr className="d-flex flex-wrap">
+                {page?.map((row) => {
                   return (
-                    <option key={pageSize} value={pageSize}>
-                      Show {pageSize}
-                    </option>
+                    <td key={row.id} className="col-12 col-md-6 col-xl-3">
+                      <Card style={{ position: "relative" }}>
+                        <MDBRipple
+                          className="bg-image hover-overlay shadow-1-strong rounded"
+                          rippleTag="div"
+                          rippleColor="light"
+                          style={{ height: "100%" }}
+                        >
+                          <MDBCardImage
+                            className="d-block w-100"
+                            src={row.original.url}
+                            alt="product"
+                            width={100}
+                            height={315}
+                            quality={100}
+                          />
+                          {row.original.strainType
+                            ? <label className="p-2 h6" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{row.original.strainType}</label>
+                            : ""
+                          }
+                          <Link
+                            href={"/products/[slug]"}
+                            as={`/products/${row.original.slug}`}
+                          >
+                            <div
+                              className="mask"
+                              style={{
+                                backgroundColor: "rgba(251, 251, 251, 0.2)",
+                              }}
+                            ></div>
+                          </Link>
+                          <div
+                            className="d-flex align-items-center justify-content-between p-2"
+                            style={{ height: "75px", backgroundColor: "#333333" }}
+                          >
+                            <Col xl={10} className="product-card-title text-start">
+                              <Link
+                                href={"/products/[slug]"}
+                                as={`/products/${row.original.slug}`}
+                              >
+                                <Row>
+                                  <h6>{row.original.name}</h6>
+                                </Row>
+                                <Row>
+                                  {row.original.thcLevel && row.original.cbdLevel
+                                    ? <label>THC: {row.original.thcLevel} - CBD: {row.original.cbdLevel}</label>
+                                    : ""}
+                                </Row>
+                              </Link>
+                            </Col>
+                            <Col xl={2} className="product-card-price text-end">
+                              <Link
+                                href={"/products/[slug]"}
+                                as={`/products/${row.original.slug}`}
+                              >
+                                <h5>${row.original.price}</h5>
+                              </Link>
+                            </Col>
+                          </div>
+                        </MDBRipple>
+                      </Card>
+                    </td>
                   );
                 })}
-              </select>
+              </tr>
+            </tbody>
+          </Table>
+          <Col className="d-flex justify-content-between align-items-center">
+            <div className="d-flex align-items-center">
+              <Pagination>
+                <Pagination.First
+                  onClick={() => {
+                    gotoPage(0);
+                    setActive(1);
+                    setCurrentPage(1);
+                  }}
+                  disabled={!canPreviousPage}
+                />
+                <Pagination.Prev
+                  onClick={() => {
+                    previousPage();
+                    setCurrentPage(currentPage - 1);
+                    setActive(currentPage - 1);
+                  }}
+                  disabled={!canPreviousPage}
+                />
+                <Pagination>{items}</Pagination>
+                <Pagination.Next
+                  onClick={() => {
+                    nextPage();
+                    setCurrentPage(currentPage + 1);
+                    setActive(currentPage + 1);
+                  }}
+                  disabled={!canNextPage}
+                />
+                <Pagination.Last
+                  onClick={() => {
+                    gotoPage(pageCount - 1);
+                    setActive(pageCount);
+                    setCurrentPage(pageCount);
+                  }}
+                  disabled={!canNextPage}
+                />
+              </Pagination>
+              <div className="d-none d-xl-block">
+                <select
+                  value={pageSize}
+                  onChange={(e) => setPageSize(Number(e.target.value))}
+                  style={{ height: "38px" }}
+                >
+                  {[20, 50, 100]?.map((pageSize) => {
+                    return (
+                      <option key={pageSize} value={pageSize}>
+                        Show {pageSize}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
             </div>
-          </div>
-          <span>
-            Page{" "}
-            <strong>
-              {pageIndex + 1} of {pageOptions.length}
-            </strong>{" "}
-          </span>
-        </Col>
-      </Col>
-    </Container>
+            <span>
+              Page{" "}
+              <strong>
+                {pageIndex + 1} of {pageOptions.length}
+              </strong>{" "}
+            </span>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
 export async function getServerSideProps(context) {
-  const [navResponse, productsResponse, categoriesResponse, logoResponse, footerResponse] =
+  const [navResponse, productsResponse, categoriesResponse, logoResponse, heroResponse] =
     await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`
@@ -382,17 +374,17 @@ export async function getServerSideProps(context) {
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`
       ),
       fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`
-      )
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/hero?populate=*`
+      ),
     ]);
-  const [navData, productsData, categoryData, logoData, footerData] = await Promise.all([
+  const [navData, productsData, categoryData, logoData, heroData] = await Promise.all([
     navResponse.json(),
     productsResponse.json(),
     categoriesResponse.json(),
     logoResponse.json(),
-    footerResponse.json()
+    heroResponse.json()
   ]);
-  return { props: { navData, productsData, categoryData, logoData, footerData } };
+  return { props: { navData, productsData, categoryData, logoData, heroData } };
 }
 
-export default Products;
+export default WeeklyDeals;
