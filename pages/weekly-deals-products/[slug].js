@@ -1,21 +1,18 @@
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
-import { Container } from 'react-bootstrap';
 import React from 'react';
+import { Card, Col, Container, Pagination, Table, Row } from "react-bootstrap";
 import {
-  MDBCard,
   MDBCardTitle,
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBRow,
-  MDBCol,
   MDBBtn
 } from 'mdb-react-ui-kit';
 import Image from 'react-bootstrap';
 import Link from 'next/link'
 
-function ProductDetails({ weeklyDealsProductItemData }) {
+function ProductDetails({ productItemData }) {
   const loaderProp = ({ src }) => {
     return src;
   };
@@ -23,20 +20,29 @@ function ProductDetails({ weeklyDealsProductItemData }) {
   return (
     <>
       <Container className="d-flex justify-content-center my-5">
-        <MDBCard>
-          <MDBRow>
-            <MDBCol md='6 text-center'>
-              <MDBCardImage src={weeklyDealsProductItemData?.attributes?.productImage?.data?.attributes?.url} width={400} quality={100} alt='product' fluid />
-            </MDBCol>
-            <MDBCol md='6 text-sm-left'>
+        <Card className="p-5">
+          <Row className="d-flex align-items-center">
+            <Col md={6} className="text-center">
+              <MDBCardImage style={{ position: "relative", maxWidth: "100%", maxHeight: "100%" }} src={productItemData?.attributes?.productImage?.data?.attributes?.url} alt='product' objectfit="contain" fill="true" />
+              {productItemData.attributes.strainType
+                ? <label className="p-2 h7" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{productItemData.attributes.strainType}</label>
+                : ""
+              }
+            </Col>
+            <Col md={6} className="text-sm-left">
               <MDBCardBody>
-                <MDBCardTitle>{weeklyDealsProductItemData?.attributes?.name}</MDBCardTitle>
-                <span>
-                  <h6 className='text-muted' style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>${weeklyDealsProductItemData?.attributes?.originalPrice}</h6>
-                  <h5 className='text-muted'>${weeklyDealsProductItemData?.attributes?.discountPrice}</h5>
-                </span>
-                <MDBCardText className='text-muted'>{weeklyDealsProductItemData?.attributes?.productDescription}</MDBCardText>
-                <Link href='/contact-us'>
+                <MDBCardTitle className="h4">{productItemData?.attributes?.name}</MDBCardTitle>
+                {
+                  productItemData?.attributes?.thcLevel && productItemData?.attributes?.cbdLevel
+                    ? <MDBCardTitle className="fst-italic">THC: {productItemData?.attributes?.thcLevel} - CBD: {productItemData?.attributes?.cbdLevel}</MDBCardTitle>
+                    : ""
+                }
+                <div className="d-flex">
+                  <MDBCardTitle className="text-decoration-line-through">${productItemData?.attributes?.originalPrice}&nbsp;</MDBCardTitle>
+                  <MDBCardTitle>${productItemData?.attributes?.discountPrice}</MDBCardTitle>
+                </div>
+                <MDBCardText className='text-muted'>{productItemData?.attributes.productDescription}</MDBCardText>
+                <Link href='/how-it-works'>
                   <MDBBtn
                     className='btn btn-light btn-outline-dark me-1'
                     size='md'>
@@ -44,9 +50,9 @@ function ProductDetails({ weeklyDealsProductItemData }) {
                   </MDBBtn>
                 </Link>
               </MDBCardBody>
-            </MDBCol>
-          </MDBRow>
-        </MDBCard>
+            </Col>
+          </Row>
+        </Card>
       </Container>
     </>
   )
@@ -55,27 +61,27 @@ function ProductDetails({ weeklyDealsProductItemData }) {
 export async function getServerSideProps(context) {
   const { slug } = context.query;
 
-  const [weeklyDealsProductItemResponse, navResponse, logoResponse, categoriesResponse, footerResponse] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/weekly-deals-products?populate=*`),
+  const [productItemResponse, navResponse, logoResponse, categoriesResponse, footerResponse] = await Promise.all([
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/weekly-deals-products/?slug=${slug}&populate=*`),
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/nav-items`),
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/logo?populate=*`),
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/home-page-categories?populate=*`),
     fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footer-items`)
   ]);
 
-  const [weeklyDealsProductItemData, navData, logoData, categoryData, footerData] = await Promise.all([
-    weeklyDealsProductItemResponse.json(),
+  const [productItemData, navData, logoData, categoryData, footerData] = await Promise.all([
+    productItemResponse.json(),
     navResponse.json(),
     logoResponse.json(),
     categoriesResponse.json(),
     footerResponse.json()
   ])
 
-  const selectedItem = weeklyDealsProductItemData?.data?.find(item => item.attributes.slug === slug);
+  const selectedItem = productItemData?.data?.find(item => item.attributes.slug === slug);
 
   return {
     props: {
-      weeklyDealsProductItemData: selectedItem,
+      productItemData: selectedItem,
       navData: navData,
       logoData: logoData,
       categoryData: categoryData,
