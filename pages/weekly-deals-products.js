@@ -79,7 +79,8 @@ function WeeklyDeals({ productsData, heroData }) {
       obj.category =
         data.attributes.home_page_categories.data[0].attributes.categoryUrl;
       obj.name = data.attributes.name;
-      obj.price = data.attributes.price;
+      obj.originalPrice = data.attributes.originalPrice;
+      obj.discountPrice = data.attributes.discountPrice;
       obj.slug = data.attributes.slug;
       obj.url = data.attributes.productImage.data.attributes.url;
       obj.strainType = data.attributes.strainType;
@@ -246,8 +247,8 @@ function WeeklyDeals({ productsData, heroData }) {
                             : ""
                           }
                           <Link
-                            href={"/products/[slug]"}
-                            as={`/products/${row.original.slug}`}
+                            href={"/weekly-deals-products/[slug]"}
+                            as={`/weekly-deals-products/${row.original.slug}`}
                           >
                             <div
                               className="mask"
@@ -262,8 +263,8 @@ function WeeklyDeals({ productsData, heroData }) {
                           >
                             <Col xl={10} className="product-card-title text-start">
                               <Link
-                                href={"/products/[slug]"}
-                                as={`/products/${row.original.slug}`}
+                                href={"/weekly-deals-products/[slug]"}
+                                as={`/weekly-deals-products/${row.original.slug}`}
                               >
                                 <Row>
                                   <h6>{row.original.name}</h6>
@@ -277,10 +278,11 @@ function WeeklyDeals({ productsData, heroData }) {
                             </Col>
                             <Col xl={2} className="product-card-price text-end">
                               <Link
-                                href={"/products/[slug]"}
-                                as={`/products/${row.original.slug}`}
+                                href={"/weekly-deals-products/[slug]"}
+                                as={`/weekly-deals-products/${row.original.slug}`}
                               >
-                                <h5>${row.original.price}</h5>
+                                <h5 className="text-decoration-line-through">${row.original.originalPrice}</h5>
+                                <h5>${row.original.discountPrice}</h5>
                               </Link>
                             </Col>
                           </div>
