@@ -52,7 +52,7 @@ export default function NavBar({ props }) {
               />
             </Navbar.Brand>
           </Col>
-          <Col className="d-none d-xs-none d-lg-block" lg={5} xl={4}>
+          <Col className="d-none d-xs-none d-lg-block" lg={7} xl={6}>
             <Nav className="d-lg-flex justify-content-between">
               {props?.navData?.data?.length > 0 &&
                 props?.navData?.data?.map((item) => (
