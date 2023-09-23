@@ -261,7 +261,7 @@ function WeeklyDeals({ productsData, heroData }) {
                           </Link>
                           <div
                             className="d-flex align-items-center justify-content-between p-2"
-                            style={{ height: "75px", backgroundColor: "#333333" }}
+                            style={{ height: "95px", backgroundColor: "#333333" }}
                           >
                             <Col xl={10} className="product-card-title text-start">
                               <Link
