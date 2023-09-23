@@ -10,14 +10,16 @@ function Contact({ heroData, contactData }) {
 
   return (
     <div className="text-center" style={{ color: "#0c5c0a" }}>
-      <Image
-        className="d-block w-100"
-        src={heroData.data.attributes.heroImage.data.attributes.url}
-        alt="hero"
-        width={100}
-        height={400}
-        loader={loaderProp}
-      />
+      <div className="heroImage-container">
+        <Image
+          className="d-block w-100"
+          src={heroData.data.attributes.heroImage.data.attributes.url}
+          alt="hero"
+          fill
+          style={{ objectFit: "cover" }}
+          loader={loaderProp}
+        />
+      </div>
       <Row className="py-5">
         <h1>Hours</h1>
         <h3>{contactData.data[0].attributes.hours}</h3>

@@ -97,15 +97,28 @@ th[data-id="url"] {
   display: none;
 }
 
+.heroImage-container {
+  position: relative;
+  height: 550px;
+}
+
 @media only screen and (max-device-width: 768px) {
   .card-flex-basis {
     flex-basis: 50%;
+  }
+
+  .heroImage-container {
+    height: 450px;
   }
 }
 
 @media only screen and (max-device-width: 465px) {
   .card-flex-basis {
     flex-basis: 100%;
+  }
+
+  .heroImage-container {
+    height: 350px;
   }
 }
 

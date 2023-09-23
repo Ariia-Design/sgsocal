@@ -19,14 +19,16 @@ function ContactUs({ heroData, howItWorksData }) {
 
   return (
     <div style={{ color: "#0c5c0a" }}>
-      <Image
-        className="d-block w-100"
-        src={heroData.data.attributes.heroImage.data.attributes.url}
-        alt="hero"
-        width={100}
-        height={400}
-        loader={loaderProp}
-      />
+      <div className="heroImage-container">
+        <Image
+          className="d-block w-100"
+          src={heroData.data.attributes.heroImage.data.attributes.url}
+          alt="hero"
+          fill
+          style={{ objectFit: "cover" }}
+          loader={loaderProp}
+        />
+      </div>
       <Container className='my-5 col-12 col-lg-6'>
         <Row>
           <p>{howItWorksData.data[0].attributes.description}</p>

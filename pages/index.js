@@ -187,14 +187,16 @@ function Products({ productsData, heroData }) {
 
   return (
     <>
-      <Image
-        className="d-block w-100"
-        src={heroData.data.attributes.heroImage.data.attributes.url}
-        alt="hero"
-        width={100}
-        height={400}
-        loader={loaderProp}
-      />
+      <div className="heroImage-container">
+        <Image
+          className="d-block w-100"
+          src={heroData.data.attributes.heroImage.data.attributes.url}
+          alt="hero"
+          fill
+          style={{ objectFit: "cover" }}
+          loader={loaderProp}
+        />
+      </div>
       <Container className="py-5">
         <Row>
           <Table {...getTableProps()}>
