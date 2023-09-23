@@ -244,7 +244,7 @@ function Products({ productsData, heroData }) {
                             quality={100}
                           />
                           {row.original.strainType
-                            ? <label className="p-2 h6" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{row.original.strainType}</label>
+                            ? <label className="p-2 h6" style={{ position: "absolute", left: 0, top: "25px", backgroundColor: "#0c5c0a", color: "white" }}>{row.original.strainType.toUpperCase()}</label>
                             : ""
                           }
                           <Link
